@@ -1,2 +1,2 @@
 # Class Survey
-Angular web application for issuing and completing on-size surveys.
+Angular web application for issuing and completing on-site surveys.
