@@ -5,7 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component'
 
 const routes: Routes = [
-  { path: 'heroes', component: LoginComponent }
+  // check cookies for login
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // --------
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

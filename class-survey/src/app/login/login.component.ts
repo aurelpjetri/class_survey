@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  @Input() private mat: string;
+  @Input() private pass: string;
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  logIn(): any{
+    return{
+      "matriculation": this.mat,
+      "password": this.pass
+      };
+    //usa il servizio di login
   }
 
 }

@@ -1,3 +1,17 @@
-<p>
-  login works!
-</p>
+<div class="login-container">
+
+  <a class='icon'><mat-icon >account_circle</mat-icon></a>
+  <mat-form-field>
+    <input matInput [(ngModel)]="this.mat" type="text" placeholder="Matriculation"/>
+    <button mat-button *ngIf="this.mat" matSuffix mat-icon-button aria-label="Clear" (click)="this.mat=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Login</button>
+
+</div>
