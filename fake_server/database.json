@@ -1,12 +1,14 @@
-{ 
-	"professor": [ 
-		{ 
+{
+	"professor": [
+		{
 			"matriculation": "PROF000",
-			"password": "000"
-		}, 
-		{ 
+			"password": "000",
+			"name": "aurelio"
+		},
+		{
 			"matriculation": "PROF001",
-			"password": "001"
+			"password": "001",
+			"name": "aurelito"
 		}
-	] 
+	]
 }
