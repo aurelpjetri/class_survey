@@ -21,13 +21,13 @@ server.use( (req, res, next) => {
 					possible_user = ['professor', 'student']
 					var idx = 0
 					while ( (idx < possible_user.length) && !(found) ) {
-						actors = db[possible_user[idx]]
-						if (actors != undefined) {
-							for (var act_idx in actors) {
-								actor = actors[act_idx]
-								if (req_body.matriculation == actor.matriculation) {
-									if (req_body.password == actor.password) {
-										res.jsonp( {user: actor} )
+						users = db[possible_user[idx]]
+						if (users != undefined) {
+							for (var usr_idx in users) {
+								user = users[usr_idx]
+								if (req_body.matriculation == user.matriculation) {
+									if (req_body.password == user.password) {
+										res.jsonp( {'user': user} )
 										found = true; break;
 									}
 								}
@@ -35,7 +35,7 @@ server.use( (req, res, next) => {
 						}
 						idx = idx + 1
 					}
-					res.sendStatus(404)
+					if (!found) { res.sendStatus(404) }
 				} else {	// add new entity
 
 				}
@@ -50,7 +50,7 @@ server.use( (req, res, next) => {
 	}
 } )
 
-server.listen(3000, () => { console.log('\nJSON Server is Running on localhost:3000...') })
+server.listen(3000, () => { console.log('\nJSON Server is Running on http://localhost:3000') })
 
 /*
   const router = json_server.router(db_path)
