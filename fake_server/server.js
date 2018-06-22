@@ -17,33 +17,41 @@ server.use( (req, res, next) => {
 	switch (req.method) {
 		case 'POST':
 				if (req_path == '/authentication') {	// login information
+					var user = undefined
+
+					// searching in registered users (professor or student)
+					var users = db.authentication
 					var found = false
-					possible_user = ['professor', 'student']
 					var idx = 0
-					while ( (idx < possible_user.length) && !(found) ) {
-						users = db[possible_user[idx]]
-						if (users != undefined) {
-							for (var usr_idx in users) {
-								user = users[usr_idx]
-								if (req_body.matriculation == user.matriculation) {
-									if (req_body.password == user.password) {
-										res.jsonp( {'user': user} )
-										found = true; break;
-									}
-								}
+					while ( (idx < users.length) && !(found) ) {
+						user = users[idx]
+						if (req_body.matriculation == user.matriculation) {
+							if (req_body.password == user.password) {
+								found = true
 							}
 						}
 						idx = idx + 1
 					}
-					if (!found) { res.sendStatus(404) }
-				} else {	// add new entity
 
+					// taking the information of the user (return 404 if the research fails)
+					if (found) {
+						var reg_users = db[user['role']]
+						for (var idx in reg_users) {
+							var reg_user = reg_users[idx]
+							if (reg_user.matriculation === user.matriculation) {
+								res.jsonp( {'role': user['role'], 'user': reg_user} )
+							}
+						}
+					} else { res.sendStatus(404) }
+				} else {	// add new entity
+						res.sendStatus(501)
 				}
 			break
 		case 'GET':
 			res.jsonp( {body: req_body} )
 			break
 		case 'DELETE':
+			res.jsonp( {body: req_body} )
 			break
 		default:
 			res.sendStatus(501)

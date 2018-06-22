@@ -1,14 +1,59 @@
 {
+	"authentication": [
+		{
+			"role": "professor",
+			"matriculation": "PROF000",
+			"password": "000"
+		},
+		{
+			"role": "professor",
+			"matriculation": "PROF001",
+			"password": "001"
+		},
+		{
+			"role": "student",
+			"matriculation": "STUD000",
+			"password": "000"
+		}
+	],
+
 	"professor": [
 		{
 			"matriculation": "PROF000",
 			"password": "000",
-			"name": "aurelio"
+			"name": "Mario Rossi",
+			"courses": [
+				"COUR000",
+				"COUR001"
+			],
+			"templates": [
+				"TEMP000",
+				"TEMP002"
+			]
 		},
 		{
 			"matriculation": "PROF001",
 			"password": "001",
-			"name": "aurelito"
+			"name": "Lucilla Toscano",
+			"courses": [
+				"COUR000",
+				"COUR005"
+			],
+			"templates": [
+				"TEMP000",
+				"TEMP001"
+			]
+		}
+	],
+
+	"student": [
+		{
+			"matriculation": "STUD000",
+			"name": "Beatrice Marchesi",
+			"courses": [
+				"COUR001",
+				"COUR000"
+			]
 		}
 	]
 }
