@@ -12,25 +12,36 @@ import { HttpClient } from '@angular/common/http';
 export class AuthenticationService {
   private serverURL = 'http://localhost:3000/authentication';
 
+  private error_status: any;
+
   constructor(private http:HttpClient) { }
 
   login(user: any): Observable<any> {
+    this.error_status= 200;
     return this.http.post<any>(this.serverURL, user)
-    .pipe(
-      catchError(this.handleError('login', user))
-    );
+      .pipe(
+        catchError(this.handleError('login', user))
+      );
+  }
+
+  getErrorStatus(): any {
+    return this.error_status;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.error(error.status); // log to console instead
+      this.error_status = error.status;
+
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
+
+
 
 /*
  login(username: string, password: string) {
