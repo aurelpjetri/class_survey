@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import {AuthenticationService} from '../authentication.service';
+import {UserDataService} from '../user-data.service';
+import { Router } from '@angular/router';
 
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,9 +27,10 @@ export class LoginComponent implements OnInit {
   @Input() private mat: string;
   @Input() private pass: string;
 
-  private response: any;
-
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userDataService: UserDataService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
 
   checkResponse(response: any) :any{
     if(this.authenticationService.getErrorStatus()===200){
-      console.log('LOGIN successful')
+      this.userDataService.setData(response.user);
+      this.router.navigateByUrl('/professor')
     }
     else{
       alert('matriculation number or password invalid');
@@ -53,6 +54,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  
 
 }

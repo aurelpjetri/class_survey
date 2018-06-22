@@ -12,15 +12,20 @@ import{MatToolbarModule} from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ProfessorComponent } from './professor/professor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ProfessorComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
