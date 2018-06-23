@@ -1,12 +1,19 @@
-<div>
-  <h2 class="mat-title">Logged In as prof {{user.name}} </h2>
-  <mat-divider></mat-divider>
-  <mat-list>
-    <h3 mat-subheader>Courses</h3>
-    <mat-list-item *ngFor="let course of user.courses">
-      <mat-icon mat-list-icon>school</mat-icon>
-      <h4 mat-line>{{course}}</h4>
-    </mat-list-item>
-  </mat-list>
-
+<div class="prof_cont">
+  <h2 class="mat-title">Prof. {{user.name}} </h2>
 </div>
+<mat-divider></mat-divider>
+<mat-list>
+  <h3 mat-subheader>Courses</h3>
+  <mat-list-item *ngFor="let course of user.courses">
+    <mat-icon mat-list-icon>school</mat-icon>
+    <h4 mat-line>{{course}}</h4>
+  </mat-list-item>
+</mat-list>
+<mat-divider></mat-divider>
+<mat-list>
+  <h3 mat-subheader>Templates</h3>
+  <mat-list-item *ngFor="let template of user.templates">
+    <mat-icon mat-list-icon>receipt</mat-icon>
+    <h4 mat-line>{{template}}</h4>
+  </mat-list-item>
+</mat-list>
