@@ -1,17 +1,23 @@
-<div class="login-container">
+<form class="login-container">
 
   <a class='icon'><mat-icon >account_circle</mat-icon></a>
+
   <mat-form-field>
-    <input matInput [(ngModel)]="this.mat" type="text" placeholder="Matriculation"/>
+    <input matInput [(ngModel)]="this.mat" type="text" placeholder="Matriculation" required name="mat" [errorStateMatcher]="matcher"/>
+
     <button mat-button *ngIf="this.mat" matSuffix mat-icon-button aria-label="Clear" (click)="this.mat=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput type="password" placeholder="Password">
+    <input matInput [(ngModel)]="this.pass" type="password" placeholder="Password" required name="pass" [errorStateMatcher]="matcher">
   </mat-form-field>
 
-  <button mat-raised-button color="primary">Login</button>
+  <div *ngIf="check==='invalid'">
+    Email or password are invalid!
+  </div>
 
-</div>
+  <button mat-raised-button color="primary" (click)="this.logIn()">Login</button>
+
+</form>

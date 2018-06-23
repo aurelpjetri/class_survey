@@ -1,0 +1,10 @@
+.mat-list-icon{
+  color: rgba(0, 0, 0, 0.54);
+}
+.prof_cont{
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  width: 100%;
+  padding: 2em 2em 0em 1em;
+}

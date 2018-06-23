@@ -1,0 +1,188 @@
+{
+	"authentication": [
+		{
+			"role": "professor",
+			"matriculation": "PROF000",
+			"password": "000"
+		},
+		{
+			"role": "professor",
+			"matriculation": "PROF001",
+			"password": "001"
+		},
+		{
+			"role": "student",
+			"matriculation": "STUD000",
+			"password": "000"
+		}
+	],
+
+	"professor": [
+		{
+			"matriculation": "PROF000",
+			"name": "Mario Rossi",
+			"courses": [
+				"COUR000"
+			],
+			"templates": [
+				"TEMP000"
+			]
+		},
+		{
+			"matriculation": "PROF001",
+			"name": "Lucilla Toscano",
+			"courses": [
+				"COUR000",
+				"COUR005"
+			],
+			"templates": [
+				"TEMP000",
+				"TEMP001"
+			]
+		}
+	],
+
+	"student": [
+		{
+			"matriculation": "STUD000",
+			"name": "Beatrice Marchesi",
+			"questionnaire": [
+				"QUES000"
+			]
+		}
+	],
+
+	"course": [
+		{
+			"code": "COUR000",
+			"name": "Deep Networks",
+			"cfu": 9,
+			"year": "2017/18",
+			"degree": "Master",
+			"questionnaire": [
+				"QUES000",
+				"QUES003"
+			]
+		},
+		{
+			"code": "COUR005",
+			"name": "Software Engineer",
+			"cfu": 6,
+			"year": "2017/18",
+			"degree": "Bachelor",
+			"questionnaire": [
+
+			]
+		}
+	],
+
+	"template": [
+		{
+			"creator": "ADMIN",
+			"id": "TEMP000",
+			"title": "Course evaluation",
+			"question": [
+				{
+					"question_Type": "lin",
+					"questionID": 0
+				},
+				{
+					"question_Type": "essay",
+					"questionID": 0
+				}
+			]
+		},
+		{
+			"creator": "PROF001",
+			"id": "TEMP001",
+			"title": "About course language",
+			"question": [
+				{
+					"question_Type": "multiple",
+					"questionID": 0
+				}
+			]
+		}
+	],
+
+	"questionnaire": [
+		{
+			"id": "QUES000",
+			"title": "Course evaluation",
+			"gps": "true",
+			"deadline": "05/06/2018 - 10:00",
+			"activation": "05/06/2018 - 10:30",
+			"course_id": "COUR000",
+			"professor": "PROF000",
+			"questions": [
+				{
+					"question_Type": "lin",
+					"questionID": 0
+				},
+				{
+					"question_Type": "essay",
+					"questionID": 0
+				}
+			]
+		},
+		{
+			"id": "QUES003",
+			"title": "About course language",
+			"gps": "false",
+			"deadline": "20/03/2018 - 24:00",
+			"activation": "01/03/2018 - 00:00",
+			"course_id": "COUR000",
+			"professor": "PROF001",
+			"questions": [
+				{
+					"question_Type": "multiple",
+					"questionID": 0
+				}
+			]
+		}
+	],
+
+	"lin_question": [
+		{
+			"id": 0,
+			"question": "How do you judge the laboratory lessons?",
+			"max": 7,
+			"min": 1
+		}
+	],
+
+	"essay_question": [
+		{
+			"id": 0,
+			"question": "Report here suggestions about this course",
+			"max_len": 300
+		}
+	],
+
+	"multiple_question": [
+		{
+			"id": 0,
+			"question": "Which language do you prefer?",
+			"choiches": [
+				"English",
+				"Italian"
+			]
+		}
+	],
+
+	"answer": [
+		{
+			"questionnaireID": "QUES003",
+			"number_of_the_question": 0,
+			"collected": [
+				"English"
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 1.0, 0]
+				}
+			]
+		}
+	]
+}
