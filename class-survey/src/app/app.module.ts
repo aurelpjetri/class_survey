@@ -20,12 +20,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ProfessorComponent } from './professor/professor.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfessorComponent
+    ProfessorComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,

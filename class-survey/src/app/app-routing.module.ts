@@ -4,13 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import {ProfessorComponent} from './professor/professor.component';
+import {StudentComponent} from './student/student.component';
 
 const routes: Routes = [
   // check cookies for login
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   // --------
   { path: 'login', component: LoginComponent },
-  { path: 'professor', component: ProfessorComponent}
+  { path: 'professor', component: ProfessorComponent},
+  { path: 'student', component: StudentComponent}
 ];
 
 @NgModule({

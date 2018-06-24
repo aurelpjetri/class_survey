@@ -45,7 +45,13 @@ export class LoginComponent implements OnInit {
   checkResponse(response: any) :any{
     if(this.authenticationService.getErrorStatus()===200){
       this.userDataService.setData(response.user);
-      this.router.navigateByUrl('/professor')
+
+      if (response.role == 'professor'){
+        this.router.navigateByUrl('/professor')
+      }
+      if (response.role == 'student') {
+        this.router.navigateByUrl('/student')
+      }
     }
     else{
       alert('matriculation number or password invalid');
