@@ -21,13 +21,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfessorComponent } from './professor/professor.component';
 import { StudentComponent } from './student/student.component';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ProfessorComponent,
-    StudentComponent
+    StudentComponent,
+    CourseDetailComponent
   ],
   imports: [
     BrowserModule,

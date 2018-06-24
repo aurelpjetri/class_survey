@@ -5,18 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class UserDataService {
 
-  private data: any;
 
-  constructor() { }
+  private user_data: any;
 
+
+
+  // for user related data
   setData(data: any):void{
-    this.data = data;
+    this.user_data = data;
   }
 
   getData(): any{
-    return this.data;
+    return this.user_data;
   }
-
 
 
 }
