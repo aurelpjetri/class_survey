@@ -1,8 +1,7 @@
 .login-container {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  width: 100%;
+  max-width: 70%;
   margin: 4em auto;
   padding: 3em 2em 2em 2em;
   border: 1px solid #ebebeb;

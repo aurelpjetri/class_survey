@@ -1,13 +1,11 @@
 <div class="prof_cont">
-  <h2 class="mat-title">Prof. {{user.name}} </h2>
+  <h2 class="mat-title"><span>Courses</span> of {{user.name}} </h2>
 </div>
 <mat-divider></mat-divider>
-<mat-list>
-  <h3 mat-subheader>Courses</h3>
-  <mat-list-item *ngFor="let course of courses_details">
-    <mat-icon mat-list-icon>school</mat-icon>
-    <h4 mat-line>{{course.name}}</h4>
-    <h4 mat-line>{{course.code}}</h4>
-    <h5 mat-line>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</h5>
-  </mat-list-item>
-</mat-list>
+<div class="active_scrollable">
+  <mat-card *ngFor="let course of courses_details">
+      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{course.name}}</mat-card-title>
+      <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle>
+      <!--<mat-card-content>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-content>-->
+  </mat-card>
+</div>
