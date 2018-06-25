@@ -193,7 +193,7 @@
 
 	"answer": [
 		{
-			"questionnaireID": "QUES003",
+			"questionnaireId": "QUES003",
 			"numberOfTheQuestion": 0,
 			"collected": [
 				"English"
@@ -206,7 +206,7 @@
 			]
 		},
 		{
-			"questionnaireID": "QUES001",
+			"questionnaireId": "QUES001",
 			"numberOfTheQuestion": 0,
 			"collected": [
 				7,
@@ -230,7 +230,7 @@
 			]
 		},
 		{
-			"questionnaireID": "QUES001",
+			"questionnaireId": "QUES001",
 			"numberOfTheQuestion": 1,
 			"collected": [
 				" ",
