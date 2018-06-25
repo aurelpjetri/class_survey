@@ -54,11 +54,19 @@ server.use( (req, res, next) => {
 			switch (req_path) {
 				case '/template':
 				var found = false
-				var professors = db.professors
+				var professors = db.professor
 				for (var idx in professors) {
 					var prof = professors[idx]
 					if (prof.matriculation == req_query.matriculation) {
-						res.jsonp( prof.templates )
+						var templates = []
+						for (var i in prof.templates) {
+							var prof_temp_id = prof.templates[i]
+							for (var j in db.template) {
+								var db_temp = db.template[j]
+								if (prof_temp_id == db_temp.id) { templates.push(db_temp) }
+							}
+						}
+						res.jsonp( {'templates': templates} )
 						found = true
 						break
 					}
@@ -109,8 +117,8 @@ server.use( (req, res, next) => {
 					var answers = db.answer
 					for (var idx in answers) {
 						var answer = answers[idx]
-						if (answer.questionnaireID == req_query.questionnaire) {
-							if (answer.number_of_the_question == req_query.number) {
+						if (answer.questionnaireId == req_query.questionnaire) {
+							if (answer.numberOfTheQuestion == req_query.number) {
 								res.jsonp( answer )
 								found = true
 								break
