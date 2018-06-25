@@ -1,11 +1,9 @@
 <div class="stud_cont">
-  <h2 class="mat-title">{{user.name}} </h2>
+  <h2 class="mat-title"><span>Questionnaires</span> of {{user.name}}</h2>
 </div>
 <mat-divider></mat-divider>
-<mat-list>
-  <h3 mat-subheader>Questionnaires</h3>
-  <mat-list-item *ngFor="let questionnaire of user.questionnaire">
-    <mat-icon mat-list-icon>receipt</mat-icon>
-    <h4 mat-line>{{questionnaire}}</h4>
-  </mat-list-item>
-</mat-list>
+<div class="active_scrollable">
+  <mat-card *ngFor="let questionnaire of user.questionnaire">
+    <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire}}</mat-card-title>
+  </mat-card>
+</div>
