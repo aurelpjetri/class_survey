@@ -12,16 +12,18 @@ import {CourseDataService} from '../course-data.service';
 export class ProfessorComponent implements OnInit {
 
   private user: any;
-  private courses_details: any[];
+  private active_courses: any[] = [];
+  private expired_courses: any[] = [];
+
 
   constructor(private userDataService: UserDataService, private courseDataService: CourseDataService) { }
 
   ngOnInit() {
     this.getUser();
-    //this.courses_details = [this.user.courses.length];
-    this.courses_details = [];
+    //this.courses = [this.user.courses.length];
     this.getCoursesDetails();
-    console.log(this.courses_details);
+    console.log(this.active_courses);
+    console.log(this.expired_courses);
   }
 
   getCoursesDetails(){
@@ -30,7 +32,7 @@ export class ProfessorComponent implements OnInit {
     }
 
     /*
-    for(var _i = 0; _i < this.courses_details.length; _i++){
+    for(var _i = 0; _i < this.courses.length; _i++){
       this.courseDataService.retrieveData(this.user.courses[_i]).subscribe((response) => this.checkResponse(response, _i))
     }
     */
@@ -38,22 +40,27 @@ export class ProfessorComponent implements OnInit {
 
   checkResponse(response: any) :any{
     if(!(this.courseDataService.getErrorStatus()===404)){
-      this.courses_details.push(response);
+      if (response.active==="false"){
+        this.expired_courses.push(response);
+      }
+      else{
+        this.active_courses.push(response);
+      }
     }
     else{
       alert('unable to read course details');
-      this.courses_details.push('404');
+      this.active_courses.push('404');
     }
   }
 
 /*
   checkResponse(response: any, index: any) :any{
     if(!(this.courseDataService.getErrorStatus()===404)){
-      this.courses_details[index] = response;
+      this.courses[index] = response;
     }
     else{
       alert('unable to read course details');
-      this.courses_details[index] = '404';
+      this.courses[index] = '404';
     }
   }
 */
