@@ -3,7 +3,8 @@
 </div>
 <mat-divider></mat-divider>
 <div class="active_scrollable">
-  <mat-card *ngFor="let questionnaire of user.questionnaire">
-    <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire}}</mat-card-title>
+  <mat-card *ngFor="let questionnaire of questionnaires">
+    <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire.title}}</mat-card-title>
+    <mat-card-subtitle>{{questionnaire.course_id}} - Expired on {{questionnaire.date}} at {{questionnaire.time}} - {{questionnaire.professor}}</mat-card-subtitle>
   </mat-card>
 </div>
