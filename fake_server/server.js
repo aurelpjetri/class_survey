@@ -84,7 +84,7 @@ server.use( (req, res, next) => {
 					for (var idx in questionnaires) {
 						var questionnaire = questionnaires[idx]
 						if (questionnaire.code == req_query.id) {
-							res.jsonp( questionnaires )
+							res.jsonp( questionnaire )
 							found = true
 							break
 						}
