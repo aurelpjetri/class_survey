@@ -21,7 +21,7 @@ export class StudentComponent implements OnInit {
   }
 
   getQuestionnaireDetails(){
-    for(let id of this.user.questionnaire){
+    for(let id of this.user.questionnaires){
       this.questionnaireDataService.retrieveData(id).subscribe((response) => this.checkResponse(response))
     }
     console.log(this.questionnaires)
