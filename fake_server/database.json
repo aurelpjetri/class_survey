@@ -46,7 +46,7 @@
 		{
 			"matriculation": "STUD000",
 			"name": "Beatrice Marchesi",
-			"questionnaire": [
+			"questionnaires": [
 				"QUES000"
 			]
 		}
@@ -60,7 +60,7 @@
 			"year": "2017/18",
 			"degree": "Master",
 			"active": "true",
-			"questionnaire": [
+			"questionnaires": [
 				"QUES000",
 				"QUES003"
 			]
@@ -72,7 +72,7 @@
 			"year": "2016/17",
 			"active": "false",
 			"degree": "Bachelor",
-			"questionnaire": [
+			"questionnaires": [
 				"QUES001"
 			]
 		}
@@ -83,14 +83,14 @@
 			"creator": "ADMIN",
 			"id": "TEMP000",
 			"title": "Course evaluation",
-			"question": [
+			"questions": [
 				{
-					"question_Type": "lin",
-					"questionID": 0
+					"questionType": "lin",
+					"questionId": 0
 				},
 				{
-					"question_Type": "essay",
-					"questionID": 0
+					"questionType": "essay",
+					"questionId": 0
 				}
 			]
 		},
@@ -98,10 +98,10 @@
 			"creator": "PROF001",
 			"id": "TEMP001",
 			"title": "About course language",
-			"question": [
+			"questions": [
 				{
-					"question_Type": "multiple",
-					"questionID": 0
+					"questionType": "multiple",
+					"questionId": 0
 				}
 			]
 		}
@@ -114,16 +114,16 @@
 			"gps": "43.7985599,11.2526804",
 			"deadline": "05/06/2018 - 10:00",
 			"activation": "05/06/2018 - 10:30",
-			"course_id": "COUR000",
+			"courseId": "COUR000",
 			"professor": "Mario Rossi",
 			"questions": [
 				{
-					"question_Type": "lin",
-					"questionID": 0
+					"questionType": "lin",
+					"questionId": 0
 				},
 				{
-					"question_Type": "essay",
-					"questionID": 0
+					"questionType": "essay",
+					"questionId": 0
 				}
 			]
 		},
@@ -133,12 +133,12 @@
 			"gps": "false",
 			"deadline": "20/03/2018 - 24:00",
 			"activation": "01/03/2018 - 00:00",
-			"course_id": "COUR000",
+			"courseId": "COUR000",
 			"professor": "Lucilla Toscano",
 			"questions": [
 				{
-					"question_Type": "multiple",
-					"questionID": 0
+					"questionType": "multiple",
+					"questionId": 0
 				}
 			]
 		},
@@ -148,16 +148,16 @@
 			"gps": "43.7985599,11.2526804",
 			"deadline": "02/06/2017 - 10:00",
 			"activation": "02/06/2017 - 10:30",
-			"course_id": "COUR005",
+			"courseId": "COUR005",
 			"professor": "Lucilla Toscano",
 			"questions": [
 				{
-					"question_Type": "lin",
-					"questionID": 0
+					"questionType": "lin",
+					"questionId": 0
 				},
 				{
-					"question_Type": "essay",
-					"questionID": 0
+					"questionType": "essay",
+					"questionId": 0
 				}
 			]
 		}
@@ -194,7 +194,7 @@
 	"answer": [
 		{
 			"questionnaireID": "QUES003",
-			"number_of_the_question": 0,
+			"numberOfTheQuestion": 0,
 			"collected": [
 				"English"
 			],
@@ -207,7 +207,7 @@
 		},
 		{
 			"questionnaireID": "QUES001",
-			"number_of_the_question": 0,
+			"numberOfTheQuestion": 0,
 			"collected": [
 				7,
 				6,
@@ -231,7 +231,7 @@
 		},
 		{
 			"questionnaireID": "QUES001",
-			"number_of_the_question": 1,
+			"numberOfTheQuestion": 1,
 			"collected": [
 				" ",
 				"Provide the lectures before the course's start",
