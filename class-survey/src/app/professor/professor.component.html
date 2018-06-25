@@ -4,9 +4,11 @@
 <mat-divider></mat-divider>
 <mat-list>
   <h3 mat-subheader>Courses</h3>
-  <mat-list-item *ngFor="let course of user.courses">
+  <mat-list-item *ngFor="let course of courses_details">
     <mat-icon mat-list-icon>school</mat-icon>
-    <h4 mat-line>{{course}}</h4>
+    <h4 mat-line>{{course.name}}</h4>
+    <h4 mat-line>{{course.code}}</h4>
+    <h5 mat-line>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</h5>
   </mat-list-item>
 </mat-list>
 <mat-divider></mat-divider>
