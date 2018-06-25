@@ -73,7 +73,7 @@
 			"active": "false",
 			"degree": "Bachelor",
 			"questionnaire": [
-				"QUES001",
+				"QUES001"
 			]
 		}
 	],
@@ -228,15 +228,15 @@
 					"value": 2.345
 				}
 			]
-		}
+		},
 		{
 			"questionnaireID": "QUES001",
 			"number_of_the_question": 1,
 			"collected": [
-				"",
+				" ",
 				"Provide the lectures before the course's start",
 				"Improve the laboratories lessons",
-				""
+				" "
 			],
 			"statistics": [
 				{
