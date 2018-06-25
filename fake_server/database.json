@@ -59,6 +59,7 @@
 			"cfu": 9,
 			"year": "2017/18",
 			"degree": "Master",
+			"active": "true",
 			"questionnaire": [
 				"QUES000",
 				"QUES003"
@@ -68,10 +69,11 @@
 			"code": "COUR005",
 			"name": "Software Engineer",
 			"cfu": 6,
-			"year": "2017/18",
+			"year": "2016/17",
+			"active": "false",
 			"degree": "Bachelor",
 			"questionnaire": [
-
+				"QUES001",
 			]
 		}
 	],
@@ -109,7 +111,7 @@
 		{
 			"id": "QUES000",
 			"title": "Course evaluation",
-			"gps": "true",
+			"gps": "43.7985599,11.2526804",
 			"deadline": "05/06/2018 - 10:00",
 			"activation": "05/06/2018 - 10:30",
 			"course_id": "COUR000",
@@ -139,6 +141,25 @@
 					"questionID": 0
 				}
 			]
+		},
+		{
+			"id": "QUES001",
+			"title": "Course evaluation",
+			"gps": "43.7985599,11.2526804",
+			"deadline": "02/06/2017 - 10:00",
+			"activation": "02/06/2017 - 10:30",
+			"course_id": "COUR000",
+			"professor": "PROF000",
+			"questions": [
+				{
+					"question_Type": "lin",
+					"questionID": 0
+				},
+				{
+					"question_Type": "essay",
+					"questionID": 0
+				}
+			]
 		}
 	],
 
@@ -155,7 +176,7 @@
 		{
 			"id": 0,
 			"question": "Report here suggestions about this course",
-			"max_len": 300
+			"max_len": 10
 		}
 	],
 
@@ -181,6 +202,50 @@
 				{
 					"statistic": "histogram",
 					"value": [ 1.0, 0]
+				}
+			]
+		},
+		{
+			"questionnaireID": "QUES001",
+			"number_of_the_question": 0,
+			"collected": [
+				7,
+				6,
+				1,
+				6
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 1, 0, 0, 0, 0 ,2, 1]
+				},
+				{
+					"statistic": "mean",
+					"value": 5
+				},
+				{
+					"statistic": "standard deviation",
+					"value": 2.345
+				}
+			]
+		}
+		{
+			"questionnaireID": "QUES001",
+			"number_of_the_question": 1,
+			"collected": [
+				"",
+				"Provide the lectures before the course's start",
+				"Improve the laboratories lessons",
+				""
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 2, 0, 0, 1, 0, 0, 1, 0, 0, 0]
+				},
+				{
+					"statistic": "mean",
+					"value": 2.75
 				}
 			]
 		}
