@@ -115,7 +115,7 @@
 			"deadline": "05/06/2018 - 10:00",
 			"activation": "05/06/2018 - 10:30",
 			"course_id": "COUR000",
-			"professor": "PROF000",
+			"professor": "Mario Rossi",
 			"questions": [
 				{
 					"question_Type": "lin",
@@ -134,7 +134,7 @@
 			"deadline": "20/03/2018 - 24:00",
 			"activation": "01/03/2018 - 00:00",
 			"course_id": "COUR000",
-			"professor": "PROF001",
+			"professor": "Lucilla Toscano",
 			"questions": [
 				{
 					"question_Type": "multiple",
@@ -148,8 +148,8 @@
 			"gps": "43.7985599,11.2526804",
 			"deadline": "02/06/2017 - 10:00",
 			"activation": "02/06/2017 - 10:30",
-			"course_id": "COUR000",
-			"professor": "PROF000",
+			"course_id": "COUR005",
+			"professor": "Lucilla Toscano",
 			"questions": [
 				{
 					"question_Type": "lin",
