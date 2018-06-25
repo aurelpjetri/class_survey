@@ -41,6 +41,7 @@ server.use( (req, res, next) => {
 					for (var idx in reg_users) {
 						var reg_user = reg_users[idx]
 						if (reg_user.matriculation === user.matriculation) {
+							delete reg_user.templates	//if templates does not exists this operation is useless
 							res.jsonp( {'role': user['role'], 'user': reg_user} )
 						}
 					}
@@ -51,6 +52,19 @@ server.use( (req, res, next) => {
 		 	break
 		case 'GET':
 			switch (req_path) {
+				case '/template':
+				var found = false
+				var professors = db.professors
+				for (var idx in professors) {
+					var prof = professors[idx]
+					if (prof.matriculation == req_query.matriculation) {
+						res.jsonp( prof.templates )
+						found = true
+						break
+					}
+				}
+				if (!found) { res.sendStatus(404) }
+				break
 				case '/course':
 					var found = false
 					var courses = db.course
@@ -139,17 +153,8 @@ server.use( (req, res, next) => {
 server.listen(3000, () => { console.log('\nJSON Server is Running on http://localhost:3000') })
 
 /*
-  const router = json_server.router(db_path)
-
-	if (req.method === 'GET' || req.method === 'POST') {
-		console.log(req)
-		res.jsonp({
-			method: req.method,
-			path: req._parsedUrl.path,
-			query: req.query,
-			body: req.body
-		})
-	}
-	else { next() }
-
-	server.use(router) */
+	method: req.method,
+	path: req._parsedUrl.path,
+	query: req.query,
+	body: req.body
+*/
