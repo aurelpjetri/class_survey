@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class QuesionnaireDataService {
+export class QuestionnaireDataService {
   private serverURL = 'http://localhost:3000/questionnaire';
   private error_status: any;
 
@@ -16,6 +16,8 @@ export class QuesionnaireDataService {
 
 
   retrieveData(id:any): Observable<any>{
+    console.log("ID")
+    console.log(id);
     const req_path = this.serverURL+'?questionnaire='+id;
     return this.http.get<any>(req_path)
     .pipe(

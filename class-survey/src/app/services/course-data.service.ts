@@ -11,6 +11,10 @@ import { HttpClient } from '@angular/common/http';
 export class CourseDataService {
 
 
+  private course_data: any;
+
+
+
   private serverURL = 'http://localhost:3000/course';
   private error_status: any;
 
@@ -41,4 +45,13 @@ export class CourseDataService {
       return of(result as T);
     };
   }
+
+  setData(course:any):void{
+    this.course_data = course;
+  }
+
+  getData():any{
+    return this.course_data;
+  }
+
 }

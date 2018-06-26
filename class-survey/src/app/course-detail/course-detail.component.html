@@ -1,3 +1,14 @@
-<p>
-  course-detail works!
-</p>
+<div class="prof_cont">
+  <h2 class="mat-title"><span>Questionnaires</span> of {{course.name}} </h2>
+</div>
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Closed Questionnaires</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let questionnaire of questionnaires">
+      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{questionnaire.title}}</mat-card-title>
+      <!-- <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AY {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle> -->
+  </mat-card>
+</div>

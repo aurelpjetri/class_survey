@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {UserDataService} from '../services/user-data.service';
 import {CourseDataService} from '../services/course-data.service';
 
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-professor',
@@ -16,11 +18,13 @@ export class ProfessorComponent implements OnInit {
   private expired_courses: any[] = [];
 
 
-  constructor(private userDataService: UserDataService, private courseDataService: CourseDataService) { }
+  constructor(
+    private userDataService: UserDataService,
+    private courseDataService: CourseDataService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getUser();
-    //this.courses = [this.user.courses.length];
     this.getCoursesDetails();
     console.log(this.active_courses);
     console.log(this.expired_courses);
@@ -30,12 +34,6 @@ export class ProfessorComponent implements OnInit {
     for(let code of this.user.courses){
       this.courseDataService.retrieveData(code).subscribe((response) => this.checkResponse(response))
     }
-
-    /*
-    for(var _i = 0; _i < this.courses.length; _i++){
-      this.courseDataService.retrieveData(this.user.courses[_i]).subscribe((response) => this.checkResponse(response, _i))
-    }
-    */
   }
 
   checkResponse(response: any) :any{
@@ -53,22 +51,15 @@ export class ProfessorComponent implements OnInit {
     }
   }
 
-/*
-  checkResponse(response: any, index: any) :any{
-    if(!(this.courseDataService.getErrorStatus()===404)){
-      this.courses[index] = response;
-    }
-    else{
-      alert('unable to read course details');
-      this.courses[index] = '404';
-    }
-  }
-*/
-
   getUser() {
     this.user = this.userDataService.getData();
-    //this.userDataService.getData().subscribe(user => this.user = user);
     console.log(this.user)
   }
+
+  selectedCourse(selected: any): void{
+    this.courseDataService.setData(selected);
+    this.router.navigateByUrl('/course');
+  }
+
 
 }
