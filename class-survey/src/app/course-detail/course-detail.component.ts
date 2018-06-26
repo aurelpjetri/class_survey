@@ -11,7 +11,8 @@ import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 export class CourseDetailComponent implements OnInit {
 
   private course: any;
-  private questionnaires: any[] = [];
+  private active_q: any[] = [];
+  private expired_q: any[] = [];
 
   constructor(
     private courseDataService: CourseDataService,
@@ -30,12 +31,26 @@ export class CourseDetailComponent implements OnInit {
 
   checkResponse(response: any) :any{
     if(!(this.courseDataService.getErrorStatus()===404)){
-      this.questionnaires.push(response);
+      if(this.checkExpirement(response)){
+        this.expired_q.push(response);
+      }
+      else{
+        this.active_q.push(response);
+      }
     }
     else{
       alert('unable to read course details');
-      this.questionnaires.push('404');
+      this.active_q.push('404');
     }
   }
 
+  checkExpirement(quest:any): any{
+    // returns TRUE if the deadline is passed
+    var _deadline = quest.deadline;
+    _deadline = _deadline.split(" - ");
+    var day = _deadline[0].split("/");
+    var time = _deadline[1].split(":");
+    var deadline = new Date(day[2], (parseInt(day[1])-1), day[0], time[0], time[1]);
+    return (new Date() > deadline);
+  }
 }

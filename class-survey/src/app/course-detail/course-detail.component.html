@@ -7,8 +7,20 @@
 </div>
 
 <div class="active_scrollable">
-  <mat-card *ngFor="let questionnaire of questionnaires">
-      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{questionnaire.title}}</mat-card-title>
-      <!-- <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AY {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle> -->
+  <mat-card *ngFor="let quest of expired_q">
+      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{quest.title}}</mat-card-title>
+      <mat-card-subtitle>{{quest.professor}}</mat-card-subtitle>
+  </mat-card>
+</div>
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Open Questionnaires</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let quest of active_q">
+      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{quest.title}}</mat-card-title>
+      <mat-card-subtitle>{{quest.professor}} - {{quest.deadline}}</mat-card-subtitle>
   </mat-card>
 </div>
