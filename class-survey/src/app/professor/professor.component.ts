@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {UserDataService} from '../user-data.service';
-import {CourseDataService} from '../course-data.service';
+import {UserDataService} from '../services/user-data.service';
+import {CourseDataService} from '../services/course-data.service';
 
 
 @Component({

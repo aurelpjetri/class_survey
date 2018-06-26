@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserDataService} from '../user-data.service';
+import {UserDataService} from '../services/user-data.service';
 
-import {QuesionnaireDataService} from '../quesionnaire-data.service';
+import {QuesionnaireDataService} from '../services/quesionnaire-data.service';
 
 @Component({
   selector: 'app-student',
