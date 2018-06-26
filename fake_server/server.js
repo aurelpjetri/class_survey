@@ -91,7 +91,7 @@ server.use( (req, res, next) => {
 					var questionnaires = db.questionnaire
 					for (var idx in questionnaires) {
 						var questionnaire = questionnaires[idx]
-						if (questionnaire.code == req_query.id) {
+						if (questionnaire.id == req_query.questionnaire) {
 							res.jsonp( questionnaire )
 							found = true
 							break
