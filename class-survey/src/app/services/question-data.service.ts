@@ -8,15 +8,14 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class QuesionnaireDataService {
-  private serverURL = 'http://localhost:3000/questionnaire';
+export class QuestionDataService {
+  private serverURL = 'http://localhost:3000/questionnaire/question';
   private error_status: any;
 
   constructor(private http:HttpClient) { }
 
-
-  retrieveData(id:any): Observable<any>{
-    const req_path = this.serverURL+'?questionnaire='+id;
+  retrieveData(type: any, id:any): Observable<any>{
+    const req_path = this.serverURL+'?type='+type+'&id='+id;
     return this.http.get<any>(req_path)
     .pipe(
       catchError(this.handleError('retrieveData', id))
@@ -39,4 +38,4 @@ export class QuesionnaireDataService {
       return of(result as T);
     };
   }
-  }
+}
