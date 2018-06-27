@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import {CourseDataService} from '../services/course-data.service';
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
@@ -16,7 +19,8 @@ export class CourseDetailComponent implements OnInit {
 
   constructor(
     private courseDataService: CourseDataService,
-  private questionnaireDataService: QuestionnaireDataService) { }
+    private questionnaireDataService: QuestionnaireDataService,
+    private router: Router) { }
 
   ngOnInit() {
     this.course = this.courseDataService.getData();
@@ -53,4 +57,9 @@ export class CourseDetailComponent implements OnInit {
     var deadline = new Date(day[2], (parseInt(day[1])-1), day[0], time[0], time[1]);
     return (new Date() > deadline);
   }
+
+  creationTriggered(){
+    this.router.navigateByUrl('templates');
+  }
+
 }

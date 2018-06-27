@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
   checkResponse(response: any) :any{
     if(this.authenticationService.getErrorStatus()===200){
       this.userDataService.setData(response.user);
+      console.log(response)
 
       if (response.role == 'professor'){
         this.router.navigateByUrl('/professor')

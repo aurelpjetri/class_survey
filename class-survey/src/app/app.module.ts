@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfessorComponent } from './professor/professor.component';
 import { StudentComponent } from './student/student.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { TemplatesComponent } from './templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
     LoginComponent,
     ProfessorComponent,
     StudentComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    TemplatesComponent
   ],
   imports: [
     BrowserModule,

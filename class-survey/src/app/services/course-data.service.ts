@@ -13,8 +13,6 @@ export class CourseDataService {
 
   private course_data: any;
 
-
-
   private serverURL = 'http://localhost:3000/course';
   private error_status: any;
 

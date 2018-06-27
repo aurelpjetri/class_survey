@@ -41,8 +41,8 @@ server.use( (req, res, next) => {
 					for (var idx in reg_users) {
 						var reg_user = reg_users[idx]
 						if (reg_user.matriculation === user.matriculation) {
-							delete reg_user.templates	//if templates does not exists this operation is useless
-							res.jsonp( {'role': user['role'], 'user': reg_user} )
+							var _user = { 'matriculation': reg_user.matriculation, 'name': reg_user.name, 'courses': reg_user.courses }
+							res.jsonp( {'role': user['role'], 'user': _user} )
 						}
 					}
 				} else { res.sendStatus(403) }
@@ -57,15 +57,18 @@ server.use( (req, res, next) => {
 				var professors = db.professor
 				for (var idx in professors) {
 					var prof = professors[idx]
+					console.log(prof)
 					if (prof.matriculation == req_query.matriculation) {
 						var templates = []
 						for (var i in prof.templates) {
+							console.log(i)
 							var prof_temp_id = prof.templates[i]
 							for (var j in db.template) {
 								var db_temp = db.template[j]
 								if (prof_temp_id == db_temp.id) { templates.push(db_temp) }
 							}
 						}
+						console.log(templates)
 						res.jsonp( {'templates': templates} )
 						found = true
 						break

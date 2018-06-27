@@ -26,8 +26,6 @@ export class ProfessorComponent implements OnInit {
   ngOnInit() {
     this.getUser();
     this.getCoursesDetails();
-    console.log(this.active_courses);
-    console.log(this.expired_courses);
   }
 
   getCoursesDetails(){
@@ -53,7 +51,6 @@ export class ProfessorComponent implements OnInit {
 
   getUser() {
     this.user = this.userDataService.getData();
-    console.log(this.user)
   }
 
   selectedCourse(selected: any): void{
