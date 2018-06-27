@@ -191,7 +191,7 @@
 		}
 	],
 
-	"answer": [
+	"statistic": [
 		{
 			"questionnaireId": "QUES003",
 			"numberOfTheQuestion": 0,
