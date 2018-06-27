@@ -11,7 +11,9 @@
   text-align: center;
 
 }
-mat-icon{
+.account{
   font-size: 36px;
   color: rgba(0, 0, 0, 0.54);
+  height: auto;
+  width: auto;
 }
