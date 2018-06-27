@@ -102,7 +102,7 @@ server.use( (req, res, next) => {
 					}
 					if (!found) { res.sendStatus(404) }
 					break
-				case '/questionnaire/question':
+				case '/question':
 					var found = false
 					var questions = db[req_query.type+'_question']
 					for (var idx in questions) {
@@ -115,14 +115,14 @@ server.use( (req, res, next) => {
 					}
 					if (!found) { res.sendStatus(404) }
 					break
-				case '/questionnaire/question/answer':
+				case '/questionnaire/statistic':
 					var found = false
-					var answers = db.answer
-					for (var idx in answers) {
-						var answer = answers[idx]
-						if (answer.questionnaireId == req_query.questionnaire) {
-							if (answer.numberOfTheQuestion == req_query.number) {
-								res.jsonp( answer )
+					var statistics = db.statistic
+					for (var idx in statistics) {
+						var statistic = statistics[idx]
+						if (statistic.questionnaireId == req_query.questionnaire) {
+							if (statistic.numberOfTheQuestion == req_query.number) {
+								res.jsonp( statistics )
 								found = true
 								break
 							}
