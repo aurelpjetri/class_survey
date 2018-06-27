@@ -24,12 +24,25 @@ export class CompileQuestionnaireComponent implements OnInit {
     for(let q of this.questionnaire.questions){
       this.questionDataService.retrieveData(q.questionType, q.questionId).subscribe((response) => this.checkResponse(response))
     }
-    console.log(this.questions)
+    //console.log(this.answers)
+    //console.log(this.questions)
   }
 
   checkResponse(response: any) :any{
     if(!(this.questionDataService.getErrorStatus()===404)){
+        if(response.min != undefined){
+          var range: any[] = [];
+          for(var i = response.min; i <= response.max; i++){
+            range.push(i);
+          }
+          /*delete response.min;
+          delete response.max;*/
+          response['range'] = range;
+        }
+        console.log('-----')
+        console.log(response)
         this.questions.push(response);
+        //console.log(response)
     }
     else{
       alert('unable to read course details');

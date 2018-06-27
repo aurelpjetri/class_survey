@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class QuestionDataService {
   private serverURL = 'http://localhost:3000/questionnaire/question';
   private error_status: any;
+  //private answerData: any;
 
   constructor(private http:HttpClient) { }
 

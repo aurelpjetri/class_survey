@@ -14,7 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -46,7 +47,9 @@ import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-q
     MatButtonModule,
     BrowserAnimationsModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
