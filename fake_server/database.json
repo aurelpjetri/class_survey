@@ -163,7 +163,7 @@
 		}
 	],
 
-	"lin_question": [
+	"linQuestion": [
 		{
 			"id": 0,
 			"question": "How do you judge the laboratory lessons?",
@@ -172,7 +172,7 @@
 		}
 	],
 
-	"essay_question": [
+	"essayQuestion": [
 		{
 			"id": 0,
 			"question": "Report here suggestions about this course",
@@ -180,7 +180,7 @@
 		}
 	],
 
-	"multiple_question": [
+	"multipleQuestion": [
 		{
 			"id": 0,
 			"question": "Which language do you prefer?",

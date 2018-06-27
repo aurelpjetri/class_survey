@@ -104,7 +104,7 @@ server.use( (req, res, next) => {
 					break
 				case '/question':
 					var found = false
-					var questions = db[req_query.type+'_question']
+					var questions = db[req_query.type+'Question']
 					for (var idx in questions) {
 						var question = questions[idx]
 						if (question.id == req_query.id) {
@@ -122,7 +122,7 @@ server.use( (req, res, next) => {
 						var statistic = statistics[idx]
 						if (statistic.questionnaireId == req_query.questionnaire) {
 							if (statistic.numberOfTheQuestion == req_query.number) {
-								res.jsonp( statistics )
+								res.jsonp( statistic )
 								found = true
 								break
 							}
