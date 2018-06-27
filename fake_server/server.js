@@ -57,18 +57,15 @@ server.use( (req, res, next) => {
 				var professors = db.professor
 				for (var idx in professors) {
 					var prof = professors[idx]
-					console.log(prof)
 					if (prof.matriculation == req_query.matriculation) {
 						var templates = []
 						for (var i in prof.templates) {
-							console.log(i)
 							var prof_temp_id = prof.templates[i]
 							for (var j in db.template) {
 								var db_temp = db.template[j]
 								if (prof_temp_id == db_temp.id) { templates.push(db_temp) }
 							}
 						}
-						console.log(templates)
 						res.jsonp( {'templates': templates} )
 						found = true
 						break
