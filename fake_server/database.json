@@ -140,6 +140,10 @@
 				{
 					"questionType": "multiple",
 					"questionId": 0
+				},
+				{
+					"questionType": "multiple",
+					"questionId": 1
 				}
 			]
 		},
@@ -188,6 +192,14 @@
 			"choiches": [
 				"English",
 				"Italian"
+			]
+		},
+		{
+			"id": 1,
+			"question": "How much credit?",
+			"choiches": [
+				"6",
+				"9"
 			]
 		}
 	],

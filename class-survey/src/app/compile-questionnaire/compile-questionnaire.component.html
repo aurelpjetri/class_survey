@@ -8,7 +8,7 @@
 
     <div class="range" *ngIf="question.range != undefined">
       <mat-card-subtitle style="flex-grow: 1; text-align: right">{{question.min}}</mat-card-subtitle>
-      <mat-radio-group style="flex-grow: 6" class="range">
+      <mat-radio-group [(ngModel)]="this.answers['lin_'+question.id]" style="flex-grow: 6" class="range">
         <div style="flex-grow: 1; text-align: center" *ngFor="let i of question.range">
           <mat-radio-button value="{{i}}"></mat-radio-button>
         </div>
@@ -18,14 +18,17 @@
 
     <div *ngIf="question.max_len != undefined">
       <mat-form-field class="mat-form">
-        <textarea matInput type="text" placeholder="Max {{question.max_len}} words" required name="mat" [errorStateMatcher]="matcher"></textarea>
+        <textarea matInput [(ngModel)]="this.answers['essay_'+question.id]" type="text" placeholder="Max {{question.max_len}} words" required name="answers" [errorStateMatcher]="matcher"></textarea>
       </mat-form-field>
     </div>
 
     <div *ngIf="question.choiches != undefined">
       <div *ngFor="let option of question.choiches">
-        <mat-checkbox>{{option}}</mat-checkbox>
+        <!--<mat-checkbox [(ngModel)]="this.tmp[option+'-'+question.id]" (click)="this.editCheck(question, option)">{{option}}</mat-checkbox>-->
+        <mat-checkbox [(ngModel)]="this.mul[option+'-'+question.id]">{{option}}</mat-checkbox>
       </div>
     </div>
   </mat-card>
+
+  <button mat-raised-button color="primary" (click)="this.submit()">Submit</button>
 </div>
