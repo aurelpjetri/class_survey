@@ -1,0 +1,18 @@
+<div class="prof_cont">
+    <h2 class="mat-title"> {{user.name}} - {{course.name}} {{course.year}}</h2>
+    <h2 class="mat-title"><span class="heavier">Customize</span> a questionnaire </h2>
+</div>
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Selected questions</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let q of questions; index as _i">
+      <div>
+        <mat-card-title>{{_i+1}}.   {{template.questions[_i].questionType}} question</mat-card-title>
+        <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
+      </div>
+  </mat-card>
+</div>

@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TemplateDataService {
 
+  private templates: any[];
+  private selected: any;
+
   private serverURL = 'http://localhost:3000/template';
   private error_status: any;
 
@@ -40,5 +43,38 @@ export class TemplateDataService {
     };
   }
 
+/*
+  getTemaplateFromCode(code: any){
+    for(let temp of this.templates){
+      if(temp.code == code){
+        return temp;
+      }
+    }
+  }
+*/
+
+  selectTemplate(code:any):void{
+    for(let temp of this.templates){
+      if(temp.code == code){
+        this.selected = temp;
+      }
+    }
+  }
+
+  getSelected(){
+    return this.selected;
+  }
+
+  setTemplates(templates: any[]):void{
+    this.templates = templates;
+  }
+
+  retrieveQuestionsOfTemplate(type: any, id: any): Observable<any>{
+    const req_path = 'http://localhost:3000/question'+'?type='+type+'&id='+id;
+    return this.http.get<any>(req_path)
+    .pipe(
+      catchError(this.handleError('retrieveQuestionsOfTemplate', [type, id]))
+    );
+  }
 
 }

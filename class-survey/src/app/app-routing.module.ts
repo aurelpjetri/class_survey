@@ -7,6 +7,7 @@ import {ProfessorComponent} from './professor/professor.component';
 import {StudentComponent} from './student/student.component';
 import {CourseDetailComponent} from './course-detail/course-detail.component';
 import {TemplatesComponent} from './templates/templates.component';
+import {NewQuestionnaireComponent} from './new-questionnaire/new-questionnaire.component';
 
 const routes: Routes = [
   // check cookies for login
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'professor', component: ProfessorComponent},
   { path: 'student', component: StudentComponent},
   { path: 'course', component: CourseDetailComponent},
-  { path: 'templates', component: TemplatesComponent}
+  { path: 'templates', component: TemplatesComponent},
+  { path: 'create', component: NewQuestionnaireComponent}
 ];
 
 @NgModule({

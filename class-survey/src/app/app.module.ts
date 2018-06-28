@@ -23,6 +23,7 @@ import { ProfessorComponent } from './professor/professor.component';
 import { StudentComponent } from './student/student.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TemplatesComponent } from './templates/templates.component';
     ProfessorComponent,
     StudentComponent,
     CourseDetailComponent,
-    TemplatesComponent
+    TemplatesComponent,
+    NewQuestionnaireComponent
   ],
   imports: [
     BrowserModule,

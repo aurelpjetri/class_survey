@@ -1,15 +1,31 @@
 <div class="prof_cont">
-    <h2 class="mat-title"><span class="heavier">Templates</span> - {{user.name}}</h2>
+    <h2 class="mat-title">{{user.name}} - {{course.name}} {{course.year}}</h2>
+    <h2 class="mat-title"><span class="heavier">Issue</span> a survey</h2>
 </div>
+
 <mat-divider></mat-divider>
 <div class="prof_cont">
-    <h3 class="mat-subheading-2">Select the template to start from</h3>
+    <h3 class="mat-subheading-2">Write a new survey</h3>
+</div>
+<div class="active_scrollable">
+  <mat-card (click)="changeView()">
+      <div>
+        <mat-card-title> <mat-icon mat-list-icon>add</mat-icon> New Survey </mat-card-title>
+        <mat-card-subtitle>questions</mat-card-subtitle>
+      </div>
+  </mat-card>
+</div>
+
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Select from existing templates</h3>
 </div>
 
 <div class="active_scrollable">
-  <mat-card *ngFor="let temp of templates">
+  <mat-card *ngFor="let temp of templates" (click)="changeView(temp)">
       <div>
-        <mat-card-title> <mat-icon mat-list-icon>assignment_turned_in</mat-icon> {{temp.title}}</mat-card-title>
+        <mat-card-title> <mat-icon mat-list-icon>insert_drive_file</mat-icon> {{temp.title}}</mat-card-title>
         <mat-card-subtitle>{{temp.creator}} - {{temp.questions.length}} questions</mat-card-subtitle>
       </div>
   </mat-card>
