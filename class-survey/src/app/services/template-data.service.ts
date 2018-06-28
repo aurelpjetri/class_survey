@@ -8,22 +8,18 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseDataService {
+export class TemplateDataService {
 
-
-  private course_data: any;
-
-  private serverURL = 'http://localhost:3000/course';
+  private serverURL = 'http://localhost:3000/template';
   private error_status: any;
 
   constructor(private http:HttpClient) { }
 
-
-  retrieveData(code:any): Observable<any>{
-    const req_path = this.serverURL+'?code='+code;
+  retrieveData(id:any): Observable<any>{
+    const req_path = this.serverURL+'?matriculation='+id;
     return this.http.get<any>(req_path)
     .pipe(
-      catchError(this.handleError('retrieveData', code))
+      catchError(this.handleError('retrieveData', id))
     );
   }
 
@@ -44,12 +40,5 @@ export class CourseDataService {
     };
   }
 
-  setData(course:any):void{
-    this.course_data = course;
-  }
-
-  getData():any{
-    return this.course_data;
-  }
 
 }

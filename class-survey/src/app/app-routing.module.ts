@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import {ProfessorComponent} from './professor/professor.component';
 import {StudentComponent} from './student/student.component';
+import {CourseDetailComponent} from './course-detail/course-detail.component';
+import {TemplatesComponent} from './templates/templates.component';
 
 const routes: Routes = [
   // check cookies for login
@@ -12,7 +14,9 @@ const routes: Routes = [
   // --------
   { path: 'login', component: LoginComponent },
   { path: 'professor', component: ProfessorComponent},
-  { path: 'student', component: StudentComponent}
+  { path: 'student', component: StudentComponent},
+  { path: 'course', component: CourseDetailComponent},
+  { path: 'templates', component: TemplatesComponent}
 ];
 
 @NgModule({

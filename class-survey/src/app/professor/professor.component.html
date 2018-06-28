@@ -7,7 +7,7 @@
 </div>
 
 <div class="active_scrollable">
-  <mat-card *ngFor="let course of active_courses">
+  <mat-card *ngFor="let course of active_courses" (click)="selectedCourse(course)">
       <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{course.name}}</mat-card-title>
       <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AY {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle>
       <!--<mat-card-content>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-content>-->
@@ -20,7 +20,7 @@
 </div>
 
 <div class="active_scrollable">
-  <mat-card *ngFor="let course of expired_courses">
+  <mat-card *ngFor="let course of expired_courses" (click)="selectedCourse(course)">
       <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{course.name}}</mat-card-title>
       <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle>
       <!--<mat-card-content>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-content>-->

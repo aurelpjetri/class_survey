@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import{MatToolbarModule} from '@angular/material';
-import { AppRoutingModule } from './/app-routing.module';
+import {AppRoutingModule } from './/app-routing.module';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfessorComponent } from './professor/professor.component';
 import { StudentComponent } from './student/student.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { TemplatesComponent } from './templates/templates.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
     LoginComponent,
     ProfessorComponent,
     StudentComponent,
-    CourseDetailComponent
+    CourseDetailComponent,
+    TemplatesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,42 @@
-<p>
-  course-detail works!
-</p>
+<div class="prof_cont">
+    <h2 class="mat-title"><span class="heavier">Questionnaires</span> of {{course.name}}
+      <button mat-raised-button matSuffix aria-label="Clear" color="primary" style="float:right;" (click)="creationTriggered()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </h2>
+</div>
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Closed Questionnaires</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let quest of expired_q">
+      <div style="flex-grow:3">
+        <mat-card-title> <mat-icon mat-list-icon>assignment_turned_in</mat-icon> {{quest.title}}</mat-card-title>
+        <mat-card-subtitle>{{quest.professor}}</mat-card-subtitle>
+        <mat-card-subtitle><span style="font-weight: bold">expired on</span>: {{quest.deadline}}</mat-card-subtitle>
+      </div>
+      <div style="display:flex; flex-grow:1;" *ngIf='(quest.gps!="false")'>
+        <mat-icon class="gps">pin_drop</mat-icon>
+      </div>
+  </mat-card>
+</div>
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Open Questionnaires</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let quest of active_q">
+    <div style="flex-grow:3">
+      <mat-card-title> <mat-icon mat-list-icon>assignment</mat-icon> {{quest.title}} </mat-card-title>
+      <mat-card-subtitle>{{quest.professor}}</mat-card-subtitle>
+      <mat-card-subtitle><span style="font-weight: bold">deadline</span>: {{quest.deadline}} | <span style="font-weight: bold">activated</span>: {{quest.activation}}</mat-card-subtitle>
+    </div>
+    <div style="display:flex; flex-grow:1;" *ngIf='(quest.gps!="false")'>
+      <mat-icon class="gps">pin_drop</mat-icon>
+    </div>
+  </mat-card>
+</div>

@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class QuesionnaireDataService {
+export class QuestionnaireDataService {
   private serverURL = 'http://localhost:3000/questionnaire';
   private error_status: any;
 
@@ -39,4 +39,5 @@ export class QuesionnaireDataService {
       return of(result as T);
     };
   }
-  }
+
+}

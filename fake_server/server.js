@@ -41,8 +41,8 @@ server.use( (req, res, next) => {
 					for (var idx in reg_users) {
 						var reg_user = reg_users[idx]
 						if (reg_user.matriculation === user.matriculation) {
-							delete reg_user.templates	//if templates does not exists this operation is useless
-							res.jsonp( {'role': user['role'], 'user': reg_user} )
+							var _user = { 'matriculation': reg_user.matriculation, 'name': reg_user.name, 'courses': reg_user.courses }
+							res.jsonp( {'role': user['role'], 'user': _user} )
 						}
 					}
 				} else { res.sendStatus(403) }
@@ -99,9 +99,9 @@ server.use( (req, res, next) => {
 					}
 					if (!found) { res.sendStatus(404) }
 					break
-				case '/questionnaire/question':
+				case '/question':
 					var found = false
-					var questions = db[req_query.type+'_question']
+					var questions = db[req_query.type+'Question']
 					for (var idx in questions) {
 						var question = questions[idx]
 						if (question.id == req_query.id) {
@@ -112,14 +112,14 @@ server.use( (req, res, next) => {
 					}
 					if (!found) { res.sendStatus(404) }
 					break
-				case '/questionnaire/question/answer':
+				case '/questionnaire/statistic':
 					var found = false
-					var answers = db.answer
-					for (var idx in answers) {
-						var answer = answers[idx]
-						if (answer.questionnaireId == req_query.questionnaire) {
-							if (answer.numberOfTheQuestion == req_query.number) {
-								res.jsonp( answer )
+					var statistics = db.statistic
+					for (var idx in statistics) {
+						var statistic = statistics[idx]
+						if (statistic.questionnaireId == req_query.questionnaire) {
+							if (statistic.numberOfTheQuestion == req_query.number) {
+								res.jsonp( statistic )
 								found = true
 								break
 							}

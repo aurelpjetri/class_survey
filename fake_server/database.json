@@ -112,7 +112,7 @@
 			"id": "QUES000",
 			"title": "Course evaluation",
 			"gps": "43.7985599,11.2526804",
-			"deadline": "05/06/2018 - 10:00",
+			"deadline": "05/07/2018 - 10:00",
 			"activation": "05/06/2018 - 10:30",
 			"courseId": "COUR000",
 			"professor": "Mario Rossi",
@@ -163,7 +163,7 @@
 		}
 	],
 
-	"lin_question": [
+	"linQuestion": [
 		{
 			"id": 0,
 			"question": "How do you judge the laboratory lessons?",
@@ -172,7 +172,7 @@
 		}
 	],
 
-	"essay_question": [
+	"essayQuestion": [
 		{
 			"id": 0,
 			"question": "Report here suggestions about this course",
@@ -180,7 +180,7 @@
 		}
 	],
 
-	"multiple_question": [
+	"multipleQuestion": [
 		{
 			"id": 0,
 			"question": "Which language do you prefer?",
@@ -191,7 +191,7 @@
 		}
 	],
 
-	"answer": [
+	"statistic": [
 		{
 			"questionnaireId": "QUES003",
 			"numberOfTheQuestion": 0,
