@@ -1,9 +1,58 @@
 <div class="prof_cont">
     <h2 class="mat-title"> {{user.name}} - {{course.name}} {{course.year}}</h2>
-    <h2 class="mat-title"><span class="heavier">Customize</span> a questionnaire </h2>
+    <h2 class="mat-title"><span class="heavier">Customize</span> a questionnaire
+      <button mat-raised-button matSuffix aria-label="Clear" color="primary" style="float:right; flex-grow:1;">
+        Submit
+      </button>
+    </h2>
 </div>
 
 <mat-divider></mat-divider>
+
+<div class="creator_container">
+    <form class="upper_form">
+
+      <mat-form-field>
+        <input matInput placeholder="Title"  [(ngModel)]="this.title" name=question>
+      </mat-form-field>
+
+      <div style="display: flex; flex-direction:row;">
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerA" placeholder="Choose activation" [(ngModel)]="this.activation.date" name=date>
+          <mat-datepicker-toggle matSuffix [for]="pickerA"></mat-datepicker-toggle>
+          <mat-datepicker #pickerA></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field style="max-width:4em;">
+          <input matInput type="number" placeholder="hh" [(ngModel)]="this.activation.hh" name=hh>
+        </mat-form-field>
+
+        <mat-form-field style=" max-width:4em;">
+          <input matInput type="number" placeholder="mm" [(ngModel)]="this.activation.mm" name=mm>
+        </mat-form-field>
+
+      </div>
+
+      <div style="display: flex; flex-direction:row;">
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose deadline">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field style="max-width:4em;">
+          <input matInput type="number" placeholder="hh">
+        </mat-form-field>
+
+        <mat-form-field style=" max-width:4em;">
+          <input matInput type="number" placeholder="mm">
+        </mat-form-field>
+
+      </div>
+    </form>
+</div>
 
 <div class="creator_container">
   <div style="flex-grow:3;">

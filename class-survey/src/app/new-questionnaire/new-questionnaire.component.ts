@@ -18,8 +18,16 @@ export class NewQuestionnaireComponent implements OnInit {
   private template: any;
   private questions: any[] = [];
 
-  private new_question: any = {"type":"", "question":""};
+  // for the creation of a new question
+  private new_question = {"type":"", "question":""};
   private q_types = ["essay", "lin", "multiple"];
+
+  // for activation and deadline input
+  private activation: any = {"date":"", "hh":"", "mm":""}
+  private deadline: any = {"date":"", "hh":"", "mm":""}
+
+  private title: any = "";
+
 
   // used for multiple choice questions
   private m_choice: any;
@@ -49,8 +57,8 @@ export class NewQuestionnaireComponent implements OnInit {
   get w_max(){return this.options.get('w_max');}
 
   get lin_max(){return this.options.get('lin_max');}
-  get lin_min(){return this.options.get('lin_min');}
 
+  get lin_min(){return this.options.get('lin_min');}
 
   retrieveQuestions(){
     for(let _q of this.template.questions){
@@ -69,20 +77,9 @@ export class NewQuestionnaireComponent implements OnInit {
     }
   }
 
-
   removeQuestion(index:any){
     this.questions.splice(index,1);
   }
-
-/*
-  setNewQuestionType(type:any){
-    this.new_question["type"] = type;
-  }
-
-  setNewQuestionText(text:any){
-    this.new_question["question"] = text;
-  }
-*/
 
   addMultipleChoice(){
     if(this.m_choice != undefined){
@@ -109,11 +106,75 @@ export class NewQuestionnaireComponent implements OnInit {
 
     }
     this.questions.push(this.new_question)
+    //clean
     this.new_question = {"type":"", "question":""}
     this.multiple_answers = [];
     this.m_choice = undefined;
     this.options.setValue({w_max:0, lin_min:0, lin_max:7});
-    console.log(this.new_question);
+
+  }
+
+  /*
+
+  {
+    "id": "QUES000",
+    "title": "Course evaluation",
+    "gps": "43.7985599,11.2526804",
+    "deadline": "05/07/2018 - 10:00",
+    "activation": "05/06/2018 - 10:30",
+    "courseId": "COUR000",
+    "professor": "Mario Rossi",
+    "questions": [
+      {
+        "questionType": "lin",
+        "questionId": 0,
+        "num": 0
+      },
+      {
+        "questionType": "essay",
+        "questionId": 0,
+        "num": 1
+      }
+    ]
+  }
+
+  */
+
+  getNewId(){
+    var min = 10;
+    var max = 100
+    return Math.random() * (max - min) + min;
+  }
+
+  saveQuestionnaire(){
+      var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
+      var deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+
+      var questionnaire = {
+        "id": "QUES"+this.getNewId(),
+        "title": this.title,
+        "deadline": deadline,
+        "activation": activation,
+        "professor": this.user.name,
+        "course": this.course.id
+      }
+
+      for(let q of this.questions){
+        var _question = {"question": q.question};
+        if( q.type == "lin"){
+          _question["min"] = this.lin_min;
+          _question["max"] = this.lin_max;
+        }
+        if(q.type == "multiple"){
+          _question["choices"] = this.multiple_answers;
+        }
+        if(q.type == "essay"){
+          _question["max_len"] = this.w_max;
+        }
+
+      }
+
+      
   }
 
 }
