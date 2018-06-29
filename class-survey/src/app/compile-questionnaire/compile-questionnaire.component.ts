@@ -109,10 +109,15 @@ export class CompileQuestionnaireComponent implements OnInit {
   }
 
   sendAnswers(num, questionId): void{
+    var answer = this.answers[questionId]
+    
+    if(typeof answer != "object")
+      answer = [answer]
+
     this.sendAnswerService.sendData({
           "questionnaireId": this.questionnaire.id,
           "numberOfTheQuestion": num,
-          "collected": this.answers[questionId]
+          "collected": answer
     })
     //console.log(this.questionnaire.id, num, this.answers[questionId])
   }
