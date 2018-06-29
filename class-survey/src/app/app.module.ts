@@ -15,8 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
-
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -26,6 +26,7 @@ import { StudentComponent } from './student/student.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
+import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire
     CourseDetailComponent,
     TemplatesComponent,
     NewQuestionnaireComponent,
+    CompileQuestionnaireComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire
     MatDividerModule,
     MatListModule,
     MatSelectModule,
-
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

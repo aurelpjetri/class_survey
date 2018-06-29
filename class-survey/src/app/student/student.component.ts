@@ -3,6 +3,9 @@ import {UserDataService} from '../services/user-data.service';
 
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
@@ -13,7 +16,9 @@ export class StudentComponent implements OnInit {
   private user: any;
   private questionnaires: any[] = [];
 
-  constructor(private userDataService: UserDataService, private questionnaireDataService: QuestionnaireDataService) { }
+  constructor(private userDataService: UserDataService,
+    private questionnaireDataService: QuestionnaireDataService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getUser()
@@ -24,7 +29,6 @@ export class StudentComponent implements OnInit {
     for(let id of this.user.questionnaires){
       this.questionnaireDataService.retrieveData(id).subscribe((response) => this.checkResponse(response))
     }
-    console.log(this.questionnaires)
   }
 
   checkResponse(response: any) :any{
@@ -44,6 +48,10 @@ export class StudentComponent implements OnInit {
   getUser() {
     this.user = this.userDataService.getData();
     //this.userDataService.getData().subscribe(user => this.user = user);
-    console.log(this.user)
+  }
+
+  compile(questionnaire: any) {
+    this.questionnaireDataService.setData(questionnaire)
+    this.router.navigateByUrl('/compile')
   }
 }
