@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 import {QuestionDataService} from '../services/question-data.service';
+import {SendAnswerService} from '../services/send-answer.service'
 
 @Component({
   selector: 'app-compile-questionnaire',
@@ -12,16 +13,17 @@ export class CompileQuestionnaireComponent implements OnInit {
   private questionnaire: any;
   private questions: any[] = [];
 
-  @Input() private answers: any[] = [];
-  @Input() private answer: {}; //non utilizzato?
+  @Input() private answers: {} = {};
   @Input() private mul: {} = {};
 
   constructor(private questionnaireDataService: QuestionnaireDataService,
-  private questionDataService: QuestionDataService) { }
+    private questionDataService: QuestionDataService,
+    private sendAnswerService: SendAnswerService) { }
 
   ngOnInit() {
     this.getQuestionnaire();
     this.getQuestions();
+    console.log(this.questions)
   }
 
   getQuestions(){
@@ -43,10 +45,10 @@ export class CompileQuestionnaireComponent implements OnInit {
           delete response.max;*/
           response['range'] = range;
         }
-        //console.log('-----')
-        //console.log(response)
+
         this.questions.push(response);
-        //console.log(response)
+        //this.questions[index] = response
+
     }
     else{
       alert('unable to read course details');
@@ -60,8 +62,7 @@ export class CompileQuestionnaireComponent implements OnInit {
   }
 
   submit(){
-    console.log('submitted!')
-    //console.log(this.answers)
+    //console.log('submitted!')
     var tmp: {} = {}
     for(let item in this.mul){
       var id = item.split("-")
@@ -81,16 +82,20 @@ export class CompileQuestionnaireComponent implements OnInit {
     for(let item in tmp){
       this.answers['multiple'+item] = tmp[item];
     }
-    //console.log(this.mul)
-    //console.log(tmp)
-    console.log(this.answers)
-  }
-/*
-  editCheck(question, option){
-    for(let item in this.tmp){
-      console.log('-----')
+    var index = 0;
+    for(let answer in this.answers){
+      this.sendAnswers(index,answer);
+      index++;
     }
-    console.log(this.tmp)
-    this.answers['multiple_'+question.id] = this.tmp;
-  }*/
+
+  }
+
+  sendAnswers(num, questionId): void{
+    this.sendAnswerService.sendData({
+          "questionnaireId": this.questionnaire.id,
+          "numberOfTheQuestion": num,
+          "collected": this.answers[questionId]
+    })
+    console.log(this.questionnaire.id, num, this.answers[questionId])
+  }
 }

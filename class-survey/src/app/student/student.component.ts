@@ -28,7 +28,6 @@ export class StudentComponent implements OnInit {
     for(let id of this.user.questionnaires){
       this.questionnaireDataService.retrieveData(id).subscribe((response) => this.checkResponse(response))
     }
-    console.log(this.questionnaires)
   }
 
   checkResponse(response: any) :any{
@@ -48,11 +47,9 @@ export class StudentComponent implements OnInit {
   getUser() {
     this.user = this.userDataService.getData();
     //this.userDataService.getData().subscribe(user => this.user = user);
-    console.log(this.user)
   }
 
   compile(questionnaire: any) {
-    console.log(questionnaire)
     this.questionnaireDataService.setData(questionnaire)
     this.router.navigateByUrl('/compile')
   }

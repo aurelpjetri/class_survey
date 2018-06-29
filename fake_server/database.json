@@ -120,11 +120,13 @@
 			"questions": [
 				{
 					"questionType": "lin",
-					"questionId": 0
+					"questionId": 0,
+					"num": 0
 				},
 				{
 					"questionType": "essay",
-					"questionId": 0
+					"questionId": 0,
+					"num": 1
 				}
 			]
 		},
@@ -139,11 +141,13 @@
 			"questions": [
 				{
 					"questionType": "multiple",
-					"questionId": 0
+					"questionId": 0,
+					"num": 0
 				},
 				{
 					"questionType": "multiple",
-					"questionId": 1
+					"questionId": 1,
+					"num": 1
 				}
 			]
 		},
@@ -158,11 +162,13 @@
 			"questions": [
 				{
 					"questionType": "lin",
-					"questionId": 0
+					"questionId": 0,
+					"num": 0
 				},
 				{
 					"questionType": "essay",
-					"questionId": 0
+					"questionId": 0,
+					"num": 1
 				}
 			]
 		}
