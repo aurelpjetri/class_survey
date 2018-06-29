@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
+import {UserDataService} from '../services/user-data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Config } from '../config'
 
 @Component({
   selector: "app-login",
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, UserDataService],
   templateUrl: "./login/login.component.html",
   styleUrls: ["./login/login.component.css"]
 })
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private userDataService: UserDataService,
     private router: Router) { }
 
   ngOnInit() {}
@@ -31,8 +33,8 @@ export class LoginComponent implements OnInit {
 
   checkResponse(response: any) :any{
     if(this.authenticationService.getErrorStatus()===200){
-      console.log(response)
-
+      this.userDataService.setData(response.user);
+      
       if (response.role == 'professor'){
         this.router.navigateByUrl('/professor')
       }
