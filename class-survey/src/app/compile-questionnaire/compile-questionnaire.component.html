@@ -22,8 +22,8 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="question.choiches != undefined">
-      <div *ngFor="let option of question.choiches">
+    <div *ngIf="question.choices != undefined">
+      <div *ngFor="let option of question.choices">
         <mat-checkbox [(ngModel)]="this.mul[option+'-'+question.id]">{{option}}</mat-checkbox>
       </div>
     </div>

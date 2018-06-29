@@ -37,7 +37,7 @@ export class CompileQuestionnaireComponent implements OnInit {
         if(question.questionType == 'essay' && questionData.max_len != undefined && question.questionId == questionData.id){
           orderedQuestions[question.num] = questionData
         }
-        if(question.questionType == 'multiple' && questionData.choiches != undefined && question.questionId == questionData.id){
+        if(question.questionType == 'multiple' && questionData.choices != undefined && question.questionId == questionData.id){
           orderedQuestions[question.num] = questionData
         }
       }
@@ -110,7 +110,7 @@ export class CompileQuestionnaireComponent implements OnInit {
 
   sendAnswers(num, questionId): void{
     var answer = this.answers[questionId]
-    
+
     if(typeof answer != "object")
       answer = [answer]
 
