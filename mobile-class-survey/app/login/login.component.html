@@ -1,0 +1,12 @@
+<StackLayout class="form">
+  <StackLayout class="input-field">
+    <TextField hint="Email Address" keyboardType="email"
+    [(ngModel)]="matriculation" autocorrect="false"
+    autocapitalizationType="none"></TextField>
+  </StackLayout>
+  <StackLayout class="input-field">
+    <TextField hint="Password" secure="true" [(ngModel)]="password"></TextField>
+  </StackLayout>
+
+  <Button class="btn btn-primary btn-rounded-sm" text="Sign in"(tap)="submit()"></Button>
+</StackLayout>

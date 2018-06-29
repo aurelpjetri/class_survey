@@ -10,3 +10,13 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import '~nativescript-theme-core/css/core.light.css';
+@import '~nativescript-theme-core/css/blue.css';
+
+ActionBar{
+  background-color: #4169E1;
+  color: white;
+  title: Survey App;
+}
+StackLayout {
+  margin: 0 5% 0 5%;
+}
