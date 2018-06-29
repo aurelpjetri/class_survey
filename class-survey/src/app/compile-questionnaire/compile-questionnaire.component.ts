@@ -23,15 +23,34 @@ export class CompileQuestionnaireComponent implements OnInit {
   ngOnInit() {
     this.getQuestionnaire();
     this.getQuestions();
-    console.log(this.questions)
+    this.questionsSort()
+    //console.log('nuovo questions data: ', this.questions)
+  }
+
+  questionsSort(){
+    var orderedQuestions = []
+    for(let question of this.questionnaire.questions){
+      for(let questionData of this.questions){
+        if(question.questionType == 'lin' && questionData.min != undefined && question.questionId == questionData.id){
+          orderedQuestions[question.num] = questionData
+        }
+        if(question.questionType == 'essay' && questionData.max_len != undefined && question.questionId == questionData.id){
+          orderedQuestions[question.num] = questionData
+        }
+        if(question.questionType == 'multiple' && questionData.choiches != undefined && question.questionId == questionData.id){
+          orderedQuestions[question.num] = questionData
+        }
+      }
+      //orderedQuestions[question.num] = this.questions[]
+    }
+    //console.log('vettore orderedQ: ', orderedQuestions)
+    this.questions = orderedQuestions;
   }
 
   getQuestions(){
     for(let q of this.questionnaire.questions){
       this.questionDataService.retrieveData(q.questionType, q.questionId).subscribe((response) => this.checkResponse(response))
     }
-    //console.log(this.answers)
-    //console.log(this.questions)
   }
 
   checkResponse(response: any) :any{
@@ -62,7 +81,6 @@ export class CompileQuestionnaireComponent implements OnInit {
   }
 
   submit(){
-    //console.log('submitted!')
     var tmp: {} = {}
     for(let item in this.mul){
       var id = item.split("-")
@@ -96,6 +114,6 @@ export class CompileQuestionnaireComponent implements OnInit {
           "numberOfTheQuestion": num,
           "collected": this.answers[questionId]
     })
-    console.log(this.questionnaire.id, num, this.answers[questionId])
+    //console.log(this.questionnaire.id, num, this.answers[questionId])
   }
 }
