@@ -55,7 +55,7 @@ export class TemplateDataService {
 
   selectTemplate(code:any):void{
     for(let temp of this.templates){
-      if(temp.code == code){
+      if(temp.id == code){
         this.selected = temp;
       }
     }

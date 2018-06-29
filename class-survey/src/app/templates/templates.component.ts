@@ -50,7 +50,7 @@ export class TemplatesComponent implements OnInit {
 
   changeView(temp:any){
     if(temp != undefined){
-      this.templateDataService.selectTemplate(temp.code)
+      this.templateDataService.selectTemplate(temp.id)
     }
     this.router.navigateByUrl('create')
   }

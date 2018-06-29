@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login/login.component';
 
@@ -14,6 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,11 +35,12 @@ import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire
     StudentComponent,
     CourseDetailComponent,
     TemplatesComponent,
-    NewQuestionnaireComponent
+    NewQuestionnaireComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     MatCardModule,
@@ -48,7 +51,9 @@ import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire
     MatButtonModule,
     BrowserAnimationsModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

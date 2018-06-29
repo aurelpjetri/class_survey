@@ -9,7 +9,7 @@
 </div>
 <div class="active_scrollable">
   <mat-card (click)="changeView()">
-      <div>
+      <div >
         <mat-card-title> <mat-icon mat-list-icon>add</mat-icon> New Survey </mat-card-title>
         <mat-card-subtitle>questions</mat-card-subtitle>
       </div>
@@ -24,7 +24,7 @@
 
 <div class="active_scrollable">
   <mat-card *ngFor="let temp of templates" (click)="changeView(temp)">
-      <div>
+      <div >
         <mat-card-title> <mat-icon mat-list-icon>insert_drive_file</mat-icon> {{temp.title}}</mat-card-title>
         <mat-card-subtitle>{{temp.creator}} - {{temp.questions.length}} questions</mat-card-subtitle>
       </div>
