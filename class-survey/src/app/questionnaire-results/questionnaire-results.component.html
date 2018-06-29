@@ -1,0 +1,33 @@
+<div class="quest_cont">
+  <h2 class="mat-title">{{questionnaire.title}}</h2>
+</div>
+<mat-divider></mat-divider>
+<mat-tab-group>
+  <mat-tab label="Questions">
+    <div class="active_scrollable">
+      <mat-card *ngFor="let question of questions">
+        <mat-card-title>{{question.question}}</mat-card-title>
+
+        <div class="range" *ngIf="question.range != undefined">
+          <mat-card-subtitle>Linear question - Range: {{question.min}} to {{question.max}}</mat-card-subtitle>
+        </div>
+
+        <div *ngIf="question.max_len != undefined">
+            <mat-card-subtitle> Essay question - Max {{question.max_len}} words. </mat-card-subtitle>
+        </div>
+
+
+        <div *ngIf="question.choices != undefined">
+          <mat-card-subtitle>Multiple question</mat-card-subtitle>
+          <div style="display: flex" *ngFor="let option of question.choices">
+            <mat-card-subtitle>- {{option}}</mat-card-subtitle>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Statistics">
+    Content 2
+  </mat-tab>
+</mat-tab-group>
