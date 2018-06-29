@@ -41,7 +41,8 @@ server.use( (req, res, next) => {
 					for (var idx in reg_users) {
 						var reg_user = reg_users[idx]
 						if (reg_user.matriculation === user.matriculation) {
-							var _user = { 'matriculation': reg_user.matriculation, 'name': reg_user.name, 'courses': reg_user.courses }
+							var _user = { 'matriculation': reg_user.matriculation, 'name': reg_user.name,
+							'courses': reg_user.courses, 'questionnaires': reg_user.questionnaires }
 							res.jsonp( {'role': user['role'], 'user': _user} )
 						}
 					}

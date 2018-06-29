@@ -1,6 +1,3 @@
-.mat-list-icon{
-  color: rgba(0, 0, 0, 0.54);
-}
 .stud_cont{
   padding: 20px 2em 0em 1em;
 }
@@ -18,6 +15,10 @@ mat-card{
   padding: 5px;
   margin-bottom: 16px;
 }
-.mat-subheading-2{
-    margin-bottom: 0;
+.mat-form{
+  width: 100%;
+}
+.range{
+  display: flex;
+  flex-direction: row;
 }

@@ -1,0 +1,86 @@
+<div class="prof_cont">
+    <h2 class="mat-title"> {{user.name}} - {{course.name}} {{course.year}}</h2>
+    <h2 class="mat-title"><span class="heavier">Customize</span> a questionnaire </h2>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="creator_container">
+  <div style="flex-grow:3;">
+
+    <form class="upper_form">
+
+      <mat-form-field>
+        <input matInput placeholder="Question"  [(ngModel)]="new_question.question" name=question>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Type" [(value)]="new_question.type">
+          <mat-option *ngFor="let type of q_types" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <form [formGroup]="options">
+
+        <mat-form-field *ngIf="(new_question.type == 'essay')">
+          <input matInput type="number" placeholder="max. words" formControlName="w_max" min="0">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="(new_question.type == 'lin')">
+          <input matInput type="number" placeholder="min" formControlName="lin_min" min="0" max=100>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="(new_question.type == 'lin')">
+          <input matInput type="number" placeholder="max" formControlName="lin_max" min="0" max="100">
+        </mat-form-field>
+
+      </form>
+
+      <mat-list *ngIf="(new_question.type == 'multiple')">
+        <mat-list-item *ngFor="let ans of multiple_answers">
+          {{ans}}
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeMultipleChoice(ans)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-form-field *ngIf="(new_question.type == 'multiple')">
+        <input matInput type="text" placeholder="multiple" name="mul" [(ngModel)]="this.m_choice"/>
+
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addMultipleChoice()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </form>
+
+  </div>
+  <div style="display:flex; flex-grow:1; margin:auto;">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addQuestion()">
+      <mat-icon class="del">save_alt</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-subheading-2">Selected questions</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let q of questions; index as _i">
+      <div style="flex-grow:3">
+        <mat-card-title *ngIf="template.questions[_i] != undefined">{{_i+1}}.   {{template.questions[_i].questionType}} question</mat-card-title>
+        <mat-card-title *ngIf="template.questions[_i] == undefined">{{_i+1}}.   {{q.type}} question</mat-card-title>
+        <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
+      </div>
+      <div style="display:flex; flex-grow:1;">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeQuestion(_i)">
+          <mat-icon class="del">delete</mat-icon>
+        </button>
+      </div>
+  </mat-card>
+</div>

@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
-
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
+//import { LoginComponent } from './login/login.component'
 
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionnaireDataService {
-  private serverURL = 'http://localhost:3000/questionnaire';
+export class SendAnswerService {
+  private serverURL = 'http://localhost:3000/question/answer';
+
   private error_status: any;
-  private questionnaireData: any;
 
   constructor(private http:HttpClient) { }
 
-
-  retrieveData(id:any): Observable<any>{
-    const req_path = this.serverURL+'?questionnaire='+id;
-    return this.http.get<any>(req_path)
-    .pipe(
-      catchError(this.handleError('retrieveData', id))
-    );
+  sendData(data: any): Observable<any> {
+    this.error_status= 200;
+    return this.http.post<any>(this.serverURL, data)
+      .pipe(
+        catchError(this.handleError('sendQuestion', data))
+      );
   }
 
   getErrorStatus(): any {
@@ -39,13 +39,5 @@ export class QuestionnaireDataService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  setData(data: any):void{
-    this.questionnaireData = data;
-  }
-
-  getData(): any{
-    return this.questionnaireData;
   }
 }
