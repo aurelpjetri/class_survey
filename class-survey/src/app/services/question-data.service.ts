@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class QuestionDataService {
-  private serverURL = 'http://localhost:3000/questionnaire/question';
+  private serverURL = 'http://localhost:3000/question';
   private error_status: any;
   //private answerData: any;
 

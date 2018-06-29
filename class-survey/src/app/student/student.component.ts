@@ -22,7 +22,9 @@ export class StudentComponent implements OnInit {
 
   ngOnInit() {
     this.getUser()
+    console.log(this.user)
     this.getQuestionnaireDetails();
+
   }
 
   getQuestionnaireDetails(){
