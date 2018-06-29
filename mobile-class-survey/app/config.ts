@@ -1,10 +1,10 @@
 export class Config {
 
-  static address = "localhost";
-  static port = "3000"
+  static address;
+  static port;
 
   static getURL(): string {
-    return Config.address + ":" + Config.port
+    return "http://" + Config.address + ":" + Config.port
   }
-  
+
 }

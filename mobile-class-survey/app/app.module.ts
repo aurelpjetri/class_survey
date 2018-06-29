@@ -3,12 +3,14 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
 
 @NgModule({
   imports: [
+    HttpClientModule,
     NativeScriptModule,
     NativeScriptFormsModule,
     NativeScriptHttpModule,
