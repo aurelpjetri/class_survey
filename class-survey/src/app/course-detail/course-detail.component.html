@@ -12,7 +12,7 @@
 </div>
 
 <div class="active_scrollable">
-  <mat-card *ngFor="let quest of expired_q">
+  <mat-card *ngFor="let quest of expired_q" (click)="this.viewResult(quest)">
       <div style="flex-grow:3">
         <mat-card-title> <mat-icon mat-list-icon>assignment_turned_in</mat-icon> {{quest.title}}</mat-card-title>
         <mat-card-subtitle>{{quest.professor}}</mat-card-subtitle>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="active_scrollable">
-  <mat-card *ngFor="let quest of active_q">
+  <mat-card *ngFor="let quest of active_q" (click)="this.viewResult(quest)">
     <div style="flex-grow:3">
       <mat-card-title> <mat-icon mat-list-icon>assignment</mat-icon> {{quest.title}} </mat-card-title>
       <mat-card-subtitle>{{quest.professor}}</mat-card-subtitle>
