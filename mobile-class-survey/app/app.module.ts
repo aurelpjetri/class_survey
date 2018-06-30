@@ -8,6 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
 
+import { UserDataService } from './services/user-data.service';
+import { CourseDataService } from './services/course-data.service';
+import { AuthenticationService } from './services/authentication.service';
+
 @NgModule({
   imports: [
     HttpClientModule,
@@ -16,6 +20,11 @@ import { routes, navigatableComponents } from "./app.routing";
     NativeScriptHttpModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(routes)
+  ],
+  providers: [
+    UserDataService,
+    CourseDataService,
+    AuthenticationService
   ],
   declarations: [
     AppComponent,

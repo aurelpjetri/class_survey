@@ -1,0 +1,31 @@
+<StackLayout class="form">
+  <Label class="h2">
+    <FormattedString>
+      <Span text="Courses" style="font-weight: bold"></Span>
+      <Span [text]="' of ' + user.name"></Span>
+    </FormattedString>
+  </Label>
+  <StackLayout class="m-10"></StackLayout>
+
+  <Label text="Active course"></Label>
+  <StackLayout class="hr-dark m-10"></StackLayout>
+
+  <ScrollView>
+    <StackLayout class="card" *ngFor="let course of active_courses" (tap)="test()">
+      <Label [text]="course.name" class="h2"></Label>
+      <Label [text]="course.cfu + ' CFU - ' + course.degree" class="h4"></Label>
+    </StackLayout>
+  </ScrollView>
+
+  <StackLayout class="m-20"></StackLayout>
+  <Label text="Expired course"></Label>
+  <StackLayout class="hr-dark m-10"></StackLayout>
+
+  <ScrollView>
+    <StackLayout class="card" *ngFor="let course of expired_courses" (tap)="test()">
+      <Label [text]="course.name" class="h2"></Label>
+      <Label [text]="course.cfu + ' CFU - ' + course.degree" class="h4"></Label>
+    </StackLayout>
+  </ScrollView>
+
+</StackLayout>
