@@ -52,6 +52,9 @@ export class TemplatesComponent implements OnInit {
     if(temp != undefined){
       this.templateDataService.selectTemplate(temp.id)
     }
+    else{
+      this.templateDataService.selectTemplate(undefined);
+    }
     this.router.navigateByUrl('create')
   }
 

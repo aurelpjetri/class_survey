@@ -53,6 +53,7 @@ export class NewQuestionnaireComponent implements OnInit {
     });
     this.course = this.courseDataService.getData();
     this.user = this.userDataService.getData();
+
     this.template = this.templateDataService.getSelected();
     this.retrieveQuestions();
 
@@ -65,9 +66,11 @@ export class NewQuestionnaireComponent implements OnInit {
   get lin_min(){return this.options.get('lin_min');}
 
   retrieveQuestions(){
-    for(let _q of this.template.questions){
-      this.templateDataService.retrieveQuestionsOfTemplate(_q.questionType, _q.questionId)
-      .subscribe((response) => this.checkResponse(response));
+    if(this.template!=undefined){
+      for(let _q of this.template.questions){
+        this.templateDataService.retrieveQuestionsOfTemplate(_q.questionType, _q.questionId)
+        .subscribe((response) => this.checkResponse(response));
+      }
     }
   }
 
