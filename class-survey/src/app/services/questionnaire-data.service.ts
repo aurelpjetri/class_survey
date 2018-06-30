@@ -48,4 +48,13 @@ export class QuestionnaireDataService {
   getData(): any{
     return this.questionnaireData;
   }
+
+  postQuestion(questionnaire:any): Observable<any>{
+    const req_path = "http://localhost:3000/questionnaire"
+    return this.http.post<any>(req_path, questionnaire)
+    .pipe(
+      catchError(this.handleError('postQuestion', questionnaire))
+    );
+  }
+
 }

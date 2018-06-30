@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import{ UserDataService} from '../services/user-data.service';
 import{ TemplateDataService} from '../services/template-data.service';
 import {CourseDataService} from '../services/course-data.service';
+import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
 @Component({
   selector: 'app-new-questionnaire',
@@ -28,6 +29,8 @@ export class NewQuestionnaireComponent implements OnInit {
 
   private title: any = "";
 
+  private gps_flag: boolean = false;
+
 
   // used for multiple choice questions
   private m_choice: any;
@@ -39,7 +42,8 @@ export class NewQuestionnaireComponent implements OnInit {
   constructor(
     private userDataService: UserDataService,
     private templateDataService: TemplateDataService,
-    private courseDataService: CourseDataService){}
+    private courseDataService: CourseDataService,
+    private questionnaireDataService: QuestionnaireDataService){}
 
   ngOnInit() {
     this.options = new FormGroup({
@@ -156,25 +160,47 @@ export class NewQuestionnaireComponent implements OnInit {
         "deadline": deadline,
         "activation": activation,
         "professor": this.user.name,
-        "course": this.course.id
+        "course": this.course.id,
+// TBD what to pass if the gps is set to required in the creation form
+        "gps": this.gps_flag,
+        "questions":[]
       }
 
       for(let q of this.questions){
+
         var _question = {"question": q.question};
+
         if( q.type == "lin"){
+          _question["questionType"] = "lin";
           _question["min"] = this.lin_min;
           _question["max"] = this.lin_max;
         }
         if(q.type == "multiple"){
+          _question["questionType"] = "multiple";
           _question["choices"] = this.multiple_answers;
         }
         if(q.type == "essay"){
+          _question["questionType"] = "essay";
           _question["max_len"] = this.w_max;
         }
 
+        questionnaire.questions.push(_question);
       }
 
-      
+      this.questionnaireDataService.postQuestion(questionnaire).subscribe((response) => this.checkPostResponse(response))
+
+  }
+
+  checkPostResponse(response: any): any{
+    if(this.questionnaireDataService.getErrorStatus()===200){
+      this.userDataService.setData(response.user);
+      //console.log(response)
+
+    }
+    else{
+      alert('posting failed; error status: '+this.questionnaireDataService.getErrorStatus());
+
+    }
   }
 
 }
