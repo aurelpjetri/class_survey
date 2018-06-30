@@ -20,7 +20,7 @@
         <div *ngIf="question.choices != undefined">
           <mat-card-subtitle>Multiple question</mat-card-subtitle>
           <div style="display: flex" *ngFor="let option of question.choices">
-            <mat-card-subtitle>- {{option}}</mat-card-subtitle>
+            <mat-card-subtitle style="margin:5px 0 0 0">- {{option}}</mat-card-subtitle>
           </div>
         </div>
       </mat-card>

@@ -10,7 +10,6 @@ span{
 }
 mat-card{
   margin-top: 1em;
-  cursor: pointer;
 }
 .active_scrollable{
   max-height: 100%;
