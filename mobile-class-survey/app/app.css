@@ -17,6 +17,12 @@ ActionBar{
   color: white;
   title: Survey App;
 }
-StackLayout {
+.form {
   margin: 0 5% 0 5%;
+}
+.icon{
+  font-family: "./fonts/fa-solid-900";
+  font-family: "fa-solid-900";
+  vertical-align: center;
+  font-size: 30;
 }

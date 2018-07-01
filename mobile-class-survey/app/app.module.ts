@@ -12,6 +12,10 @@ import { UserDataService } from './services/user-data.service';
 import { CourseDataService } from './services/course-data.service';
 import { AuthenticationService } from './services/authentication.service';
 
+import { registerElement } from 'nativescript-angular/element-registry';
+import { CardView } from 'nativescript-cardview';
+registerElement('CardView', () => CardView);
+
 @NgModule({
   imports: [
     HttpClientModule,

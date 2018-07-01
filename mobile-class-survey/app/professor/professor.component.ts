@@ -15,6 +15,7 @@ export class ProfessorComponent implements OnInit {
   private user: any;
   private active_courses: any[] = [];
   private expired_courses: any[] = [];
+  private uni_icon: string = String.fromCharCode(0xf19c);
 
 
   constructor(

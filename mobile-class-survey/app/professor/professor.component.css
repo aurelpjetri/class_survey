@@ -1,8 +1,15 @@
+.cardStyle {
+    background-color: #F0F0F0;
+    color: black;
+}
+
 .card{
-  border-width: 1;
+  background-color: #F0F0F0;
+  color: black;
+  
+  border-width: 2;
   border-radius: 2;
-  border-color: #A0A0A0;
-  padding: 10;
-  margin-top: 10;
-  margin-bottom: 10;
+  margin-top: 5;
+  margin-bottom: 5;
+  padding: 5;
 }
