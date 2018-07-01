@@ -7,6 +7,9 @@ import{ TemplateDataService} from '../services/template-data.service';
 import {CourseDataService} from '../services/course-data.service';
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-new-questionnaire',
   templateUrl: './new-questionnaire.component.html',
@@ -43,7 +46,8 @@ export class NewQuestionnaireComponent implements OnInit {
     private userDataService: UserDataService,
     private templateDataService: TemplateDataService,
     private courseDataService: CourseDataService,
-    private questionnaireDataService: QuestionnaireDataService){}
+    private questionnaireDataService: QuestionnaireDataService,
+    private router: Router){}
 
   ngOnInit() {
     this.options = new FormGroup({
@@ -192,6 +196,7 @@ export class NewQuestionnaireComponent implements OnInit {
 
       this.questionnaireDataService.postQuestion(questionnaire).subscribe((response) => this.checkPostResponse(response))
 
+      this.router.navigateByUrl('/course');
   }
 
   checkPostResponse(response: any): any{

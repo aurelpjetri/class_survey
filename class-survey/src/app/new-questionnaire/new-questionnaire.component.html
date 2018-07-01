@@ -42,17 +42,17 @@
       <div style="display: flex; flex-direction:row;">
         <h4 class="mat-body-1">Deadline:  </h4>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose deadline">
+          <input matInput [matDatepicker]="picker" placeholder="Choose deadline" [(ngModel)]="this.deadline.date" name=date>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field style="max-width:4em;">
-          <input matInput type="number" placeholder="hh">
+          <input matInput type="number" placeholder="hh" [(ngModel)]="this.deadline.hh" name=hh>
         </mat-form-field>
 
         <mat-form-field style=" max-width:4em;">
-          <input matInput type="number" placeholder="mm">
+          <input matInput type="number" placeholder="mm" [(ngModel)]="this.deadline.mm" name=mm>
         </mat-form-field>
 
       </div>
@@ -147,6 +147,6 @@
 
 <mat-divider></mat-divider>
 
-<button mat-raised-button color="primary" style=" width:100%; margin:20px 10px 20px 10px;">
+<button mat-raised-button color="primary" style=" width:100%; margin:20px 10px 20px 10px;" (click)="saveQuestionnaire()">
   Submit
 </button>
