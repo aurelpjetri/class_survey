@@ -11,10 +11,9 @@ import { routes, navigatableComponents } from "./app.routing";
 import { UserDataService } from './services/user-data.service';
 import { CourseDataService } from './services/course-data.service';
 import { AuthenticationService } from './services/authentication.service';
+import { QuestionnaireDataService } from './services/questionnaire-data.service';
 
-import { registerElement } from 'nativescript-angular/element-registry';
-import { CardView } from 'nativescript-cardview';
-registerElement('CardView', () => CardView);
+import { NgShadowModule } from 'nativescript-ng-shadow';
 
 @NgModule({
   imports: [
@@ -23,9 +22,11 @@ registerElement('CardView', () => CardView);
     NativeScriptFormsModule,
     NativeScriptHttpModule,
     NativeScriptRouterModule,
-    NativeScriptRouterModule.forRoot(routes)
+    NativeScriptRouterModule.forRoot(routes),
+    NgShadowModule
   ],
   providers: [
+    QuestionnaireDataService,
     UserDataService,
     CourseDataService,
     AuthenticationService

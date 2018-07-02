@@ -7,30 +7,32 @@
   </Label>
   <StackLayout class="m-10"></StackLayout>
 
-  <Label text="Active course"></Label>
-  <StackLayout class="hr-dark m-10"></StackLayout>
-
   <ScrollView>
-    <CardView class="cardStyle" elevation="40" *ngFor="let course of active_courses" (tap)="test()">
-      <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
-        <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="2"></Label>
-        <Label [text]="course.name" class="h2" row="0" col="1"></Label>
-        <Label [text]="course.cfu + ' CFU - ' + course.degree" class="h4" row="1" col="1"></Label>
-      </GridLayout>
-    </CardView>
-  </ScrollView>
+    <StackLayout>
+      <Label text="Active course"></Label>
+      <StackLayout class="hr-dark m-10"></StackLayout>
 
-  <StackLayout class="m-20"></StackLayout>
-  <Label text="Expired course"></Label>
-  <StackLayout class="hr-dark m-10"></StackLayout>
+      <StackLayout class="card" *ngFor="let course of active_courses" (tap)="selectedCourse(course)">
+        <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
+          <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3"></Label>
+          <Label [text]="course.name" class="h2" row="0" col="1"></Label>
+          <Label [text]="course.code + ' - ' + course.cfu + ' CFU - AY ' + course.year" class="h4" row="1" col="1"></Label>
+          <Label [text]="course.degree" class="h4" row="2" col="1"></Label>
+        </GridLayout>
+      </StackLayout>
 
-  <ScrollView>
-    <StackLayout class="card" *ngFor="let course of expired_courses" (tap)="test()">
-      <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
-        <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="2"></Label>
-        <Label [text]="course.name" class="h2" row="0" col="1"></Label>
-        <Label [text]="course.cfu + ' CFU - ' + course.degree" class="h4" row="1" col="1"></Label>
-      </GridLayout>
+      <StackLayout class="m-20"></StackLayout>
+      <Label text="Expired course"></Label>
+      <StackLayout class="hr-dark m-10"></StackLayout>
+
+      <StackLayout class="card" *ngFor="let course of expired_courses" (tap)="selectedCourse(course)">
+        <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
+          <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3"></Label>
+          <Label [text]="course.name" class="h2" row="0" col="1"></Label>
+          <Label [text]="course.code + ' - ' + course.cfu + ' CFU - AY ' + course.year" class="h4" row="1" col="1"></Label>
+          <Label [text]="course.degree" class="h4" row="2" col="1"></Label>
+        </GridLayout>
+      </StackLayout>
     </StackLayout>
   </ScrollView>
 

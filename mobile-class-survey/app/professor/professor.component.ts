@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UserDataService } from '../services/user-data.service';
 import { CourseDataService } from '../services/course-data.service';
 
+import { Elevation } from 'nativescript-ng-shadow';
+
 @Component({
   selector: 'app-professor',
   templateUrl: './professor/professor.component.html',
@@ -15,8 +17,8 @@ export class ProfessorComponent implements OnInit {
   private user: any;
   private active_courses: any[] = [];
   private expired_courses: any[] = [];
-  private uni_icon: string = String.fromCharCode(0xf19c);
 
+  private uni_icon: string = String.fromCharCode(0xf19c);
 
   constructor(
     private userDataService: UserDataService,
@@ -56,10 +58,6 @@ export class ProfessorComponent implements OnInit {
   selectedCourse(selected: any): void{
     this.courseDataService.setData(selected);
     this.router.navigateByUrl('/course');
-  }
-
-  test() {
-    alert("ok")
   }
 
 }
