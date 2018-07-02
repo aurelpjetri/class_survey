@@ -11,6 +11,8 @@ span{
 mat-card{
   margin-top: 1em;
   cursor: pointer;
+  display:flex;
+  flex-direction:row;
 }
 .active_scrollable{
   max-height: 30%;
@@ -20,4 +22,11 @@ mat-card{
 }
 .mat-subheading-2{
     margin-bottom: 0;
+}
+.gps{
+  margin:auto;
+  height: auto;
+  width:auto;
+  font-size: 36px;
+  color: rgba(0, 0, 0, 0.54);
 }
