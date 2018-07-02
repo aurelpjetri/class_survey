@@ -83,6 +83,10 @@ export class CompileQuestionnaireComponent implements OnInit {
     //this.userDataService.getData().subscribe(user => this.user = user);
   }
 
+  control(){
+    console.log('ciao')
+  }
+
   submit(){
     var tmp: {} = {}
     for(let item in this.mul){
@@ -103,12 +107,33 @@ export class CompileQuestionnaireComponent implements OnInit {
     for(let item in tmp){
       this.answers['multiple'+item] = tmp[item];
     }
+
+    var call = true
     var index = 0;
-    for(let answer in this.answers){
-      this.sendAnswers(index,answer);
-      index++;
+    for(let question of this.questions){
+      if(question.max_len != undefined){
+        for(let answer in this.answers){
+          var a = answer.split('_')
+          if(a[0] == 'essay' && a[1] == question.id){
+            var numOfWords = this.answers[answer].split(' ');
+            if(numOfWords.length > question.max_len){
+              call = false
+              alert('To much words')
+            }
+          }
+        }
+      }
     }
-    this.router.navigateByUrl('/student')
+
+    if(call==true){
+      var index = 0;
+      for(let answer in this.answers){
+        //console.log(this.answers[answer])
+        this.sendAnswers(index,answer);
+        index++;
+      }
+      this.router.navigateByUrl('/student')
+    }
   }
 
   sendAnswers(num, questionId): void{

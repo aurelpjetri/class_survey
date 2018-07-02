@@ -26,10 +26,6 @@ export class StudentComponent implements OnInit {
     this.getQuestionnaireDetails();
   }
 
-  ngOnDestroy(){
-    alert("ciao")
-  }
-
   getQuestionnaireDetails(){
     for(let id of this.user.questionnaires){
       this.questionnaireDataService.retrieveData(id).subscribe((response) => this.checkResponse(response))
