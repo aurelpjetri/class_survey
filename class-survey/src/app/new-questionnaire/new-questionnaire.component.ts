@@ -34,6 +34,8 @@ export class NewQuestionnaireComponent implements OnInit {
 
   private gps_flag: boolean = false;
 
+  private public_flag: boolean = false;
+
 
   // used for multiple choice questions
   private m_choice: any;
@@ -172,12 +174,12 @@ export class NewQuestionnaireComponent implements OnInit {
         "deadline": deadline,
         "activation": activation,
         "professor": this.user.name,
-        "course": this.course.id,
+        "course": this.course.code,
   // TBD what to pass if the gps is set to required in the creation form
         "gps": this.gps_flag,
+        "public": this.public_flag,
         "questions": []
       }
-
 
 
       for(let q of this.questions){
@@ -202,7 +204,6 @@ export class NewQuestionnaireComponent implements OnInit {
         questionnaire.questions.push(_question);
       }
 
-      console.log(questionnaire);
       this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
 
   }
