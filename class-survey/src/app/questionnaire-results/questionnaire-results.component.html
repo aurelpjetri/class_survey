@@ -27,7 +27,7 @@
     </div>
   </mat-tab>
 
-  <mat-tab label="Statistics">
+  <mat-tab *ngIf="questionnaire.active == false" label="Statistics">
     <div class="active_scrollable">
       <mat-card *ngFor="let question of questions; let i = index">
 
