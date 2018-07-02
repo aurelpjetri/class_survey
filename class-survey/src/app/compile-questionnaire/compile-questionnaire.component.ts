@@ -4,6 +4,8 @@ import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 import {QuestionDataService} from '../services/question-data.service';
 import {SendAnswerService} from '../services/send-answer.service'
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-compile-questionnaire',
   templateUrl: './compile-questionnaire.component.html',
@@ -18,7 +20,8 @@ export class CompileQuestionnaireComponent implements OnInit {
 
   constructor(private questionnaireDataService: QuestionnaireDataService,
     private questionDataService: QuestionDataService,
-    private sendAnswerService: SendAnswerService) { }
+    private sendAnswerService: SendAnswerService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getQuestionnaire();
@@ -105,7 +108,7 @@ export class CompileQuestionnaireComponent implements OnInit {
       this.sendAnswers(index,answer);
       index++;
     }
-
+    this.router.navigateByUrl('/student')
   }
 
   sendAnswers(num, questionId): void{
