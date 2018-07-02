@@ -56,25 +56,23 @@ export class StudentComponent implements OnInit {
   compile(questionnaire: any) {
     this.questionnaireDataService.setData(questionnaire)
     if(questionnaire.gps!="false"){
-      var qCoord =  questionnaire.gps.split(',');
-      navigator.geolocation.getCurrentPosition((position) => this.success(position), this.error);
-      var dist = this.distanceInKmBetweenEarthCoordinates(Number(qCoord[0]),Number(qCoord[1]),this.myCoordinate[0],this.myCoordinate[1]);
-      if(dist < 0.1){
-        this.router.navigateByUrl('/compile')
-      }
-      else{
-        alert('Yuo must be near ' + Number(qCoord[0]) + ',' + Number(qCoord[1]) + ' to complete this survey')
-      }
+      navigator.geolocation.getCurrentPosition((position) => this.checkGPS(position, questionnaire), this.error);
     }
     else{
     this.router.navigateByUrl('/compile')
     }
   }
 
-  success(pos){
+  checkGPS(pos, questionnaire: any){
     var crd = pos.coords;
-    this.myCoordinate.push(crd.latitude)
-    this.myCoordinate.push(crd.longitude)
+    var qCoord =  questionnaire.gps.split(',');
+    var dist = this.distanceInKmBetweenEarthCoordinates(Number(qCoord[0]),Number(qCoord[1]),crd.latitude,crd.longitude);
+    if(dist < 0.1){
+      this.router.navigateByUrl('/compile')
+    }
+    else{
+      alert('Yuo must be near ' + Number(qCoord[0]) + ',' + Number(qCoord[1]) + ' to complete this survey')
+    }
   }
 
   error(err) {
