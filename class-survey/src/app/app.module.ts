@@ -33,6 +33,8 @@ import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire
 import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-questionnaire.component';
 import { QuestionnaireResultsComponent } from './questionnaire-results/questionnaire-results.component';
 
+import {UserDataService} from './services/user-data.service';
+
 @NgModule({
   declarations: [
     AppComponent,

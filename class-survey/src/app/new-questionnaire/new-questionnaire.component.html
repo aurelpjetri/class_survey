@@ -133,8 +133,7 @@
 <div class="active_scrollable">
   <mat-card *ngFor="let q of questions; index as _i">
       <div style="flex-grow:3">
-        <mat-card-title *ngIf="template.questions[_i] != undefined">{{_i+1}}.   {{template.questions[_i].questionType}} question</mat-card-title>
-        <mat-card-title *ngIf="template.questions[_i] == undefined">{{_i+1}}.   {{q.type}} question</mat-card-title>
+        <mat-card-title>{{_i+1}}.   {{q.type}} question</mat-card-title>
         <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
       </div>
       <div style="display:flex; flex-grow:1;">

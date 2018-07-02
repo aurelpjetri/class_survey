@@ -48,7 +48,7 @@ server.use( (req, res, next) => {
 					}
 				} else { res.sendStatus(403) }
 			} else {	// add new entity
-				res.sendStatus(200)
+				res.jsonp( {'status': 'everythings is ok :)'} )
 			}
 		 	break
 		case 'GET':

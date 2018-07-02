@@ -29,6 +29,8 @@ export class TemplatesComponent implements OnInit {
     this.course = this.courseDataService.getData();
     //this.templates = this.userDataService.getData().templates;
 
+    console.log(this.userDataService);
+
     this.getTemplates(this.user.matriculation);
 
   }

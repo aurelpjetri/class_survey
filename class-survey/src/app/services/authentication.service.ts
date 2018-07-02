@@ -15,7 +15,7 @@ export class AuthenticationService {
   constructor(private http:HttpClient) { }
 
   login(user: any): Observable<any> {
-    this.error_status= 200;
+
     return this.http.post<any>(this.serverURL, user)
       .pipe(
         catchError(this.handleError('login', user))
@@ -24,6 +24,10 @@ export class AuthenticationService {
 
   getErrorStatus(): any {
     return this.error_status;
+  }
+
+  resetErrorStatus(): any{
+    this.error_status = undefined;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

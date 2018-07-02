@@ -21,10 +21,12 @@ export class StudentComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.getUser()
-    console.log(this.user)
+    this.getUser();
     this.getQuestionnaireDetails();
+  }
 
+  ngOnDestroy(){
+    alert("ciao")
   }
 
   getQuestionnaireDetails(){

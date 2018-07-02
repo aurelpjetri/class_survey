@@ -73,14 +73,16 @@ export class NewQuestionnaireComponent implements OnInit {
     if(this.template!=undefined){
       for(let _q of this.template.questions){
         this.templateDataService.retrieveQuestionsOfTemplate(_q.questionType, _q.questionId)
-        .subscribe((response) => this.checkResponse(response));
+        .subscribe((response) => this.checkResponse(response, _q.questionType));
       }
     }
   }
 
-  checkResponse(response: any) :any{
+  checkResponse(response: any, type:any) :any{
     if(!(this.templateDataService.getErrorStatus()===404)){
-      this.questions.push(response);
+      var tmp = response;
+      tmp["type"] = type;
+      this.questions.push(tmp);
     }
     else{
       alert('unable to retrieve questions');
@@ -106,11 +108,11 @@ export class NewQuestionnaireComponent implements OnInit {
 
   addQuestion(){
     if(this.new_question.type=="essay"){
-      this.new_question["max_len"] = this.w_max;
+      this.new_question["max_len"] = this.w_max.value;
     }
     if(this.new_question.type=="lin"){
-      this.new_question["max"] = this.lin_max;
-      this.new_question["min"] = this.lin_min;
+      this.new_question["max"] = this.lin_max.value;
+      this.new_question["min"] = this.lin_min.value;
     }
     if(this.new_question.type=="multiple"){
       this.new_question["choices"] = this.multiple_answers;
@@ -154,8 +156,11 @@ export class NewQuestionnaireComponent implements OnInit {
   getNewId(){
     var min = 10;
     var max = 100
-    return Math.random() * (max - min) + min;
+    return Number(Math.random() * (max - min) + min);
   }
+
+
+
 
   saveQuestionnaire(){
       var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
@@ -168,10 +173,12 @@ export class NewQuestionnaireComponent implements OnInit {
         "activation": activation,
         "professor": this.user.name,
         "course": this.course.id,
-// TBD what to pass if the gps is set to required in the creation form
+  // TBD what to pass if the gps is set to required in the creation form
         "gps": this.gps_flag,
-        "questions":[]
+        "questions": []
       }
+
+
 
       for(let q of this.questions){
 
@@ -179,36 +186,37 @@ export class NewQuestionnaireComponent implements OnInit {
 
         if( q.type == "lin"){
           _question["questionType"] = "lin";
-          _question["min"] = this.lin_min;
-          _question["max"] = this.lin_max;
+
+          _question["min"] = q.min;
+          _question["max"] = q.max;
         }
         if(q.type == "multiple"){
           _question["questionType"] = "multiple";
-          _question["choices"] = this.multiple_answers;
+          _question["choices"] = q.choices;
         }
         if(q.type == "essay"){
           _question["questionType"] = "essay";
-          _question["max_len"] = this.w_max;
+          _question["max_len"] = q.max_len;
         }
 
         questionnaire.questions.push(_question);
       }
 
-      this.questionnaireDataService.postQuestion(questionnaire).subscribe((response) => this.checkPostResponse(response))
+      console.log(questionnaire);
+      this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
 
-      this.router.navigateByUrl('/course');
   }
 
-  checkPostResponse(response: any): any{
-    if(this.questionnaireDataService.getErrorStatus()===200){
-      this.userDataService.setData(response.user);
-      //console.log(response)
 
+  checkPostResponse(response: any): any{
+
+    if(this.questionnaireDataService.getErrorStatus()==undefined){
+      this.router.navigateByUrl('/course');
     }
     else{
       alert('posting failed; error status: '+this.questionnaireDataService.getErrorStatus());
-
     }
+
   }
 
 }
