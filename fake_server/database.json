@@ -359,6 +359,19 @@
 				}
 			]
 		},
+{
+			"questionnaireId": "QUES003",
+			"numberOfTheQuestion": 1,
+			"collected": [
+				"6"
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 1.0, 0]
+				}
+			]
+		},
 		{
 			"questionnaireId": "QUES001",
 			"numberOfTheQuestion": 0,
@@ -400,6 +413,26 @@
 				{
 					"statistic": "mean",
 					"value": 2.75
+				}
+			]
+		},
+		{
+			"questionnaireId": "QUES000",
+			"numberOfTheQuestion": 0,
+			"collected": [
+				"3",
+				"6",
+				"5",
+				"7"
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 0, 0, 1, 0, 1, 1, 1]
+				},
+				{
+					"statistic": "mean",
+					"value": 5.25
 				}
 			]
 		}

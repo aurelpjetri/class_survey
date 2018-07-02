@@ -63,9 +63,10 @@ export class CourseDetailComponent implements OnInit {
     this.router.navigateByUrl('templates');
   }
 
-  viewResult(questionnaire){
-    this.questionnaireDataService.setData(questionnaire)
-    this.router.navigateByUrl('/questionnaire/statistic')
+  viewResult(questionnaire, active){
+    questionnaire['active'] = active
+      this.questionnaireDataService.setData(questionnaire)
+      this.router.navigateByUrl('/questionnaire/statistic')
   }
 
 }

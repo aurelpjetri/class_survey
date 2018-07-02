@@ -4,8 +4,13 @@
 <mat-divider></mat-divider>
 <div class="active_scrollable">
   <mat-card *ngFor="let questionnaire of questionnaires" (click)="this.compile(questionnaire)">
-    <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire.title}}</mat-card-title>
-    <mat-card-subtitle>Expired on {{questionnaire.date}} at {{questionnaire.time}}</mat-card-subtitle>
-    <mat-card-subtitle>Published by {{questionnaire.professor}} on course {{questionnaire.courseId}}</mat-card-subtitle>
+    <div style="flex-grow:3">
+      <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire.title}}</mat-card-title>
+      <mat-card-subtitle>Expired on {{questionnaire.date}} at {{questionnaire.time}}</mat-card-subtitle>
+      <mat-card-subtitle>Published by {{questionnaire.professor}} on course {{questionnaire.courseId}}</mat-card-subtitle>
+    </div>
+    <div style="display:flex; flex-grow:1;" *ngIf='(questionnaire.gps!="false")'>
+      <mat-icon class="gps">pin_drop</mat-icon>
+    </div>
   </mat-card>
 </div>

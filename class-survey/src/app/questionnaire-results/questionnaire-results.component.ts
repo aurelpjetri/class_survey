@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 import {QuestionDataService} from '../services/question-data.service';
-import {SendAnswerService} from '../services/send-answer.service'
+import {SendAnswerService} from '../services/send-answer.service';
+import {StatisticsDataService} from "../services/statistics-data.service";
 
 @Component({
   selector: 'app-questionnaire-results',
@@ -12,15 +13,19 @@ import {SendAnswerService} from '../services/send-answer.service'
 export class QuestionnaireResultsComponent implements OnInit {
   private questionnaire: any;
   private questions: any[] = [];
+  private statistics: any[] = [];
 
   constructor(private questionnaireDataService: QuestionnaireDataService,
     private questionDataService: QuestionDataService,
-    private sendAnswerService: SendAnswerService) { }
+    private sendAnswerService: SendAnswerService,
+    private statisticsDataService: StatisticsDataService) { }
 
   ngOnInit() {
     this.getQuestionnaire();
     this.getQuestions();
-    //this.questionsSort()
+    this.questionsSort();
+    this.getStatistics();
+    console.log(this.statistics)
   }
 
   getQuestionnaire() {
@@ -30,11 +35,11 @@ export class QuestionnaireResultsComponent implements OnInit {
 
   getQuestions(){
     for(let q of this.questionnaire.questions){
-      this.questionDataService.retrieveData(q.questionType, q.questionId).subscribe((response) => this.checkResponse(response))
+      this.questionDataService.retrieveData(q.questionType, q.questionId).subscribe((response) => this.checkQuestionResponse(response))
     }
   }
 
-  checkResponse(response: any) :any{
+  checkQuestionResponse(response: any) :any{
     if(!(this.questionDataService.getErrorStatus()===404)){
         if(response.min != undefined){
           var range: any[] = [];
@@ -72,5 +77,25 @@ export class QuestionnaireResultsComponent implements OnInit {
         }
       }
       this.questions = orderedQuestions;
+    }
+
+    getStatistics(){
+      for(let q of this.questionnaire.questions){
+        //if(q.questionType!='essay'){
+          this.statisticsDataService.retrieveData(this.questionnaire.id, q.num).subscribe((response) => this.checkStatisticResponse(response))}
+        //}
+    }
+
+    checkStatisticResponse(response: any) :any{
+      if(!(this.statisticsDataService.getErrorStatus()===404)){
+
+          this.statistics.push(response);
+          //this.questions[index] = response
+
+      }
+      else{
+        alert('unable to read statistics details');
+        this.statistics.push('404');
+      }
     }
 }

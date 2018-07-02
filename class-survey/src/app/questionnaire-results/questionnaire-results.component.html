@@ -27,7 +27,44 @@
     </div>
   </mat-tab>
 
-  <mat-tab label="Statistics">
-    Content 2
+  <mat-tab *ngIf="questionnaire.active == false" label="Statistics">
+    <div class="active_scrollable">
+      <mat-card *ngFor="let question of questions; let i = index">
+
+        <mat-card-title>{{question.question}}</mat-card-title>
+
+        <div class="range" *ngIf="question.range != undefined">
+          <div *ngFor="let statistic of statistics">
+            <div *ngIf="statistic.numberOfTheQuestion == i">
+              <mat-card-subtitle *ngFor="let s of statistic.statistics">
+                {{s.statistic}} - {{s.value}}
+              </mat-card-subtitle>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="question.max_len != undefined">
+          <div *ngFor="let statistic of statistics">
+            <div *ngIf="statistic.numberOfTheQuestion == i">
+              <mat-card-subtitle *ngFor="let answer of statistic.collected">
+                {{answer}}
+              </mat-card-subtitle>
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="question.choices != undefined">
+          <div *ngFor="let statistic of statistics">
+            <div *ngIf="statistic.numberOfTheQuestion == i">
+              <mat-card-subtitle *ngFor="let s of statistic.statistics">
+                {{s.statistic}} - {{s.value}}
+              </mat-card-subtitle>
+            </div>
+          </div>
+        </div>
+
+      </mat-card>
+    </div>
   </mat-tab>
 </mat-tab-group>
