@@ -46,6 +46,7 @@ export class ProfessorComponent implements OnInit {
     else{
       alert('unable to read course details');
       this.active_courses.push('404');
+      this.courseDataService.resetErrorStatus();
     }
   }
 
