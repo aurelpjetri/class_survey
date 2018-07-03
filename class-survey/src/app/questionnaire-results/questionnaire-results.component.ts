@@ -22,10 +22,11 @@ export class QuestionnaireResultsComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestionnaire();
+    console.log(this.questionnaire)
     this.getQuestions();
     this.questionsSort();
     this.getStatistics();
-    console.log(this.statistics)
+    //console.log(this.statistics)
   }
 
   getQuestionnaire() {
@@ -58,6 +59,7 @@ export class QuestionnaireResultsComponent implements OnInit {
     else{
       alert('unable to read course details');
       this.questions.push('404');
+      this.questionDataService.resetErrorStatus();
     }
   }
 
@@ -96,6 +98,7 @@ export class QuestionnaireResultsComponent implements OnInit {
       else{
         alert('unable to read statistics details');
         this.statistics.push('404');
+        this.statisticsDataService.resetErrorStatus()
       }
     }
 }
