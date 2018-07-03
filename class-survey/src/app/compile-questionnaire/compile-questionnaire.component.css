@@ -1,6 +1,3 @@
-.mat-list-icon{
-  color: rgba(0, 0, 0, 0.54);
-}
 .stud_cont{
   padding: 20px 2em 0em 1em;
 }
@@ -11,8 +8,6 @@ span{
 mat-card{
   margin-top: 1em;
   cursor: pointer;
-  display:flex;
-  flex-direction:row;
 }
 .active_scrollable{
   max-height: 30%;
@@ -20,13 +15,10 @@ mat-card{
   padding: 5px;
   margin-bottom: 16px;
 }
-.mat-subheading-2{
-    margin-bottom: 0;
+.mat-form{
+  width: 100%;
 }
-.gps{
-  margin:auto;
-  height: auto;
-  width:auto;
-  font-size: 36px;
-  color: rgba(0, 0, 0, 0.54);
+.range{
+  display: flex;
+  flex-direction: row;
 }

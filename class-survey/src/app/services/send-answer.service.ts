@@ -2,32 +2,30 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+//import { LoginComponent } from './login/login.component'
+
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
-  private serverURL = 'http://localhost:3000/authentication';
+export class SendAnswerService {
+  private serverURL = 'http://localhost:3000/question/answer';
 
   private error_status: any;
 
   constructor(private http:HttpClient) { }
 
-  login(user: any): Observable<any> {
-
-    return this.http.post<any>(this.serverURL, user)
+  sendData(data: any): Observable<any> {
+    this.error_status= 200;
+    return this.http.post<any>(this.serverURL, data)
       .pipe(
-        catchError(this.handleError('login', user))
+        catchError(this.handleError('sendQuestion', data))
       );
   }
 
   getErrorStatus(): any {
     return this.error_status;
-  }
-
-  resetErrorStatus(): any{
-    this.error_status = undefined;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -42,5 +40,4 @@ export class AuthenticationService {
       return of(result as T);
     };
   }
-
 }

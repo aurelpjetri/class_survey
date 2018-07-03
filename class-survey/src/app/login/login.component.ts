@@ -23,6 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
+  private error: boolean = false;
 
   @Input() private mat: string;
   @Input() private pass: string;
@@ -36,16 +37,17 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): any{
-    this.authenticationService.login({
+    var aut = {
       "matriculation": this.mat,
       "password": this.pass
-    }).subscribe((response) =>  this.checkResponse(response))
+    };
+    this.authenticationService.login(aut).subscribe((response) =>  this.checkResponse(response))
   }
 
   checkResponse(response: any) :any{
-    if(this.authenticationService.getErrorStatus()===200){
+    if(this.authenticationService.getErrorStatus()==undefined){
+      this.error = false;
       this.userDataService.setData(response.user);
-      console.log(response)
 
       if (response.role == 'professor'){
         this.router.navigateByUrl('/professor')
@@ -55,7 +57,9 @@ export class LoginComponent implements OnInit {
       }
     }
     else{
-      alert('matriculation number or password invalid');
+      alert('matriculation number or password invalid; error status: '+response.status);
+      this.error = true;
+      this.authenticationService.resetErrorStatus();
       this.mat='';
       this.pass='';
     }
