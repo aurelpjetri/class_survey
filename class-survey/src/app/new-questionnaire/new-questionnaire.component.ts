@@ -129,40 +129,11 @@ export class NewQuestionnaireComponent implements OnInit {
 
   }
 
-  /*
-
-  {
-    "id": "QUES000",
-    "title": "Course evaluation",
-    "gps": "43.7985599,11.2526804",
-    "deadline": "05/07/2018 - 10:00",
-    "activation": "05/06/2018 - 10:30",
-    "courseId": "COUR000",
-    "professor": "Mario Rossi",
-    "questions": [
-      {
-        "questionType": "lin",
-        "questionId": 0,
-        "num": 0
-      },
-      {
-        "questionType": "essay",
-        "questionId": 0,
-        "num": 1
-      }
-    ]
-  }
-
-  */
-
   getNewId(){
     var min = 10;
     var max = 100
     return Number(Math.random() * (max - min) + min);
   }
-
-
-
 
   saveQuestionnaire(){
       var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
@@ -217,6 +188,42 @@ export class NewQuestionnaireComponent implements OnInit {
     else{
       alert('posting failed; error status: '+this.questionnaireDataService.getErrorStatus());
     }
+
+  }
+
+  createTemplate(){
+    var template = {
+      "id": "TEMP"+this.getNewId(),
+      "creator": this.user.name,
+      "gps": this.gps_flag,
+      "public": this.public_flag,
+      "questions": []
+    }
+
+
+    for(let q of this.questions){
+
+      var _question = {"question": q.question};
+
+      if( q.type == "lin"){
+        _question["questionType"] = "lin";
+
+        _question["min"] = q.min;
+        _question["max"] = q.max;
+      }
+      if(q.type == "multiple"){
+        _question["questionType"] = "multiple";
+        _question["choices"] = q.choices;
+      }
+      if(q.type == "essay"){
+        _question["questionType"] = "essay";
+        _question["max_len"] = q.max_len;
+      }
+
+      template.questions.push(_question);
+    }
+
+    this.questionnaireDataService.postTemplate(template).subscribe((response) => this.checkPostResponse(response));
 
   }
 

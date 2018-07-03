@@ -64,6 +64,25 @@
 
 </div>
 
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-title">Selected questions</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let q of questions; index as _i">
+      <div style="flex-grow:3">
+        <mat-card-title>{{_i+1}}.   {{q.type}} question</mat-card-title>
+        <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
+      </div>
+      <div style="display:flex; flex-grow:1;">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeQuestion(_i)">
+          <mat-icon class="del">delete</mat-icon>
+        </button>
+      </div>
+  </mat-card>
+</div>
+
 <div class="creator_container">
   <div style="flex-grow:3;">
 
@@ -120,34 +139,19 @@
 
   </div>
 
-  <div style="display:flex; flex-grow:1; margin:auto;">
+  <div style="display:flex; flex-grow:1; margin:auto 80px auto auto;">
     <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addQuestion()">
-      <mat-icon class="del">save_alt</mat-icon>
+      <mat-icon class="del">add_circle_outline</mat-icon>
     </button>
   </div>
 </div>
 
 <mat-divider></mat-divider>
-<div class="prof_cont">
-    <h3 class="mat-title">Selected questions</h3>
+<div style="display:flex">
+  <button mat-raised-button color="primary" style=" width:49%; margin:20px 10px 20px 10px;" (click)="createTemplate()">
+    Save template
+  </button>
+  <button mat-raised-button color="primary" style=" width:49%; margin:20px 10px 20px 10px;" (click)="saveQuestionnaire()">
+    Submit questionnaire
+  </button>
 </div>
-
-<div class="active_scrollable">
-  <mat-card *ngFor="let q of questions; index as _i">
-      <div style="flex-grow:3">
-        <mat-card-title>{{_i+1}}.   {{q.type}} question</mat-card-title>
-        <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
-      </div>
-      <div style="display:flex; flex-grow:1;">
-        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeQuestion(_i)">
-          <mat-icon class="del">delete</mat-icon>
-        </button>
-      </div>
-  </mat-card>
-</div>
-
-<mat-divider></mat-divider>
-
-<button mat-raised-button color="primary" style=" width:100%; margin:20px 10px 20px 10px;" (click)="saveQuestionnaire()">
-  Submit
-</button>
