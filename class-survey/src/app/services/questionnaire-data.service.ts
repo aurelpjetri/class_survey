@@ -32,9 +32,8 @@ export class QuestionnaireDataService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error.status); // log to console instead
+      console.error(error); // log to console instead
       this.error_status = error.status;
-
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -48,4 +47,13 @@ export class QuestionnaireDataService {
   getData(): any{
     return this.questionnaireData;
   }
+
+  postQuestionnaire(questionnaire:any): Observable<any>{
+    const req_path = "http://localhost:3000/questionnaire";
+    return this.http.post<any>(req_path, questionnaire, {})
+    .pipe(
+      catchError(this.handleError('postQuestionnaire', questionnaire))
+    );
+  }
+
 }

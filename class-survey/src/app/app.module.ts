@@ -17,6 +17,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material'
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,6 +31,9 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
 import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-questionnaire.component';
+import { QuestionnaireResultsComponent } from './questionnaire-results/questionnaire-results.component';
+
+import {UserDataService} from './services/user-data.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +44,8 @@ import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-q
     CourseDetailComponent,
     TemplatesComponent,
     NewQuestionnaireComponent,
-    CompileQuestionnaireComponent
+    CompileQuestionnaireComponent,
+    QuestionnaireResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +64,11 @@ import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-q
     MatListModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

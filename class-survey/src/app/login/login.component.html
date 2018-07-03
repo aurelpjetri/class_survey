@@ -14,8 +14,8 @@
     <input matInput [(ngModel)]="this.pass" type="password" placeholder="Password" required name="pass" [errorStateMatcher]="matcher">
   </mat-form-field>
 
-  <div *ngIf="check==='invalid'">
-    Email or password are invalid!
+  <div *ngIf="this.error" class="error_message">
+    <h3 class="mat-subheading-1">matriculation or password invalid</h3>
   </div>
 
   <button mat-raised-button color="primary" (click)="this.logIn()">Login</button>

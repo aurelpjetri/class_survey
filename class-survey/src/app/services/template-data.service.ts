@@ -16,6 +16,7 @@ export class TemplateDataService {
   private serverURL = 'http://localhost:3000/template';
   private error_status: any;
 
+
   constructor(private http:HttpClient) { }
 
   retrieveData(id:any): Observable<any>{
@@ -28,6 +29,10 @@ export class TemplateDataService {
 
   getErrorStatus(): any {
     return this.error_status;
+  }
+
+  resetErrorStatus(): void {
+    this.error_status = undefined;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -54,11 +59,17 @@ export class TemplateDataService {
 */
 
   selectTemplate(code:any):void{
-    for(let temp of this.templates){
-      if(temp.id == code){
-        this.selected = temp;
+    if(code!=undefined){
+      for(let temp of this.templates){
+        if(temp.id == code){
+          this.selected = temp;
+        }
       }
     }
+    else{
+      this.selected = undefined;
+    }
+
   }
 
   getSelected(){
@@ -74,6 +85,13 @@ export class TemplateDataService {
     return this.http.get<any>(req_path)
     .pipe(
       catchError(this.handleError('retrieveQuestionsOfTemplate', [type, id]))
+    );
+  }
+
+  removeTemplate(prof:any, temp_id:any): Observable<any>{
+    return this.http.delete<any>(this.serverURL+'?professor='+prof+'&id='+temp_id)
+    .pipe(
+      catchError(this.handleError('removeTemplate', [prof, temp_id]))
     );
   }
 

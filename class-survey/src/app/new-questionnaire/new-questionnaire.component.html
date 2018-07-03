@@ -1,12 +1,73 @@
 <div class="prof_cont">
     <h2 class="mat-title"> {{user.name}} - {{course.name}} {{course.year}}</h2>
-    <h2 class="mat-title"><span class="heavier">Customize</span> a questionnaire </h2>
+    <h2 class="mat-headline"><span class="heavier">New</span> questionnaire
+
+    </h2>
 </div>
 
 <mat-divider></mat-divider>
 
 <div class="creator_container">
+
+    <h3 class="mat-title">Generic settings</h3>
+
+    <form class="upper_form">
+
+      <div style="display: flex; flex-direction:row;">
+        <h4 class="mat-body-1">Title:  </h4>
+        <mat-form-field>
+
+          <input matInput placeholder="Title"  [(ngModel)]="this.title" name=question>
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; flex-direction:row;">
+        <h4 class="mat-body-1">Activation:  </h4>
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerA" placeholder="Choose activation" [(ngModel)]="this.activation.date" name=date>
+          <mat-datepicker-toggle matSuffix [for]="pickerA"></mat-datepicker-toggle>
+          <mat-datepicker #pickerA></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field style="max-width:4em;">
+          <input matInput type="number" placeholder="hh" [(ngModel)]="this.activation.hh" name=hh>
+        </mat-form-field>
+
+        <mat-form-field style=" max-width:4em;">
+          <input matInput type="number" placeholder="mm" [(ngModel)]="this.activation.mm" name=mm>
+        </mat-form-field>
+
+      </div>
+
+      <div style="display: flex; flex-direction:row;">
+        <h4 class="mat-body-1">Deadline:  </h4>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose deadline" [(ngModel)]="this.deadline.date" name=date>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field style="max-width:4em;">
+          <input matInput type="number" placeholder="hh" [(ngModel)]="this.deadline.hh" name=hh>
+        </mat-form-field>
+
+        <mat-form-field style=" max-width:4em;">
+          <input matInput type="number" placeholder="mm" [(ngModel)]="this.deadline.mm" name=mm>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+    <mat-slide-toggle [(ngModel)]="gps_flag">Gps required</mat-slide-toggle>
+
+    <mat-slide-toggle [(ngModel)]="public_flag">Set public</mat-slide-toggle>
+
+</div>
+
+<div class="creator_container">
   <div style="flex-grow:3;">
+
+    <h3 class="mat-title">New question</h3>
 
     <form class="upper_form">
 
@@ -58,6 +119,7 @@
     </form>
 
   </div>
+
   <div style="display:flex; flex-grow:1; margin:auto;">
     <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addQuestion()">
       <mat-icon class="del">save_alt</mat-icon>
@@ -67,14 +129,13 @@
 
 <mat-divider></mat-divider>
 <div class="prof_cont">
-    <h3 class="mat-subheading-2">Selected questions</h3>
+    <h3 class="mat-title">Selected questions</h3>
 </div>
 
 <div class="active_scrollable">
   <mat-card *ngFor="let q of questions; index as _i">
       <div style="flex-grow:3">
-        <mat-card-title *ngIf="template.questions[_i] != undefined">{{_i+1}}.   {{template.questions[_i].questionType}} question</mat-card-title>
-        <mat-card-title *ngIf="template.questions[_i] == undefined">{{_i+1}}.   {{q.type}} question</mat-card-title>
+        <mat-card-title>{{_i+1}}.   {{q.type}} question</mat-card-title>
         <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
       </div>
       <div style="display:flex; flex-grow:1;">
@@ -84,3 +145,9 @@
       </div>
   </mat-card>
 </div>
+
+<mat-divider></mat-divider>
+
+<button mat-raised-button color="primary" style=" width:100%; margin:20px 10px 20px 10px;" (click)="saveQuestionnaire()">
+  Submit
+</button>

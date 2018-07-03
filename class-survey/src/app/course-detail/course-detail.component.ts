@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {CourseDataService} from '../services/course-data.service';
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
+
 import { Router } from '@angular/router';
 
 
@@ -60,6 +61,12 @@ export class CourseDetailComponent implements OnInit {
 
   creationTriggered(){
     this.router.navigateByUrl('templates');
+  }
+
+  viewResult(questionnaire, active){
+    questionnaire['active'] = active
+      this.questionnaireDataService.setData(questionnaire)
+      this.router.navigateByUrl('/questionnaire/statistic')
   }
 
 }

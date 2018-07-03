@@ -52,21 +52,25 @@ export class TemplatesComponent implements OnInit {
     if(temp != undefined){
       this.templateDataService.selectTemplate(temp.id)
     }
+    else{
+      this.templateDataService.selectTemplate(undefined);
+    }
     this.router.navigateByUrl('create')
   }
 
-/*
-  getQuestions(code: any): any{
-    for(let temp of this.templates){
-      if(temp.code == code){
-        return temp.questions;
-      }
+  removeTemplate(temp:any):void{
+    this.templateDataService.resetErrorStatus();
+    this.templateDataService.removeTemplate(this.user.matriculation, temp.id).
+    subscribe((response) => this.checkRemoveResponse(response))
+  }
+
+  checkRemoveResponse(response:any):any{
+    if(this.templateDataService.getErrorStatus()!=undefined){
+      alert("unable to remove tempalte; code error: "+this.templateDataService.getErrorStatus())
+    }
+    else{
+      alert("template "+response.title+" ("+response.id+") removed")
+      this.templates.splice(this.templates.indexOf(response),1);
     }
   }
-
-
-  retrieveQuestion(type:any, id:any):any{
-
-  }
-*/
 }
