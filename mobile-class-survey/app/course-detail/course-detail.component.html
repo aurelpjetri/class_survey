@@ -1,17 +1,16 @@
 <StackLayout class="form">
-  <GridLayout rows="auto, auto" columns="auto, *, auto" style="margin-top:5">
+  <GridLayout rows="auto, auto" columns="auto, *, auto">
     <Label class="h3" [text]="course.name + ' - ' + course.year" row="0" col="0" colSpan="3"></Label>
     <Label class="h2" text="Questionnaires" row="1" col="0" style="vertical-align: center"></Label>
-    <Button class="btn btn-primary btn-rounded-sm" text="+" row="1" col="2"></Button>
+    <Button class="btn btn-primary btn-rounded-sm" text="+" row="1" col="2" (tap)="creationTriggered()"></Button>
   </GridLayout>
-  <StackLayout class="m-10"></StackLayout>
+  <StackLayout class="hr-light m-10"></StackLayout>
 
   <ScrollView>
     <StackLayout>
-      <Label text="Closed questionnaires"></Label>
-      <StackLayout class="hr-dark m-10"></StackLayout>
+      <Label text="Closed questionnaires" class="section-header"></Label>
 
-      <StackLayout class="card" *ngFor="let quest of expired_q">
+      <StackLayout class="card" *ngFor="let quest of expired_q" (tap)="viewResult(quest, false)">
         <GridLayout rows="auto, auto, auto" columns="auto, auto, *, auto">
           <Label [text]="exp_icon" class="icon" row="0" col="0" rowSpan="3"></Label>
           <Label [text]="quest.title" class="h3" row="0" col="1" colSpan="3"></Label>
@@ -26,13 +25,12 @@
         </GridLayout>
       </StackLayout>
 
-      <StackLayout class="m-20"></StackLayout>
-      <Label text="Active questionnaire"></Label>
-      <StackLayout class="hr-dark m-10"></StackLayout>
+      <StackLayout class="hr-light m-10"></StackLayout>
+      <Label text="Open questionnaire" class="section-header"></Label>
 
-      <StackLayout class="card" *ngFor="let quest of active_q">
+      <StackLayout class="card" *ngFor="let quest of active_q" (tap)="viewResult(quest, true)">
         <GridLayout rows="auto, auto, auto" columns="auto, auto, *, auto">
-          <Label [text]="exp_icon" class="icon" row="0" col="0" rowSpan="3"></Label>
+          <Label [text]="act_icon" class="icon" row="0" col="0" rowSpan="3"></Label>
           <Label [text]="quest.title" class="h3" row="0" col="1" colSpan="3"></Label>
           <Label [text]="quest.professor" class="h4" row="1" col="1" colSpan="3"></Label>
           <Label class="h4" row="2" col="1" colSpan="3">

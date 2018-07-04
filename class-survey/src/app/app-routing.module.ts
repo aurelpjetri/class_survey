@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 import {ProfessorComponent} from './professor/professor.component';
 import {StudentComponent} from './student/student.component';
 import {CourseDetailComponent} from './course-detail/course-detail.component';

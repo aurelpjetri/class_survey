@@ -1,0 +1,51 @@
+<StackLayout class="form">
+  <Label class="h3" [text]="user.name + ' - ' + course.name + ' ' + course.year"></Label>
+  <Label class="h2">
+    <FormattedString>
+      <Span text="New" style="font-weight: bold"></Span>
+      <Span text=" questionnaire"></Span>
+    </FormattedString>
+  </Label>
+  <StackLayout class="hr-light m-10"></StackLayout>
+
+  <ScrollView>
+    <StackLayout>
+      <StackLayout style="border-width:1; border-color:#F0F0F0; margin-bottom:5;">
+        <Label text="Generic settings" class="section-header h3"></Label>
+        <StackLayout class="input-field">
+          <TextField hint="Title" [(ngModel)]="title"></TextField>
+        </StackLayout>
+
+        <Label class="section-header h3" text="Activation:"></Label>
+        <GridLayout rows="90" columns="auto, 5, auto, auto">
+          <DatePicker verticalAlignment="center" row="0" col="0" [(ngModel)]="activation.date"></DatePicker>
+          <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="hh" [(ngModel)]="activation.hh"></TextField> </StackLayout>
+          <StackLayout class="input-field" row="0" col="3"> <TextField keyboardType="number" hint="mm" [(ngModel)]="activation.mm"></TextField> </StackLayout>
+        </GridLayout>
+        <Label class="section-header h3" text="Deadline:"></Label>
+        <GridLayout rows="90" columns="auto, 5, auto, auto">
+          <DatePicker verticalAlignment="center" row="0" col="0" [(ngModel)]="deadline.date"></DatePicker>
+          <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="hh" [(ngModel)]="deadline.hh"></TextField> </StackLayout>
+          <StackLayout class="input-field" row="0" col="3"> <TextField keyboardType="number" hint="mm" [(ngModel)]="deadline.mm"></TextField> </StackLayout>
+        </GridLayout>
+
+        <GridLayout rows="auto auto" columns="auto, auto" class="m-5">
+          <Switch checked="false" [(ngModel)]="gps_flag" row="0" col="0"></Switch>
+          <Label class="h3" text="GPS required" textWrap="true" row="0" col="1"></Label>
+          <Switch checked="false" [(ngModel)]="public_flag" row="1" col="0"></Switch>
+          <Label class="h3"  text="Set public" textWrap="true" row="1" col="1"></Label>
+        </GridLayout>
+      </StackLayout>
+
+      <StackLayout style="border-width:1; border-color:#F0F0F0; margin-bottom:5;">
+        <Label text="New question" class="section-header h3"></Label>
+        <StackLayout class="input-field">
+          <TextField hint="Question" [(ngModel)]="new_question.question"></TextField>
+        </StackLayout>
+
+      </StackLayout>
+
+    </StackLayout>
+  </ScrollView>
+
+</StackLayout>

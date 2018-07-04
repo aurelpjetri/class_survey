@@ -12,6 +12,10 @@ import { UserDataService } from './services/user-data.service';
 import { CourseDataService } from './services/course-data.service';
 import { AuthenticationService } from './services/authentication.service';
 import { QuestionnaireDataService } from './services/questionnaire-data.service';
+import { TemplateDataService } from './services/template-data.service';
+import { StatisticsDataService } from './services/template-data.service';
+import { QuestionDataService } from './services/question-data.service';
+import { SendAnswerService } from './services/send-answer.service';
 
 import { NgShadowModule } from 'nativescript-ng-shadow';
 
@@ -26,10 +30,14 @@ import { NgShadowModule } from 'nativescript-ng-shadow';
     NgShadowModule
   ],
   providers: [
-    QuestionnaireDataService,
     UserDataService,
     CourseDataService,
-    AuthenticationService
+    AuthenticationService,
+    QuestionnaireDataService,
+    TemplateDataService,
+    StatisticsDataService,
+    QuestionDataService,
+    SendAnswerService
   ],
   declarations: [
     AppComponent,

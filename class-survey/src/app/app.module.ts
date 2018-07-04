@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
-import{MatToolbarModule} from '@angular/material';
+import {MatToolbarModule} from '@angular/material';
 import {AppRoutingModule } from './/app-routing.module';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';

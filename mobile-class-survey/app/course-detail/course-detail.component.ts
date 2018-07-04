@@ -17,6 +17,7 @@ export class CourseDetailComponent implements OnInit {
   private active_q: any[] = [];
   private expired_q: any[] = [];
 
+  private act_icon: string = String.fromCharCode(0xf46d);
   private exp_icon: string = String.fromCharCode(0xf46c);
   private gps_icon: string = String.fromCharCode(0xf3c5);
 
@@ -63,6 +64,12 @@ export class CourseDetailComponent implements OnInit {
 
   creationTriggered(){
     this.router.navigateByUrl('templates');
+  }
+
+  viewResult(questionnaire, active){
+    questionnaire['active'] = active
+    this.questionnaireDataService.setData(questionnaire)
+    this.router.navigateByUrl('/questionnaire/statistic')
   }
 
 }

@@ -5,23 +5,22 @@ import { catchError } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 
-import { Config } from '../config'
+import { Config } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionnaireDataService {
+export class StatisticsDataService {
   private error_status: any;
-  private questionnaireData: any;
+  //private answerData: any;
 
   constructor(private http:HttpClient) { }
 
-
-  retrieveData(id:any): Observable<any>{
-    const req_path = Config.getURL()+'/questionnaire?questionnaire='+id;
+  retrieveData(questionnaire: any, number:any): Observable<any>{
+    const req_path = Config.getURL()+'/questionnaire/statistic?questionnaire='+questionnaire+'&number='+number;
     return this.http.get<any>(req_path)
     .pipe(
-      catchError(this.handleError('retrieveData', id))
+      catchError(this.handleError('retrieveData', number))
     );
   }
 
@@ -33,28 +32,12 @@ export class QuestionnaireDataService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.error(error.status); // log to console instead
       this.error_status = error.status;
+
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
-
-  setData(data: any):void{
-    this.questionnaireData = data;
-  }
-
-  getData(): any{
-    return this.questionnaireData;
-  }
-
-  postQuestionnaire(questionnaire:any): Observable<any>{
-    const req_path = Config.getURL()+"/questionnaire";
-    return this.http.post<any>(req_path, questionnaire, {})
-    .pipe(
-      catchError(this.handleError('postQuestionnaire', questionnaire))
-    );
-  }
-
 }
