@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+
 import { DatePicker } from "ui/date-picker";
 import { Switch } from "ui/switch";
-
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { ListPicker } from "ui/list-picker";
 
 import { UserDataService } from '../services/user-data.service';
 import { TemplateDataService } from '../services/template-data.service';
@@ -19,6 +20,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-questionnaire/new-questionnaire.component.css']
 })
 export class NewQuestionnaireComponent implements OnInit {
+
+  private save_icon: string = String.fromCharCode(0xf055);
 
   private course: any;
   private user: any;
@@ -38,6 +41,11 @@ export class NewQuestionnaireComponent implements OnInit {
   private gps_flag: boolean = false;
 
   private public_flag: boolean = false;
+
+  // used for lin and essay
+  private max_words: number = 10;
+  private min: number = 1;
+  private max: number = 7;
 
 
   // used for multiple choice questions
@@ -69,10 +77,13 @@ export class NewQuestionnaireComponent implements OnInit {
   }
 
   get w_max(){return this.options.get('w_max');}
-
   get lin_max(){return this.options.get('lin_max');}
-
   get lin_min(){return this.options.get('lin_min');}
+
+  selectedIndexChanged(args) {
+    let picker = <ListPicker>args.object;
+    this.new_question.type = this.q_types[picker.selectedIndex];
+  }
 
   retrieveQuestions(){
     if(this.template!=undefined){
@@ -132,40 +143,11 @@ export class NewQuestionnaireComponent implements OnInit {
 
   }
 
-  /*
-
-  {
-    "id": "QUES000",
-    "title": "Course evaluation",
-    "gps": "43.7985599,11.2526804",
-    "deadline": "05/07/2018 - 10:00",
-    "activation": "05/06/2018 - 10:30",
-    "courseId": "COUR000",
-    "professor": "Mario Rossi",
-    "questions": [
-      {
-        "questionType": "lin",
-        "questionId": 0,
-        "num": 0
-      },
-      {
-        "questionType": "essay",
-        "questionId": 0,
-        "num": 1
-      }
-    ]
-  }
-
-  */
-
   getNewId(){
     var min = 10;
     var max = 100
     return Number(Math.random() * (max - min) + min);
   }
-
-
-
 
   saveQuestionnaire(){
       var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
@@ -178,12 +160,11 @@ export class NewQuestionnaireComponent implements OnInit {
         "activation": activation,
         "professor": this.user.name,
         "course": this.course.code,
-  // TBD what to pass if the gps is set to required in the creation form
+        // TBD what to pass if the gps is set to required in the creation form
         "gps": this.gps_flag,
         "public": this.public_flag,
         "questions": []
       }
-
 
       for(let q of this.questions){
 
@@ -210,7 +191,6 @@ export class NewQuestionnaireComponent implements OnInit {
       this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
 
   }
-
 
   checkPostResponse(response: any): any{
 

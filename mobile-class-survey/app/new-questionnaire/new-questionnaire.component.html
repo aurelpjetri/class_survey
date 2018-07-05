@@ -17,16 +17,16 @@
         </StackLayout>
 
         <Label class="section-header h3" text="Activation:"></Label>
-        <GridLayout rows="90" columns="auto, 5, auto, auto">
-          <DatePicker verticalAlignment="center" row="0" col="0" [(ngModel)]="activation.date"></DatePicker>
-          <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="hh" [(ngModel)]="activation.hh"></TextField> </StackLayout>
-          <StackLayout class="input-field" row="0" col="3"> <TextField keyboardType="number" hint="mm" [(ngModel)]="activation.mm"></TextField> </StackLayout>
+        <GridLayout rows="90" columns="*, auto, 5, auto, auto, *">
+          <DatePicker verticalAlignment="center" row="0" col="1" [(ngModel)]="activation.date"></DatePicker>
+          <StackLayout class="input-field" row="0" col="3"> <TextField keyboardType="number" hint="hh" [(ngModel)]="activation.hh"></TextField> </StackLayout>
+          <StackLayout class="input-field" row="0" col="4"> <TextField keyboardType="number" hint="mm" [(ngModel)]="activation.mm"></TextField> </StackLayout>
         </GridLayout>
         <Label class="section-header h3" text="Deadline:"></Label>
-        <GridLayout rows="90" columns="auto, 5, auto, auto">
-          <DatePicker verticalAlignment="center" row="0" col="0" [(ngModel)]="deadline.date"></DatePicker>
-          <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="hh" [(ngModel)]="deadline.hh"></TextField> </StackLayout>
-          <StackLayout class="input-field" row="0" col="3"> <TextField keyboardType="number" hint="mm" [(ngModel)]="deadline.mm"></TextField> </StackLayout>
+        <GridLayout rows="90" columns="*, auto, 5, auto, auto, *">
+          <DatePicker verticalAlignment="center" row="0" col="1" [(ngModel)]="deadline.date"></DatePicker>
+          <StackLayout class="input-field" row="0" col="3"> <TextField keyboardType="number" hint="hh" [(ngModel)]="deadline.hh"></TextField> </StackLayout>
+          <StackLayout class="input-field" row="0" col="4"> <TextField keyboardType="number" hint="mm" [(ngModel)]="deadline.mm"></TextField> </StackLayout>
         </GridLayout>
 
         <GridLayout rows="auto auto" columns="auto, auto" class="m-5">
@@ -42,6 +42,17 @@
         <StackLayout class="input-field">
           <TextField hint="Question" [(ngModel)]="new_question.question"></TextField>
         </StackLayout>
+        <ListPicker [items]="q_types" selectedIndex="0" (selectedIndexChange)="selectedIndexChanged($event)" style="height: 80; width:70%;"></ListPicker>
+
+        <StackLayout>
+          <StackLayout *ngIf="new_question.type == 'essay'" class="input-field"> <TextField keyboardType="number" hint="max. words (> 0)" [(ngModel)]="max_words"></TextField> </StackLayout>
+          <GridLayout *ngIf="new_question.type == 'lin'" rows="0" columns="*, 5, *">
+              <StackLayout class="input-field"> <TextField keyboardType="number" hint="min" [(ngModel)]="min" row="0" col="0"></TextField> </StackLayout>
+              <StackLayout class="input-field"> <TextField keyboardType="number" hint="max" [(ngModel)]="max" row="0" col="2"></TextField> </StackLayout>
+          </GridLayout>
+        </StackLayout>
+
+        <GridLayout rows="auto" columns="*, auto, *"> <Label [text]="save_icon" class="icon" (tap)="addQuestion()" row="0" col="1"></Label> </GridLayout>
 
       </StackLayout>
 

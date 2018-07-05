@@ -1,4 +1,5 @@
-import { NgModule } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
@@ -13,7 +14,7 @@ import { CourseDataService } from './services/course-data.service';
 import { AuthenticationService } from './services/authentication.service';
 import { QuestionnaireDataService } from './services/questionnaire-data.service';
 import { TemplateDataService } from './services/template-data.service';
-import { StatisticsDataService } from './services/template-data.service';
+import { StatisticsDataService } from './services/statistics-data.service';
 import { QuestionDataService } from './services/question-data.service';
 import { SendAnswerService } from './services/send-answer.service';
 
@@ -43,6 +44,7 @@ import { NgShadowModule } from 'nativescript-ng-shadow';
     AppComponent,
     ...navigatableComponents
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 /*
