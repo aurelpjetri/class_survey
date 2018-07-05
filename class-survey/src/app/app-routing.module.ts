@@ -10,6 +10,7 @@ import {TemplatesComponent} from './templates/templates.component';
 import {NewQuestionnaireComponent} from './new-questionnaire/new-questionnaire.component';
 import {CompileQuestionnaireComponent} from "./compile-questionnaire/compile-questionnaire.component";
 import {QuestionnaireResultsComponent} from "./questionnaire-results/questionnaire-results.component"
+import{MapsComponent} from "./maps/maps.component";
 
 const routes: Routes = [
   // check cookies for login
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'templates', component: TemplatesComponent},
   { path: 'create', component: NewQuestionnaireComponent},
   { path: 'compile', component: CompileQuestionnaireComponent},
-  { path: 'questionnaire/statistic', component: QuestionnaireResultsComponent}
+  { path: 'questionnaire/statistic', component: QuestionnaireResultsComponent},
+  {path: 'map', component: MapsComponent}
 ];
 
 @NgModule({

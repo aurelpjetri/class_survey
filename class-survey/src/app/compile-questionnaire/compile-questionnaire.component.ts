@@ -118,7 +118,7 @@ export class CompileQuestionnaireComponent implements OnInit {
             var numOfWords = this.answers[answer].split(' ');
             if(numOfWords.length > question.max_len){
               call = false
-              alert('To much words')
+              alert('Too many words; used: '+numOfWords.length+', max: '+question.max_len)
             }
           }
         }

@@ -31,6 +31,10 @@ export class CourseDataService {
     return this.error_status;
   }
 
+  resetErrorStatus(){
+    this.error_status = undefined;
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
