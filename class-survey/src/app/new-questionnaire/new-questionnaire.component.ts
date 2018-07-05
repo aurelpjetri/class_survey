@@ -136,8 +136,15 @@ export class NewQuestionnaireComponent implements OnInit {
   }
 
   saveQuestionnaire(){
-      var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
-      var deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+      try{
+        var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
+        var deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+      }
+      catch(error){
+        alert("define activation and deadline")
+        return
+      }
+
 
       var questionnaire = {
         "id": "QUES"+this.getNewId(),
@@ -152,10 +159,10 @@ export class NewQuestionnaireComponent implements OnInit {
 
       if (this.gps_flag){
         var _pos = this.questionnaireDataService.getPositionSelected();
-        questionnaire["gps"] = _pos[0]+","+_pos[1];
+        questionnaire["gps"] = _pos[1]+","+_pos[0];
       }
       else{
-        questionnaire["pgs"] = "false";
+        questionnaire["gps"] = "false";
       }
 
       for(let q of this.questions){
@@ -181,7 +188,6 @@ export class NewQuestionnaireComponent implements OnInit {
       }
 
       this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
-      console.log(questionnaire);
   }
 
 
@@ -200,7 +206,6 @@ export class NewQuestionnaireComponent implements OnInit {
     var template = {
       "id": "TEMP"+this.getNewId(),
       "creator": this.user.name,
-      "gps": this.gps_flag,
       "public": this.public_flag,
       "questions": []
     }
@@ -229,6 +234,5 @@ export class NewQuestionnaireComponent implements OnInit {
     }
 
     this.questionnaireDataService.postTemplate(template).subscribe((response) => this.checkPostResponse(response));
-
   }
 }

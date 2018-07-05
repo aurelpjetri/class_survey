@@ -58,9 +58,9 @@
       </div>
     </form>
 
-    <mat-slide-toggle [(ngModel)]="gps_flag">Gps required</mat-slide-toggle>
-
     <mat-slide-toggle [(ngModel)]="public_flag">Set public</mat-slide-toggle>
+
+    <mat-slide-toggle [(ngModel)]="gps_flag">Gps required</mat-slide-toggle>
 
     <app-maps *ngIf="gps_flag"></app-maps>
 
