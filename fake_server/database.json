@@ -24,6 +24,11 @@
 			"role": "student",
 			"matriculation": "STUD001",
 			"password": "001"
+		},
+		{
+			"role": "student",
+			"matriculation": "STUD002",
+			"password": "002"
 		}
 	],
 
@@ -82,6 +87,12 @@
 				"QUES003",
 				"QUES006",
 				"QUES007"
+			]
+		},
+		{
+			"matriculation": "STUD002",
+			"name": "Angela Dellucci",
+			"questionnaires": [
 			]
 		}
 	],
