@@ -11,9 +11,24 @@
 			"password": "001"
 		},
 		{
+			"role": "professor",
+			"matriculation": "PROF002",
+			"password": "002"
+		},
+		{
 			"role": "student",
 			"matriculation": "STUD000",
 			"password": "000"
+		},
+		{
+			"role": "student",
+			"matriculation": "STUD001",
+			"password": "001"
+		},
+		{
+			"role": "student",
+			"matriculation": "STUD002",
+			"password": "002"
 		}
 	],
 
@@ -23,6 +38,17 @@
 			"name": "Mario Rossi",
 			"courses": [
 				"COUR000"
+			],
+			"templates": [
+				"TEMP000"
+			]
+		},
+		{
+			"matriculation": "PROF002",
+			"name": "Savino Nucci",
+			"courses": [
+				"COUR001",
+				"COUR002"
 			],
 			"templates": [
 				"TEMP000"
@@ -47,7 +73,26 @@
 			"matriculation": "STUD000",
 			"name": "Beatrice Marchesi",
 			"questionnaires": [
-				"QUES000"
+				"QUES000",
+				"QUES003"
+			]
+		},
+		{
+			"matriculation": "STUD001",
+			"name": "Damiano Fiorentini",
+			"questionnaires": [
+				"QUES000",
+				"QUES001",
+				"QUES002",
+				"QUES003",
+				"QUES006",
+				"QUES007"
+			]
+		},
+		{
+			"matriculation": "STUD002",
+			"name": "Angela Dellucci",
+			"questionnaires": [
 			]
 		}
 	],
@@ -63,6 +108,29 @@
 			"questionnaires": [
 				"QUES000",
 				"QUES003"
+			]
+		},
+		{
+			"code": "COUR001",
+			"name": "Software dependability",
+			"cfu": 6,
+			"year": "2017/18",
+			"active": "true",
+			"degree": "Master",
+			"questionnaires": [
+				"QUES002",
+				"QUES007"
+			]
+		},
+		{
+			"code": "COUR002",
+			"name": "Image and video analysis",
+			"cfu": 9,
+			"year": "2016/17",
+			"active": "false",
+			"degree": "Master",
+			"questionnaires": [
+				"QUES006"
 			]
 		},
 		{
@@ -119,11 +187,13 @@
 			"questions": [
 				{
 					"questionType": "lin",
-					"questionId": 0
+					"questionId": 0,
+					"num": 0
 				},
 				{
 					"questionType": "essay",
-					"questionId": 0
+					"questionId": 0,
+					"num": 1
 				}
 			]
 		},
@@ -138,7 +208,13 @@
 			"questions": [
 				{
 					"questionType": "multiple",
-					"questionId": 0
+					"questionId": 0,
+					"num": 0
+				},
+				{
+					"questionType": "multiple",
+					"questionId": 1,
+					"num": 1
 				}
 			]
 		},
@@ -153,11 +229,81 @@
 			"questions": [
 				{
 					"questionType": "lin",
-					"questionId": 0
+					"questionId": 0,
+					"num": 0
 				},
 				{
 					"questionType": "essay",
-					"questionId": 0
+					"questionId": 0,
+					"num": 1
+				}
+			]
+		},
+		{
+			"id": "QUES002",
+			"title": "Professor evaluation",
+			"gps": "43.7985599,11.2526804",
+			"deadline": "05/06/2018 - 10:00",
+			"activation": "05/06/2018 - 10:30",
+			"courseId": "COUR001",
+			"professor": "Savino Nucci",
+			"questions": [
+				{
+					"questionType": "lin",
+					"questionId": 1,
+					"num": 0
+				},
+				{
+					"questionType": "essay",
+					"questionId": 1,
+					"num": 1
+				}
+			]
+		},
+		{
+			"id": "QUES007",
+			"title": "Course evaluation",
+			"gps": "43.7985599,11.2526804",
+			"deadline": "02/06/2017 - 10:00",
+			"activation": "02/06/2017 - 10:30",
+			"courseId": "COUR001",
+			"professor": "Salvino Nucci",
+			"questions": [
+				{
+					"questionType": "lin",
+					"questionId": 0,
+					"num": 0
+				},
+				{
+					"questionType": "essay",
+					"questionId": 0,
+					"num": 1
+				}
+			]
+		},
+		{
+			"id": "QUES006",
+			"title": "Course evaluation",
+			"gps": "43.7985599,11.2526804",
+			"deadline": "02/06/2017 - 10:00",
+			"activation": "02/06/2017 - 10:30",
+			"courseId": "COUR002",
+			"professor": "Salvino Nucci",
+			"questions": [
+				{
+					"questionType": "lin",
+					"questionId": 0,
+					"num": 0
+				},
+				{
+					"questionType": "essay",
+					"questionId": 0,
+					"num": 1
+				},
+				{
+					"questionType": "multiple",
+					"questionId": 1,
+					"num": 2
 				}
 			]
 		}
@@ -169,6 +315,12 @@
 			"question": "How do you judge the laboratory lessons?",
 			"max": 7,
 			"min": 1
+		},
+		{
+			"id": 1,
+			"question": "Professor expository clarity",
+			"max": 10,
+			"min": 1
 		}
 	],
 
@@ -177,6 +329,11 @@
 			"id": 0,
 			"question": "Report here suggestions about this course",
 			"max_len": 10
+		},
+		{
+			"id": 1,
+			"question": "Leave your opinion about the professor",
+			"max_len": 30
 		}
 	],
 
@@ -184,9 +341,17 @@
 		{
 			"id": 0,
 			"question": "Which language do you prefer?",
-			"choiches": [
+			"choices": [
 				"English",
 				"Italian"
+			]
+		},
+		{
+			"id": 1,
+			"question": "How much credit?",
+			"choices": [
+				"6",
+				"9"
 			]
 		}
 	],
@@ -197,6 +362,19 @@
 			"numberOfTheQuestion": 0,
 			"collected": [
 				"English"
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 1.0, 0]
+				}
+			]
+		},
+{
+			"questionnaireId": "QUES003",
+			"numberOfTheQuestion": 1,
+			"collected": [
+				"6"
 			],
 			"statistics": [
 				{
@@ -246,6 +424,26 @@
 				{
 					"statistic": "mean",
 					"value": 2.75
+				}
+			]
+		},
+		{
+			"questionnaireId": "QUES000",
+			"numberOfTheQuestion": 0,
+			"collected": [
+				"3",
+				"6",
+				"5",
+				"7"
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 0, 0, 1, 0, 1, 1, 1]
+				},
+				{
+					"statistic": "mean",
+					"value": 5.25
 				}
 			]
 		}

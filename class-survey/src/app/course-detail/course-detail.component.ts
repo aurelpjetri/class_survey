@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {CourseDataService} from '../services/course-data.service';
 import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
+
 import { Router } from '@angular/router';
 
 
@@ -34,7 +35,7 @@ export class CourseDetailComponent implements OnInit {
   }
 
   checkResponse(response: any) :any{
-    if(!(this.courseDataService.getErrorStatus()===404)){
+    if(this.courseDataService.getErrorStatus()==undefined){
       if(this.checkExpirement(response)){
         this.expired_q.push(response);
       }
@@ -45,6 +46,7 @@ export class CourseDetailComponent implements OnInit {
     else{
       alert('unable to read course details');
       this.active_q.push('404');
+      this.courseDataService.resetErrorStatus();
     }
   }
 
@@ -60,6 +62,12 @@ export class CourseDetailComponent implements OnInit {
 
   creationTriggered(){
     this.router.navigateByUrl('templates');
+  }
+
+  viewResult(questionnaire, active){
+    questionnaire['active'] = active
+    this.questionnaireDataService.setData(questionnaire)
+    this.router.navigateByUrl('/questionnaire/statistic')
   }
 
 }

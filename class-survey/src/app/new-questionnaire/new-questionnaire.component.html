@@ -1,0 +1,159 @@
+<div class="prof_cont">
+    <h2 class="mat-title"> {{user.name}} - {{course.name}} {{course.year}}</h2>
+    <h2 class="mat-headline"><span class="heavier">New</span> questionnaire
+
+    </h2>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="creator_container">
+
+    <h3 class="mat-title">Generic settings</h3>
+
+    <form class="upper_form">
+
+      <div style="display: flex; flex-direction:row;">
+        <h4 class="mat-body-1">Title:  </h4>
+        <mat-form-field>
+
+          <input matInput placeholder="Title"  [(ngModel)]="this.title" name=question>
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; flex-direction:row;">
+        <h4 class="mat-body-1">Activation:  </h4>
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerA" placeholder="Choose activation" [(ngModel)]="this.activation.date" name=date>
+          <mat-datepicker-toggle matSuffix [for]="pickerA"></mat-datepicker-toggle>
+          <mat-datepicker #pickerA></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field style="max-width:4em;">
+          <input matInput type="number" placeholder="hh" [(ngModel)]="this.activation.hh" name=hh>
+        </mat-form-field>
+
+        <mat-form-field style=" max-width:4em;">
+          <input matInput type="number" placeholder="mm" [(ngModel)]="this.activation.mm" name=mm>
+        </mat-form-field>
+
+      </div>
+
+      <div style="display: flex; flex-direction:row;">
+        <h4 class="mat-body-1">Deadline:  </h4>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose deadline" [(ngModel)]="this.deadline.date" name=date>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field style="max-width:4em;">
+          <input matInput type="number" placeholder="hh" [(ngModel)]="this.deadline.hh" name=hh>
+        </mat-form-field>
+
+        <mat-form-field style=" max-width:4em;">
+          <input matInput type="number" placeholder="mm" [(ngModel)]="this.deadline.mm" name=mm>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+    <mat-slide-toggle [(ngModel)]="public_flag">Set public</mat-slide-toggle>
+
+    <mat-slide-toggle [(ngModel)]="gps_flag">Gps required</mat-slide-toggle>
+
+    <app-maps *ngIf="gps_flag"></app-maps>
+
+</div>
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-title">Selected questions</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let q of questions; index as _i">
+      <div style="flex-grow:3">
+        <mat-card-title>{{_i+1}}.   {{q.type}} question</mat-card-title>
+        <mat-card-subtitle>{{q.question}}</mat-card-subtitle>
+      </div>
+      <div style="display:flex; flex-grow:1;">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeQuestion(_i)">
+          <mat-icon class="del">delete</mat-icon>
+        </button>
+      </div>
+  </mat-card>
+</div>
+
+<div class="creator_container">
+  <div style="flex-grow:3;">
+
+    <h3 class="mat-title">New question</h3>
+
+    <form class="upper_form">
+
+      <mat-form-field>
+        <input matInput placeholder="Question"  [(ngModel)]="new_question.question" name=question>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Type" [(value)]="new_question.type">
+          <mat-option *ngFor="let type of q_types" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <form [formGroup]="options">
+
+        <mat-form-field *ngIf="(new_question.type == 'essay')">
+          <input matInput type="number" placeholder="max. words" formControlName="w_max" min="0">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="(new_question.type == 'lin')">
+          <input matInput type="number" placeholder="min" formControlName="lin_min" min="0" max=100>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="(new_question.type == 'lin')">
+          <input matInput type="number" placeholder="max" formControlName="lin_max" min="0" max="100">
+        </mat-form-field>
+
+      </form>
+
+      <mat-list *ngIf="(new_question.type == 'multiple')">
+        <mat-list-item *ngFor="let ans of multiple_answers">
+          {{ans}}
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeMultipleChoice(ans)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-form-field *ngIf="(new_question.type == 'multiple')">
+        <input matInput type="text" placeholder="multiple" name="mul" [(ngModel)]="this.m_choice"/>
+
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addMultipleChoice()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </form>
+
+  </div>
+
+  <div style="display:flex; flex-grow:1; margin:auto 80px auto auto;">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addQuestion()">
+      <mat-icon class="del">add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<div style="display:flex">
+  <button mat-raised-button color="primary" style=" width:49%; margin:20px 10px 20px 10px;" (click)="createTemplate()">
+    Save template
+  </button>
+  <button mat-raised-button color="primary" style=" width:49%; margin:20px 10px 20px 10px;" (click)="saveQuestionnaire()">
+    Submit questionnaire
+  </button>
+</div>

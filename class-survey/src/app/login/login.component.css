@@ -17,3 +17,11 @@
   height: auto;
   width: auto;
 }
+.error_message{
+  margin:2px;
+  text-align: center;
+  color: red;
+}
+.mat-subheading-1{
+  margin-bottom:5px;
+}

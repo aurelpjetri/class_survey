@@ -41,13 +41,14 @@ server.use( (req, res, next) => {
 					for (var idx in reg_users) {
 						var reg_user = reg_users[idx]
 						if (reg_user.matriculation === user.matriculation) {
-							var _user = { 'matriculation': reg_user.matriculation, 'name': reg_user.name, 'courses': reg_user.courses }
+							var _user = { 'matriculation': reg_user.matriculation, 'name': reg_user.name,
+							'courses': reg_user.courses, 'questionnaires': reg_user.questionnaires }
 							res.jsonp( {'role': user['role'], 'user': _user} )
 						}
 					}
 				} else { res.sendStatus(403) }
 			} else {	// add new entity
-				res.sendStatus(200)
+				res.jsonp( {'status': 'everythings is ok :)'} )
 			}
 		 	break
 		case 'GET':
@@ -151,7 +152,7 @@ server.use( (req, res, next) => {
 					res.sendStatus(404)
 				}
 				else { if (status == 1) { res.sendStatus(403) } }
-			} else { sendStatus(400) }
+			} else { res.sendStatus(400) }
 			break
 		default:
 			res.sendStatus(501)
