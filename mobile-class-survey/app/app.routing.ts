@@ -3,7 +3,7 @@ import { ProfessorComponent } from './professor/professor.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
-import { StudentComponent} from './student/student.component';
+import { StudentComponent } from './student/student.component';
 
 export const routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -20,5 +20,6 @@ export const navigatableComponents = [
   ProfessorComponent,
   CourseDetailComponent,
   TemplatesComponent,
-  NewQuestionnaireComponent
+  NewQuestionnaireComponent,
+  StudentComponent
 ];

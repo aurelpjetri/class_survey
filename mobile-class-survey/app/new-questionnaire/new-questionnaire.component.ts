@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 
 import { DatePicker } from "ui/date-picker";
 import { Switch } from "ui/switch";
-import { ListPicker } from "ui/list-picker";
 
 import { UserDataService } from '../services/user-data.service';
 import { TemplateDataService } from '../services/template-data.service';
@@ -22,6 +21,7 @@ import { Router } from '@angular/router';
 export class NewQuestionnaireComponent implements OnInit {
 
   private save_icon: string = String.fromCharCode(0xf055);
+  private trash_icon: string = String.fromCharCode(0xf2ed);
 
   private course: any;
   private user: any;
@@ -43,9 +43,9 @@ export class NewQuestionnaireComponent implements OnInit {
   private public_flag: boolean = false;
 
   // used for lin and essay
-  private max_words: number = 10;
-  private min: number = 1;
-  private max: number = 7;
+  private max_words: number;
+  private min: number;
+  private max: number;
 
 
   // used for multiple choice questions
@@ -80,9 +80,8 @@ export class NewQuestionnaireComponent implements OnInit {
   get lin_max(){return this.options.get('lin_max');}
   get lin_min(){return this.options.get('lin_min');}
 
-  selectedIndexChanged(args) {
-    let picker = <ListPicker>args.object;
-    this.new_question.type = this.q_types[picker.selectedIndex];
+  openQuestion(type) {
+    this.new_question.type = type;
   }
 
   retrieveQuestions(){

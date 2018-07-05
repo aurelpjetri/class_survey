@@ -9,7 +9,7 @@
 
   <StackLayout class="hr-light m-10"></StackLayout>
 
-  <Label class="h2"  *ngIf="questionnaires.length==0">
+  <Label class="h2" *ngIf="questionnaires.length==0">
     <FormattedString>
       <Span text="No questionnaires to be compiled" style="font-weight: bold"></Span>
     </FormattedString>
@@ -17,12 +17,12 @@
 
   <ScrollView>
     <StackLayout class="card" *ngFor="let questionnaire of questionnaires" (tap)="selectedCourse(course)">
-      <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
-        <Label class="icon" [text]="receipt_icon" row="0" col="0"></Label>
+      <GridLayout rows="auto, auto, auto" columns="auto, auto, *, auto">
+        <Label class="icon" [text]="receipt_icon" row="0" col="0" rowSpan="3"></Label>
         <Label [text]="questionnaire.title" class="h2" row="0" col="1"></Label>
-        <Label [text]="'Expired on - ' + questionniare.date + ' at ' + questionnaire.time" class="h4" row="1" col="1"></Label>
-        <Label [text]="'Published by '+ questionnaire.professor +' on course '+ questionnare.courseId" class="h4" row="2" col="1"></Label>
-        <Label class="icon" [text]="gps_icon" row="0" col="0" rowSpan="3"></Label>
+        <Label [text]="'Expired on - ' + questionnaire.date + ' at ' + questionnaire.time" class="h4" row="1" col="1"></Label>
+        <Label [text]="'Published by '+ questionnaire.professor +' on course '+ questionnaire.courseId" class="h4" row="2" col="1"></Label>
+        <Label class="icon" [text]="gps_icon" row="0" col="3" rowSpan="3"></Label>
       </GridLayout>
     </StackLayout>
   </ScrollView>
