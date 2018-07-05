@@ -62,6 +62,8 @@
 
     <mat-slide-toggle [(ngModel)]="public_flag">Set public</mat-slide-toggle>
 
+    <app-maps *ngIf="gps_flag"></app-maps>
+
 </div>
 
 <div class="creator_container">

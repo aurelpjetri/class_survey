@@ -15,6 +15,9 @@ import VectorSource from 'ol/source/Vector';
 //******
 
 
+import {QuestionnaireDataService} from '../services/questionnaire-data.service';
+
+
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
@@ -27,12 +30,13 @@ export class MapsComponent implements OnInit {
 
   private markerFeature: any;
 
-  constructor() { }
+  constructor( private questionnaireDataService: QuestionnaireDataService) { }
 
   ngOnInit() {
 
     navigator.geolocation.getCurrentPosition((position) => {
       this.pos = fromLonLat([position.coords.longitude, position.coords.latitude]);
+      this.questionnaireDataService.setPositionSelected([position.coords.longitude, position.coords.latitude])
       this.setMap();
       });
 
@@ -79,9 +83,8 @@ export class MapsComponent implements OnInit {
   }
 
   onClickMap(evt){
-
-    console.log(toLonLat(evt.coordinate));
     this.markerFeature.setGeometry(new Point(evt.coordinate))
+    this.questionnaireDataService.setPositionSelected(toLonLat(evt.coordinate));
   }
 
 

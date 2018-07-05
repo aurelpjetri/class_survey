@@ -146,9 +146,16 @@ export class NewQuestionnaireComponent implements OnInit {
         "activation": activation,
         "professor": this.user.name,
         "course": this.course.code,
-        "gps": this.gps_flag,
         "public": this.public_flag,
         "questions": []
+      }
+
+      if (this.gps_flag){
+        var _pos = this.questionnaireDataService.getPositionSelected();
+        questionnaire["gps"] = _pos[0]+","+_pos[1];
+      }
+      else{
+        questionnaire["pgs"] = "false";
       }
 
       for(let q of this.questions){
@@ -174,7 +181,7 @@ export class NewQuestionnaireComponent implements OnInit {
       }
 
       this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
-
+      console.log(questionnaire);
   }
 
 
@@ -189,6 +196,6 @@ export class NewQuestionnaireComponent implements OnInit {
 
   }
 
-  
+
 
 }

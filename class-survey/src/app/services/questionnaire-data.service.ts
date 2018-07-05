@@ -13,6 +13,8 @@ export class QuestionnaireDataService {
   private error_status: any;
   private questionnaireData: any;
 
+  private positionSelected: any;
+
   constructor(private http:HttpClient) { }
 
 
@@ -54,6 +56,14 @@ export class QuestionnaireDataService {
     .pipe(
       catchError(this.handleError('postQuestionnaire', questionnaire))
     );
+  }
+
+  setPositionSelected(pos:any){
+    this.positionSelected = pos;
+  }
+
+  getPositionSelected():any{
+    return this.positionSelected;
   }
 
 }
