@@ -1,0 +1,11 @@
+<div class="stud_cont">
+  <h2 class="mat-title"><span>Questionnaires</span> of {{user.name}}</h2>
+</div>
+<mat-divider></mat-divider>
+<div class="active_scrollable">
+  <mat-card *ngFor="let questionnaire of questionnaires">
+    <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire.title}}</mat-card-title>
+    <mat-card-subtitle>Expired on {{questionnaire.date}} at {{questionnaire.time}}</mat-card-subtitle>
+    <mat-card-subtitle>Published by {{questionnaire.professor}} on course {{questionnaire.courseId}}</mat-card-subtitle>
+  </mat-card>
+</div>

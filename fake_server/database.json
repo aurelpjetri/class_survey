@@ -1,0 +1,253 @@
+{
+	"authentication": [
+		{
+			"role": "professor",
+			"matriculation": "PROF000",
+			"password": "000"
+		},
+		{
+			"role": "professor",
+			"matriculation": "PROF001",
+			"password": "001"
+		},
+		{
+			"role": "student",
+			"matriculation": "STUD000",
+			"password": "000"
+		}
+	],
+
+	"professor": [
+		{
+			"matriculation": "PROF000",
+			"name": "Mario Rossi",
+			"courses": [
+				"COUR000"
+			],
+			"templates": [
+				"TEMP000"
+			]
+		},
+		{
+			"matriculation": "PROF001",
+			"name": "Lucilla Toscano",
+			"courses": [
+				"COUR000",
+				"COUR005"
+			],
+			"templates": [
+				"TEMP000",
+				"TEMP001"
+			]
+		}
+	],
+
+	"student": [
+		{
+			"matriculation": "STUD000",
+			"name": "Beatrice Marchesi",
+			"questionnaires": [
+				"QUES000"
+			]
+		}
+	],
+
+	"course": [
+		{
+			"code": "COUR000",
+			"name": "Deep Networks",
+			"cfu": 9,
+			"year": "2017/18",
+			"degree": "Master",
+			"active": "true",
+			"questionnaires": [
+				"QUES000",
+				"QUES003"
+			]
+		},
+		{
+			"code": "COUR005",
+			"name": "Software Engineer",
+			"cfu": 6,
+			"year": "2016/17",
+			"active": "false",
+			"degree": "Bachelor",
+			"questionnaires": [
+				"QUES001"
+			]
+		}
+	],
+
+	"template": [
+		{
+			"creator": "ADMIN",
+			"id": "TEMP000",
+			"title": "Course evaluation",
+			"questions": [
+				{
+					"questionType": "lin",
+					"questionId": 0
+				},
+				{
+					"questionType": "essay",
+					"questionId": 0
+				}
+			]
+		},
+		{
+			"creator": "PROF001",
+			"id": "TEMP001",
+			"title": "About course language",
+			"questions": [
+				{
+					"questionType": "multiple",
+					"questionId": 0
+				}
+			]
+		}
+	],
+
+	"questionnaire": [
+		{
+			"id": "QUES000",
+			"title": "Course evaluation",
+			"gps": "43.7985599,11.2526804",
+			"deadline": "05/07/2018 - 10:00",
+			"activation": "05/06/2018 - 10:30",
+			"courseId": "COUR000",
+			"professor": "Mario Rossi",
+			"questions": [
+				{
+					"questionType": "lin",
+					"questionId": 0
+				},
+				{
+					"questionType": "essay",
+					"questionId": 0
+				}
+			]
+		},
+		{
+			"id": "QUES003",
+			"title": "About course language",
+			"gps": "false",
+			"deadline": "20/03/2018 - 24:00",
+			"activation": "01/03/2018 - 00:00",
+			"courseId": "COUR000",
+			"professor": "Lucilla Toscano",
+			"questions": [
+				{
+					"questionType": "multiple",
+					"questionId": 0
+				}
+			]
+		},
+		{
+			"id": "QUES001",
+			"title": "Course evaluation",
+			"gps": "43.7985599,11.2526804",
+			"deadline": "02/06/2017 - 10:00",
+			"activation": "02/06/2017 - 10:30",
+			"courseId": "COUR005",
+			"professor": "Lucilla Toscano",
+			"questions": [
+				{
+					"questionType": "lin",
+					"questionId": 0
+				},
+				{
+					"questionType": "essay",
+					"questionId": 0
+				}
+			]
+		}
+	],
+
+	"linQuestion": [
+		{
+			"id": 0,
+			"question": "How do you judge the laboratory lessons?",
+			"max": 7,
+			"min": 1
+		}
+	],
+
+	"essayQuestion": [
+		{
+			"id": 0,
+			"question": "Report here suggestions about this course",
+			"max_len": 10
+		}
+	],
+
+	"multipleQuestion": [
+		{
+			"id": 0,
+			"question": "Which language do you prefer?",
+			"choiches": [
+				"English",
+				"Italian"
+			]
+		}
+	],
+
+	"statistic": [
+		{
+			"questionnaireId": "QUES003",
+			"numberOfTheQuestion": 0,
+			"collected": [
+				"English"
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 1.0, 0]
+				}
+			]
+		},
+		{
+			"questionnaireId": "QUES001",
+			"numberOfTheQuestion": 0,
+			"collected": [
+				7,
+				6,
+				1,
+				6
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 1, 0, 0, 0, 0 ,2, 1]
+				},
+				{
+					"statistic": "mean",
+					"value": 5
+				},
+				{
+					"statistic": "standard deviation",
+					"value": 2.345
+				}
+			]
+		},
+		{
+			"questionnaireId": "QUES001",
+			"numberOfTheQuestion": 1,
+			"collected": [
+				" ",
+				"Provide the lectures before the course's start",
+				"Improve the laboratories lessons",
+				" "
+			],
+			"statistics": [
+				{
+					"statistic": "histogram",
+					"value": [ 2, 0, 0, 1, 0, 0, 1, 0, 0, 0]
+				},
+				{
+					"statistic": "mean",
+					"value": 2.75
+				}
+			]
+		}
+	]
+}
