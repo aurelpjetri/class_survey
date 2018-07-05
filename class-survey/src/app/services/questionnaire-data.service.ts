@@ -66,4 +66,12 @@ export class QuestionnaireDataService {
     return this.positionSelected;
   }
 
+  postTemplate(template:any): Observable<any>{
+    const req_path = "http://localhost:3000/template";
+    return this.http.post<any>(req_path, template, {})
+    .pipe(
+      catchError(this.handleError('postTemplate', template))
+    );
+  }
+
 }
