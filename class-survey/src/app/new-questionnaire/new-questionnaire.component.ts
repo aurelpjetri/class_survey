@@ -129,40 +129,11 @@ export class NewQuestionnaireComponent implements OnInit {
 
   }
 
-  /*
-
-  {
-    "id": "QUES000",
-    "title": "Course evaluation",
-    "gps": "43.7985599,11.2526804",
-    "deadline": "05/07/2018 - 10:00",
-    "activation": "05/06/2018 - 10:30",
-    "courseId": "COUR000",
-    "professor": "Mario Rossi",
-    "questions": [
-      {
-        "questionType": "lin",
-        "questionId": 0,
-        "num": 0
-      },
-      {
-        "questionType": "essay",
-        "questionId": 0,
-        "num": 1
-      }
-    ]
-  }
-
-  */
-
   getNewId(){
     var min = 10;
     var max = 100
     return Number(Math.random() * (max - min) + min);
   }
-
-
-
 
   saveQuestionnaire(){
       var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
@@ -175,12 +146,10 @@ export class NewQuestionnaireComponent implements OnInit {
         "activation": activation,
         "professor": this.user.name,
         "course": this.course.code,
-  // TBD what to pass if the gps is set to required in the creation form
         "gps": this.gps_flag,
         "public": this.public_flag,
         "questions": []
       }
-
 
       for(let q of this.questions){
 
@@ -219,5 +188,7 @@ export class NewQuestionnaireComponent implements OnInit {
     }
 
   }
+
+  
 
 }

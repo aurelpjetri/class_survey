@@ -34,6 +34,7 @@ import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-q
 import { QuestionnaireResultsComponent } from './questionnaire-results/questionnaire-results.component';
 
 import {UserDataService} from './services/user-data.service';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {UserDataService} from './services/user-data.service';
     TemplatesComponent,
     NewQuestionnaireComponent,
     CompileQuestionnaireComponent,
-    QuestionnaireResultsComponent
+    QuestionnaireResultsComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
