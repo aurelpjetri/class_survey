@@ -4,6 +4,7 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
 import { StudentComponent } from './student/student.component';
+import { MapsComponent } from "./maps/maps.component";
 
 export const routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -21,5 +22,6 @@ export const navigatableComponents = [
   CourseDetailComponent,
   TemplatesComponent,
   NewQuestionnaireComponent,
-  StudentComponent
+  StudentComponent,
+  MapsComponent
 ];

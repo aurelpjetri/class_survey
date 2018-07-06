@@ -122,12 +122,13 @@ export class NewQuestionnaireComponent implements OnInit {
   }
 
   addQuestion(){
+    //NOTE riprova con validator
     if(this.new_question.type=="essay"){
-      this.new_question["max_len"] = this.w_max.value;
+      this.new_question["max_len"] = this.max_words;
     }
     if(this.new_question.type=="lin"){
-      this.new_question["max"] = this.lin_max.value;
-      this.new_question["min"] = this.lin_min.value;
+      this.new_question["max"] = this.max;
+      this.new_question["min"] = this.min;
     }
     if(this.new_question.type=="multiple"){
       this.new_question["choices"] = this.multiple_answers;
@@ -140,6 +141,11 @@ export class NewQuestionnaireComponent implements OnInit {
     this.m_choice = undefined;
     this.options.setValue({w_max:0, lin_min:0, lin_max:7});
 
+    //---- NOTE
+    this.max_words = undefined;
+    this.max = undefined;
+    this.min = undefined;
+
   }
 
   getNewId(){
@@ -149,8 +155,17 @@ export class NewQuestionnaireComponent implements OnInit {
   }
 
   saveQuestionnaire(){
-      var activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
-      var deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+      var activation;
+      var deadline;
+      try {
+        activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+1+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
+        deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+1+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+      } catch(error) {
+        alert("define activation and deadline")
+        return
+      }
+
+      console.log(activation)
 
       var questionnaire = {
         "id": "QUES"+this.getNewId(),
@@ -160,9 +175,16 @@ export class NewQuestionnaireComponent implements OnInit {
         "professor": this.user.name,
         "course": this.course.code,
         // TBD what to pass if the gps is set to required in the creation form
-        "gps": this.gps_flag,
         "public": this.public_flag,
         "questions": []
+      }
+
+      if (this.gps_flag){
+        var _pos = this.questionnaireDataService.getPositionSelected();
+        questionnaire["gps"] = _pos[1]+","+_pos[0];
+      }
+      else{
+        questionnaire["gps"] = "false";
       }
 
       for(let q of this.questions){
@@ -197,7 +219,7 @@ export class NewQuestionnaireComponent implements OnInit {
       this.router.navigateByUrl('/course');
     }
     else{
-      alert('posting failed; error status: '+this.questionnaireDataService.getErrorStatus());
+      alert('posting failed; error status: '+ this.questionnaireDataService.getErrorStatus());
     }
 
   }

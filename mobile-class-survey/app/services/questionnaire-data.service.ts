@@ -49,6 +49,14 @@ export class QuestionnaireDataService {
     return this.questionnaireData;
   }
 
+  setPositionSelected(pos:any){
+    this.positionSelected = pos;
+  }
+
+  getPositionSelected():any{
+    return this.positionSelected;
+  }
+
   postQuestionnaire(questionnaire:any): Observable<any>{
     const req_path = Config.getURL()+"/questionnaire";
     return this.http.post<any>(req_path, questionnaire, {})

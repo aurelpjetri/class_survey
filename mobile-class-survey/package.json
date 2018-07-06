@@ -25,6 +25,7 @@
 		"nativescript-angular": "~6.0.0",
 		"nativescript-geolocation": "^4.2.6",
 		"nativescript-ng-shadow": "^2.1.0",
+		"nativescript-nodeify": "^0.7.0",
 		"nativescript-theme-core": "~1.0.4",
 		"reflect-metadata": "~0.1.8",
 		"rxjs": "~6.1.0",
