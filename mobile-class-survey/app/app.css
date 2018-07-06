@@ -22,7 +22,7 @@ ActionBar{
 }
 .icon{
   font-family: "./fonts/fa-solid-900";
-  font-family: "fa-solid-900";
+  font-family: "Font Awesome 5 Free";
   vertical-align: center;
   font-size: 30;
   margin: 5;
@@ -30,6 +30,7 @@ ActionBar{
 .card{
   background-color: #F9F9F9;
   color: black;
+
 
   border-width: 1;
   border-radius: 2;

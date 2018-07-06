@@ -5,6 +5,7 @@ import {QuestionnaireDataService} from '../services/questionnaire-data.service';
 
 import { Router } from '@angular/router';
 
+import { isEnabled, enableLocationRequest, getCurrentLocation } from "nativescript-geolocation";
 
 @Component({
   selector: 'app-student',
@@ -58,22 +59,31 @@ export class StudentComponent implements OnInit {
   compile(questionnaire: any) {
     this.questionnaireDataService.setData(questionnaire)
     if(questionnaire.gps!="false"){
-      navigator.geolocation.getCurrentPosition((position) => this.checkGPS(position, questionnaire), this.error);
+      var position = getCurrentLocation({}).then(
+        (position) => {
+          var pos = {'coords':{'latitude':position.latitude, 'longitude':position.longitude}};
+          console.log(pos);
+          this.checkGPS(pos, questionnaire);
+        }
+      ).catch((e) => this.error(e));
+
     }
     else{
-    this.router.navigateByUrl('/compile')
+    //this.router.navigateByUrl('/compile')
+    console.log('nothing')
     }
   }
 
-  checkGPS(pos, questionnaire: any){
+  checkGPS(pos: any, questionnaire: any){
     var crd = pos.coords;
     var qCoord =  questionnaire.gps.split(',');
     var dist = this.distanceInKmBetweenEarthCoordinates(Number(qCoord[0]),Number(qCoord[1]),crd.latitude,crd.longitude);
     if(dist < 0.1){
-      this.router.navigateByUrl('/compile')
+      //this.router.navigateByUrl('/compile');
+      console.log('ok')
     }
     else{
-      alert('Yuo must be near ' + Number(qCoord[0]) + ',' + Number(qCoord[1]) + ' to complete this survey')
+      alert('Yuo must be near ' + Number(qCoord[0]) + ',' + Number(qCoord[1]) + ' to complete this survey');
     }
   }
 
