@@ -29,7 +29,7 @@
       <Label text="Open questionnaire" class="section-header"></Label>
 
       <StackLayout class="card" *ngFor="let quest of active_q" (tap)="viewResult(quest, true)">
-        <GridLayout rows="auto, auto, auto" columns="auto, auto, *, auto">
+        <GridLayout rows="auto, auto, auto" columns="auto, *, auto">
           <Label [text]="act_icon" class="icon" row="0" col="0" rowSpan="3"></Label>
           <Label [text]="quest.title" class="h3" row="0" col="1" colSpan="3"></Label>
           <Label [text]="quest.professor" class="h4" row="1" col="1" colSpan="3"></Label>

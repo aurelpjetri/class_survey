@@ -24,7 +24,7 @@
       <Label text="Expired course" class="section-header"></Label>
 
       <StackLayout class="card" *ngFor="let course of expired_courses" (tap)="selectedCourse(course)">
-        <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
+        <GridLayout rows="auto, auto, auto" columns="auto, *, auto">
           <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3"></Label>
           <Label [text]="course.name" class="h2" row="0" col="1"></Label>
           <Label [text]="course.code + ' - ' + course.cfu + ' CFU - AY ' + course.year" class="h4" row="1" col="1"></Label>
