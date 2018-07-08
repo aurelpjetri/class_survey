@@ -144,7 +144,7 @@ export class CompileQuestionnaireComponent implements OnInit {
           "questionnaireId": this.questionnaire.id,
           "numberOfTheQuestion": num,
           "collected": answer
-    })
+    }).subscribe()
   }
 
 }

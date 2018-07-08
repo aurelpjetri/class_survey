@@ -15,6 +15,8 @@ import { StudentComponent } from './student/student.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-questionnaire.component';
+import { QuestionnaireResultsComponent } from './questionnaire-results/questionnaire-results.component';
 // provider
 import { ServerService } from './services/server.service';
 import { UserDataService } from './services/user-data.service';
@@ -25,9 +27,6 @@ import { TemplateDataService } from './services/template-data.service';
 import { StatisticsDataService } from './services/statistics-data.service';
 import { QuestionDataService } from './services/question-data.service';
 import { SendAnswerService } from './services/send-answer.service';
-//import { CompileQuestionnaireComponent } from './compile-questionnaire/compile-questionnaire.component'; TODO add in declarations
-//import { QuestionnaireResultsComponent } from './questionnaire-results/questionnaire-results.component'; TODO same
-
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
 
@@ -61,7 +60,9 @@ Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
       StudentComponent,
       CourseDetailComponent,
       NewQuestionnaireComponent,
-      TemplatesComponent
+      TemplatesComponent,
+      CompileQuestionnaireComponent,
+      QuestionnaireResultsComponent
     ],
     schemas: [
       NO_ERRORS_SCHEMA

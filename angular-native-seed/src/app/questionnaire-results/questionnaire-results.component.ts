@@ -6,7 +6,8 @@ import {SendAnswerService} from '../services/send-answer.service';
 import {StatisticsDataService} from "../services/statistics-data.service";
 
 @Component({
-  selector: 'app-questionnaire-results',
+  moduleId: module.id,
+  selector: 'seed-questionnaire-results',
   templateUrl: './questionnaire-results.component.html',
   styleUrls: ['./questionnaire-results.component.css']
 })
