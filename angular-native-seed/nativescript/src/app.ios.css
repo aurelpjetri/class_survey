@@ -12,8 +12,7 @@ ActionBar{
   margin: 0 5% 0 5%;
 }
 .icon{
-  font-family: "./fonts/fa-solid-900";
-  font-family: "fa-solid-900";
+  font-family: "Font Awesome 5 Free";
   vertical-align: center;
   font-size: 30;
   margin: 5;

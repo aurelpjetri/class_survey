@@ -1,5 +1,5 @@
 <StackLayout class="form">
-  <Label class="h3" [text]="user.name + ' - ' + course.name + ' ' + course.year"></Label>
+  <Label class="h3" [text]="user.name + ' - ' + course.name + ' ' + course.year" textWrap="true"></Label>
   <Label class="h2">
     <FormattedString>
       <Span text="New" style="font-weight: bold"></Span>
@@ -41,7 +41,7 @@
         <GridLayout *ngFor="let q of questions; index as _i" rows="auto, auto" columns="auto, *, auto" style="border-width:1; border-color:#EAEAEA;">
           <Label class="h1" verticalAlignment="middle" [text]="_i + 1" row="0" col="0" rowSpan="2" style="padding-right: 10px;"></Label>
           <Label class="h2" [text]="q.type + ' question'" row="0" col="1"></Label>
-          <Label class="h3" [text]="q.question" row="1" col="1"></Label>
+          <Label class="h3" [text]="q.question" row="1" col="1" textWrap="true"></Label>
           <Label class="icon" [text]="trash_icon" row="0" col="3" rowSpan="2" (tap)="removeQuestion(_i)"></Label>
         </GridLayout>
       </StackLayout>
@@ -78,8 +78,8 @@
       </StackLayout>
 
       <GridLayout rows="auto" columns="5, *, 5, *, 5">
-          <Button class="btn btn-primary btn-active" text="Save template" (tap)="createTemplate()" row="0" col="1"></Button>
-          <Button class="btn btn-primary btn-active" text="Submit questionnaire" (tap)="saveQuestionnaire()" row="0" col="3"></Button>
+          <Button class="btn btn-primary btn-active" text="Save template" (tap)="createTemplate()" row="0" col="1" textWrap="true"></Button>
+          <Button class="btn btn-primary btn-active" text="Submit questionnaire" (tap)="saveQuestionnaire()" row="0" col="3" textWrap="true"></Button>
       </GridLayout>
     </StackLayout>
   </ScrollView>
