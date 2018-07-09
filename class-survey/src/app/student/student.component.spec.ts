@@ -11,22 +11,21 @@ import { Router } from '@angular/router';
 import {UserDataService} from '../services/user-data.service';
 import {UserDataMockStud} from '../services/mock/user-data.service.mock';
 
+import {QuestionnaireDataService} from '../services/questionnaire-data.service';
+import {QuestionnaireDataMock} from '../services/mock/questionnaire-data.service.mock';
+
 describe('StudentComponent', () => {
   let component: StudentComponent;
   let fixture: ComponentFixture<StudentComponent>;
 
   beforeEach(() => {
-    var questionnaire = 404;
-
-    const questionnaireDataService = jasmine.createSpyObj('questionnaireDataService', ['retrieveData']);
-    var retrieveDataSpy = questionnaireDataService.retrieveData.and.returnValue( of(questionnaire) );
-
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     TestBed.configureTestingModule({
       declarations: [ StudentComponent ],
       providers: [ HttpClient, HttpHandler,
         { provide: Router, useValue: routerSpy },
-        { provide: UserDataService, useClass: UserDataMockStud }
+        { provide: UserDataService, useClass: UserDataMockStud },
+        { provide: QuestionnaireDataService, useClass: QuestionnaireDataMock }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
