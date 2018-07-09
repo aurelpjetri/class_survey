@@ -63,8 +63,8 @@ export class QuestionnaireDataService {
   }
 
   postTemplate(template:any): Observable<any>{
-    const req_path = "http://localhost:3000/template";
-    return this.http.post<any>(req_path, template, {})
+    const req_path = this.server.getURL()+"/template";
+    return this.http.post<any>(req_path, template)
     .pipe(
       catchError(this.handleError('postTemplate', template))
     );
@@ -72,7 +72,7 @@ export class QuestionnaireDataService {
 
   postQuestionnaire(questionnaire:any): Observable<any>{
     const req_path = this.server.getURL()+"/questionnaire";
-    return this.http.post<any>(req_path, questionnaire, {})
+    return this.http.post<any>(req_path, questionnaire)
     .pipe(
       catchError(this.handleError('postQuestionnaire', questionnaire))
     );

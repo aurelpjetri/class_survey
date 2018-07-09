@@ -18,13 +18,13 @@
 
         <Label class="section-header h3" text="Activation:"></Label>
         <GridLayout rows="90" columns="*, auto, auto">
-          <DatePicker verticalAlignment="center" row="0" col="0" [(ngModel)]="activation.date"></DatePicker>
+          <DatePicker  (loaded)="onPickerLoaded($event)" verticalAlignment="center" row="0" col="0" [(ngModel)]="activation.date"></DatePicker>
           <StackLayout class="input-field" row="0" col="1"> <TextField keyboardType="number" hint="hh" [(ngModel)]="activation.hh"></TextField> </StackLayout>
           <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="mm" [(ngModel)]="activation.mm"></TextField> </StackLayout>
         </GridLayout>
         <Label class="section-header h3" text="Deadline:"></Label>
         <GridLayout rows="90" columns="*, auto, auto">
-          <DatePicker verticalAlignment="bottom" row="0" col="0" [(ngModel)]="deadline.date"></DatePicker>
+          <DatePicker  (loaded)="onPickerLoaded($event)" verticalAlignment="bottom" row="0" col="0" [(ngModel)]="deadline.date"></DatePicker>
           <StackLayout class="input-field" row="0" col="1"> <TextField keyboardType="number" hint="hh" [(ngModel)]="deadline.hh"></TextField> </StackLayout>
           <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="mm" [(ngModel)]="deadline.mm"></TextField> </StackLayout>
         </GridLayout>
@@ -35,6 +35,20 @@
           <Switch checked="false" [(ngModel)]="gps_flag" row="1" col="0"></Switch>
           <Label class="h3" text="GPS required" textWrap="true" row="1" col="1"></Label>
         </GridLayout>
+
+        <GridLayout *ngIf="this.gps_flag" rows="auto, auto" columns="auto, 5, auto">
+
+          <Label text="Latitude " class="h4" row="0" col="0"></Label>
+          <StackLayout class="input-field" row="0" col="2">
+            <TextField hint="Latitude" [(ngModel)]="this.lat"></TextField>
+          </StackLayout>
+          <Label text="Longitude " class="h4" row="1" col="0"></Label>
+          <StackLayout class="input-field" row="1" col="2">
+            <TextField hint="Longitude" [(ngModel)]="this.lon"></TextField>
+          </StackLayout>
+
+        </GridLayout>
+
       </StackLayout>
 
       <StackLayout class="card">
@@ -56,10 +70,10 @@
         </StackLayout>
 
         <StackLayout>
-          <StackLayout *ngIf="new_question.type == 'essay'" class="input-field"> <TextField keyboardType="number" hint="max. words (> 0)" [(ngModel)]="max_words"></TextField> </StackLayout>
+          <StackLayout *ngIf="new_question.type == 'essay'" class="input-field"> <TextField keyboardType="number" hint="max. words (> 0)" [(ngModel)]="this.max_words"></TextField> </StackLayout>
           <GridLayout *ngIf="new_question.type == 'lin'" rows="auto" columns="*, 5, *">
-            <StackLayout class="input-field" row="0" col="0"> <TextField keyboardType="number" hint="min" [(ngModel)]="min"></TextField> </StackLayout>
-            <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="max" [(ngModel)]="max"></TextField> </StackLayout>
+            <StackLayout class="input-field" row="0" col="0"> <TextField keyboardType="number" hint="min" [(ngModel)]="this.min"></TextField> </StackLayout>
+            <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="max" [(ngModel)]="this.max"></TextField> </StackLayout>
           </GridLayout>
           <StackLayout *ngIf="new_question.type == 'multiple'">
             <GridLayout *ngFor="let ans of multiple_answers" rows="auto, auto" columns="*, 2, auto">

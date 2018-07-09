@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatePicker } from "ui/date-picker";
 import { Switch } from "ui/switch";
 
+import { isEnabled, enableLocationRequest, getCurrentLocation } from "nativescript-geolocation";
+
 import { UserDataService } from '../services/user-data.service';
 import { TemplateDataService } from '../services/template-data.service';
 import { CourseDataService } from '../services/course-data.service';
@@ -38,6 +40,8 @@ export class NewQuestionnaireComponent implements OnInit {
   private title: any = "";
 
   private gps_flag: boolean = false;
+  private lat: any;
+  private lon: any;
 
   private public_flag: boolean = false;
 
@@ -64,6 +68,35 @@ export class NewQuestionnaireComponent implements OnInit {
 
     this.template = this.templateDataService.getSelected();
     this.retrieveQuestions();
+
+    this.setInitialPos();
+  }
+
+  onPickerLoaded(args) {
+        let datePicker = <DatePicker>args.object;
+
+        var today = new Date();
+
+        datePicker.minDate = new Date(2010, 0, 1);
+        datePicker.maxDate = new Date(2045, 11, 15);
+
+        datePicker.date = new Date();
+
+
+        this.activation.hh = today.getHours();
+        this.deadline.hh = today.getHours()+1;
+        this.activation.mm = today.getMinutes();
+        this.deadline.mm = today.getMinutes();
+    }
+
+  setInitialPos(){
+    var position = getCurrentLocation({}).then(
+      (position) => {
+        this.lat = position.latitude;
+        this.lon = position.longitude;
+      }
+    ).catch((e) => console.warn(`ERROR(${e.code}): ${e.message}`));
+
   }
 
   openQuestion(type) {
@@ -142,15 +175,15 @@ export class NewQuestionnaireComponent implements OnInit {
   saveQuestionnaire(){
       var activation;
       var deadline;
+
       try {
-        activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+1+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
-        deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+1+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+        activation = this.activation.date.getDate()+"/"+(this.activation.date.getMonth()+1)+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
+        deadline = this.deadline.date.getDate()+"/"+(this.deadline.date.getMonth()+1)+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
       } catch(error) {
         alert("define activation and deadline")
         return
       }
 
-      console.log(activation)
 
       var questionnaire = {
         "id": "QUES"+this.getNewId(),
@@ -164,15 +197,13 @@ export class NewQuestionnaireComponent implements OnInit {
         "questions": []
       }
 
-      questionnaire["gps"] = this.gps_flag;
-      /*
       if (this.gps_flag){
-        var _pos = this.questionnaireDataService.getPositionSelected();
-        questionnaire["gps"] = _pos[1]+","+_pos[0];
+        //var _pos = this.questionnaireDataService.getPositionSelected();
+        questionnaire["gps"] = this.lat+","+this.lon;
       }
       else{
         questionnaire["gps"] = "false";
-      }*/
+      }
 
       for(let q of this.questions){
 
@@ -196,6 +227,7 @@ export class NewQuestionnaireComponent implements OnInit {
         questionnaire.questions.push(_question);
       }
 
+      this.questionnaireDataService.resetErrorStatus();
       this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
 
   }
@@ -241,6 +273,7 @@ export class NewQuestionnaireComponent implements OnInit {
       template.questions.push(_question);
     }
 
+    this.questionnaireDataService.resetErrorStatus();
     this.questionnaireDataService.postTemplate(template).subscribe((response) => this.checkPostResponse(response));
   }
 

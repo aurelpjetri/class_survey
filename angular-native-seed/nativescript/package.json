@@ -6,6 +6,9 @@
     "id": "com.domain.project",
     "tns-android": {
       "version": "4.1.3"
+    },
+    "tns-ios": {
+      "version": "4.1.1"
     }
   },
   "dependencies": {
