@@ -1,0 +1,35 @@
+.mat-list-icon{
+  color: rgba(0, 0, 0, 0.54);
+}
+.prof_cont{
+  padding: 20px 2em 0em 1em;
+}
+span{
+  font-size: 25px;
+  font-weight: bold;
+}
+.heavier{
+  font-size: 25px;
+  font-weight: bold;
+}
+.mat-subheading-2{
+    margin-bottom: 0;
+}
+mat-card{
+  margin-top: 1em;
+  cursor: pointer;
+}
+.active_scrollable{
+  max-height: 30%;
+  overflow-y: auto;
+  padding: 5px;
+  margin-bottom: 16px;
+}
+
+.active_scrollable_temps{
+  max-height: 30%;
+  overflow-y: auto;
+  padding: 5px;
+  margin-bottom: 16px;
+
+}

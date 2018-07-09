@@ -1,0 +1,26 @@
+.mat-list-icon{
+  color: rgba(0, 0, 0, 0.54);
+}
+.quest_cont{
+  padding: 20px 2em 0em 1em;
+}
+span{
+  font-size: 25px;
+  font-weight: bold;
+}
+mat-card{
+  margin-top: 1em;
+}
+.active_scrollable{
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 5px;
+  margin-bottom: 16px;
+}
+.mat-form{
+  width: 100%;
+}
+.range{
+  display: flex;
+  flex-direction: row;
+}

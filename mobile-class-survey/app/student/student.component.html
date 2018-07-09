@@ -1,0 +1,32 @@
+<StackLayout class="form">
+
+  <Label class="h2" textWrap="true">
+    <FormattedString>
+      <Span text="Questionnaires" style="font-weight: bold"></Span>
+      <Span [text]="' of ' + user.name"></Span>
+    </FormattedString>
+  </Label>
+
+  <StackLayout class="hr-light m-10"></StackLayout>
+
+  <Label class="h2" *ngIf="questionnaires.length==0" textWrap="true">
+    <FormattedString>
+      <Span text="No questionnaires to be compiled" style="font-weight: bold"></Span>
+    </FormattedString>
+  </Label>
+
+  <ScrollView>
+    <StackLayout>
+      <StackLayout class="card" *ngFor="let questionnaire of questionnaires" (tap)="this.compile(questionnaire)">
+        <GridLayout rows="auto, auto, auto" columns="auto, *, auto">
+          <Label class="icon" [text]="receipt_icon" row="0" col="0" rowSpan="3"></Label>
+          <Label [text]="questionnaire.title" class="h2" row="0" col="1" textWrap="true"></Label>
+          <Label [text]="'Expired on - ' + questionnaire.date + ' at ' + questionnaire.time" class="h4" row="1" col="1" textWrap="true"></Label>
+          <Label [text]="'Published by '+ questionnaire.professor +' on course '+ questionnaire.courseId" class="h4" row="2" col="1" textWrap="true"></Label>
+          <Label class="icon" *ngIf="questionnaire.gps!='false'" [text]="gps_icon" row="0" col="3" rowSpan="3" textWrap="true"></Label>
+        </GridLayout>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+
+</StackLayout>

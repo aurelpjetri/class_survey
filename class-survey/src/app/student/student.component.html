@@ -1,0 +1,20 @@
+<div class="stud_cont">
+  <h2 class="mat-headline"><span>Questionnaires</span> of {{user.name}}</h2>
+</div>
+<mat-divider></mat-divider>
+<div style="margin: auto; padding-top:50px;; text-align: center;" *ngIf="questionnaires.length==0">
+  <h3 class="mat-title" >No questionnaires to be compiled</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let questionnaire of questionnaires" (click)="this.compile(questionnaire)">
+    <div style="flex-grow:3">
+      <mat-card-title><mat-icon mat-list-icon>receipt</mat-icon> {{questionnaire.title}}</mat-card-title>
+      <mat-card-subtitle>Expired on {{questionnaire.date}} at {{questionnaire.time}}</mat-card-subtitle>
+      <mat-card-subtitle>Published by {{questionnaire.professor}} on course {{questionnaire.courseId}}</mat-card-subtitle>
+    </div>
+    <div style="display:flex; flex-grow:1;" *ngIf='(questionnaire.gps!="false")'>
+      <mat-icon class="gps">pin_drop</mat-icon>
+    </div>
+  </mat-card>
+</div>

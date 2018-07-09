@@ -1,0 +1,33 @@
+<div class="stud_cont">
+  <h2 class="mat-headline">{{questionnaire.title}}</h2>
+</div>
+<mat-divider></mat-divider>
+<div class="active_scrollable">
+  <mat-card *ngFor="let question of questions">
+    <mat-card-title>{{question.question}}</mat-card-title>
+
+    <div class="range" *ngIf="question.range != undefined">
+      <mat-card-subtitle style="flex-grow: 1; text-align: right">{{question.min}}</mat-card-subtitle>
+      <mat-radio-group [(ngModel)]="this.answers['lin_'+question.id]" style="flex-grow: 6" class="range">
+        <div style="flex-grow: 1; text-align: center" *ngFor="let i of question.range">
+          <mat-radio-button value="{{i}}"></mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <mat-card-subtitle style="margin-top: 0; flex-grow: 1; text-align: left">{{question.max}}</mat-card-subtitle>
+    </div>
+
+    <div *ngIf="question.max_len != undefined">
+      <mat-form-field class="mat-form">
+        <textarea matInput [(ngModel)]="this.answers['essay_'+question.id]" type="text" placeholder="Max {{question.max_len}} words" required name="answers" [errorStateMatcher]="matcher"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="question.choices != undefined">
+      <div *ngFor="let option of question.choices">
+        <mat-checkbox [(ngModel)]="this.mul[option+'-'+question.id]">{{option}}</mat-checkbox>
+      </div>
+    </div>
+  </mat-card>
+
+  <button style="margin-top: 16px; width:100%;" mat-raised-button color="primary" (click)="this.submit()">Submit</button>
+</div>
