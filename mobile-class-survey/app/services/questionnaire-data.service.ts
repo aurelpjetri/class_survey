@@ -5,20 +5,21 @@ import { catchError } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 
-import { Config } from '../config'
+import { ServerService } from './server.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionnaireDataService {
+
   private error_status: any;
   private questionnaireData: any;
+  private positionSelected: any;
 
-  constructor(private http:HttpClient) { }
-
+  constructor(private http: HttpClient, private server: ServerService) { }
 
   retrieveData(id:any): Observable<any>{
-    const req_path = Config.getURL()+'/questionnaire?questionnaire='+id;
+    const req_path = this.server.getURL()+'/questionnaire?questionnaire='+id;
     return this.http.get<any>(req_path)
     .pipe(
       catchError(this.handleError('retrieveData', id))
@@ -27,6 +28,10 @@ export class QuestionnaireDataService {
 
   getErrorStatus(): any {
     return this.error_status;
+  }
+
+  resetErrorStatus(){
+    this.error_status = undefined;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -57,9 +62,17 @@ export class QuestionnaireDataService {
     return this.positionSelected;
   }
 
+  postTemplate(template:any): Observable<any>{
+    const req_path = this.server.getURL()+"/template";
+    return this.http.post<any>(req_path, template)
+    .pipe(
+      catchError(this.handleError('postTemplate', template))
+    );
+  }
+
   postQuestionnaire(questionnaire:any): Observable<any>{
-    const req_path = Config.getURL()+"/questionnaire";
-    return this.http.post<any>(req_path, questionnaire, {})
+    const req_path = this.server.getURL()+"/questionnaire";
+    return this.http.post<any>(req_path, questionnaire)
     .pipe(
       catchError(this.handleError('postQuestionnaire', questionnaire))
     );

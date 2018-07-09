@@ -20,9 +20,11 @@ ActionBar{
 .form {
   margin: 5 5% 0 5%;
 }
+.form-login{
+  margin: 20% 10% 0 10%;
+}
 .icon{
   font-family: "./fonts/fa-solid-900";
-  font-family: "Font Awesome 5 Free";
   vertical-align: center;
   font-size: 30;
   margin: 5;

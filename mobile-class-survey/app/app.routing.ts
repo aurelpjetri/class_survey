@@ -4,8 +4,8 @@ import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { NewQuestionnaireComponent } from './new-questionnaire/new-questionnaire.component';
 import { StudentComponent } from './student/student.component';
-import {CompileQuestionnaireComponent} from "./compile-questionnaire/compile-questionnaire.component";
-import { MapsComponent } from "./maps/maps.component";
+import { CompileQuestionnaireComponent } from "./compile-questionnaire/compile-questionnaire.component";
+import { QuestionnaireResultsComponent } from "./questionnaire-results/questionnaire-results.component";
 
 
 export const routes = [
@@ -16,7 +16,8 @@ export const routes = [
     { path: 'templates', component: TemplatesComponent },
     { path: "create", component: NewQuestionnaireComponent},
     { path: "student", component: StudentComponent},
-    { path: "compile", component: CompileQuestionnaireComponent}
+    { path: "compile", component: CompileQuestionnaireComponent},
+    { path: "questionnaire/statistic", component: QuestionnaireResultsComponent }
 ];
 
 export const navigatableComponents = [
@@ -27,5 +28,5 @@ export const navigatableComponents = [
   NewQuestionnaireComponent,
   StudentComponent,
   CompileQuestionnaireComponent,
-  MapsComponent
+  QuestionnaireResultsComponent
 ];

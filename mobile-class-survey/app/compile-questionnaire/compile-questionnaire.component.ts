@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {QuestionnaireDataService} from '../services/questionnaire-data.service';
-import {QuestionDataService} from '../services/question-data.service';
-import {SendAnswerService} from '../services/send-answer.service'
+import { QuestionnaireDataService } from '../services/questionnaire-data.service';
+import { QuestionDataService } from '../services/question-data.service';
+import { SendAnswerService } from '../services/send-answer.service'
 
 import { Router } from '@angular/router';
 
@@ -74,7 +74,6 @@ export class CompileQuestionnaireComponent implements OnInit {
 
         this.questions.push(response);
         //this.questions[index] = response
-
     }
     else{
       alert('unable to read course details');

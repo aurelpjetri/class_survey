@@ -1,5 +1,5 @@
 <StackLayout class="form">
-  <Label class="h3" [text]="user.name + ' - ' + course.name + ' ' + course.year"></Label>
+  <Label class="h3" [text]="user.name + ' - ' + course.name + ' ' + course.year" textWrap="true"></Label>
   <Label class="h2">
     <FormattedString>
       <Span text="New" style="font-weight: bold"></Span>
@@ -18,13 +18,13 @@
 
         <Label class="section-header h3" text="Activation:"></Label>
         <GridLayout rows="90" columns="*, auto, auto">
-          <DatePicker verticalAlignment="center" row="0" col="0" [(ngModel)]="activation.date"></DatePicker>
+          <DatePicker  (loaded)="onPickerLoaded($event)" verticalAlignment="center" row="0" col="0" [(ngModel)]="activation.date"></DatePicker>
           <StackLayout class="input-field" row="0" col="1"> <TextField keyboardType="number" hint="hh" [(ngModel)]="activation.hh"></TextField> </StackLayout>
           <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="mm" [(ngModel)]="activation.mm"></TextField> </StackLayout>
         </GridLayout>
         <Label class="section-header h3" text="Deadline:"></Label>
         <GridLayout rows="90" columns="*, auto, auto">
-          <DatePicker verticalAlignment="bottom" row="0" col="0" [(ngModel)]="deadline.date"></DatePicker>
+          <DatePicker  (loaded)="onPickerLoaded($event)" verticalAlignment="bottom" row="0" col="0" [(ngModel)]="deadline.date"></DatePicker>
           <StackLayout class="input-field" row="0" col="1"> <TextField keyboardType="number" hint="hh" [(ngModel)]="deadline.hh"></TextField> </StackLayout>
           <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="mm" [(ngModel)]="deadline.mm"></TextField> </StackLayout>
         </GridLayout>
@@ -35,7 +35,20 @@
           <Switch checked="false" [(ngModel)]="gps_flag" row="1" col="0"></Switch>
           <Label class="h3" text="GPS required" textWrap="true" row="1" col="1"></Label>
         </GridLayout>
-        <app-maps></app-maps>
+
+        <GridLayout *ngIf="this.gps_flag" rows="auto, auto" columns="auto, 5, auto">
+
+          <Label text="Latitude " class="h4" row="0" col="0"></Label>
+          <StackLayout class="input-field" row="0" col="2">
+            <TextField hint="Latitude" [(ngModel)]="this.lat"></TextField>
+          </StackLayout>
+          <Label text="Longitude " class="h4" row="1" col="0"></Label>
+          <StackLayout class="input-field" row="1" col="2">
+            <TextField hint="Longitude" [(ngModel)]="this.lon"></TextField>
+          </StackLayout>
+
+        </GridLayout>
+
       </StackLayout>
 
       <StackLayout class="card">
@@ -46,21 +59,21 @@
           <Label class="icon" [text]="trash_icon" row="0" col="3" rowSpan="2" (tap)="removeQuestion(_i)"></Label>
         </GridLayout>
       </StackLayout>
-<!-- [(ngModel)]="new_question.question" -->
+
       <StackLayout class="card">
         <Label text="New question" class="section-header h3"></Label>
         <StackLayout class="input-field">
-          <TextField hint="Question" [(ngModel)]="gps_flag"></TextField>
+          <TextField hint="Question" [(ngModel)]="new_question.question"></TextField>
         </StackLayout>
         <StackLayout orientation="horizontal" horizontalAlignment="center">
           <Button *ngFor="let type of q_types" class="btn" (tap)="openQuestion(type)" [text]="type" style="margin: 0 1 0 1;"></Button>
         </StackLayout>
 
         <StackLayout>
-          <StackLayout *ngIf="new_question.type == 'essay'" class="input-field"> <TextField keyboardType="number" hint="max. words (> 0)" [(ngModel)]="max_words"></TextField> </StackLayout>
+          <StackLayout *ngIf="new_question.type == 'essay'" class="input-field"> <TextField keyboardType="number" hint="max. words (> 0)" [(ngModel)]="this.max_words"></TextField> </StackLayout>
           <GridLayout *ngIf="new_question.type == 'lin'" rows="auto" columns="*, 5, *">
-            <StackLayout class="input-field" row="0" col="0"> <TextField keyboardType="number" hint="min" [(ngModel)]="min"></TextField> </StackLayout>
-            <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="max" [(ngModel)]="max"></TextField> </StackLayout>
+            <StackLayout class="input-field" row="0" col="0"> <TextField keyboardType="number" hint="min" [(ngModel)]="this.min"></TextField> </StackLayout>
+            <StackLayout class="input-field" row="0" col="2"> <TextField keyboardType="number" hint="max" [(ngModel)]="this.max"></TextField> </StackLayout>
           </GridLayout>
           <StackLayout *ngIf="new_question.type == 'multiple'">
             <GridLayout *ngFor="let ans of multiple_answers" rows="auto, auto" columns="*, 2, auto">
@@ -79,8 +92,8 @@
       </StackLayout>
 
       <GridLayout rows="auto" columns="5, *, 5, *, 5">
-          <Button class="btn btn-primary btn-active" text="Save template" (tap)="createTemplate()" row="0" col="1"></Button>
-          <Button class="btn btn-primary btn-active" text="Submit questionnaire" (tap)="saveQuestionnaire()" row="0" col="3"></Button>
+          <Button class="btn btn-primary btn-active" text="Save template" (tap)="createTemplate()" row="0" col="1" textWrap="true"></Button>
+          <Button class="btn btn-primary btn-active" text="Submit questionnaire" (tap)="saveQuestionnaire()" row="0" col="3" textWrap="true"></Button>
       </GridLayout>
     </StackLayout>
   </ScrollView>

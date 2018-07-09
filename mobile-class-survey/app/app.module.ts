@@ -17,8 +17,8 @@ import { TemplateDataService } from './services/template-data.service';
 import { StatisticsDataService } from './services/statistics-data.service';
 import { QuestionDataService } from './services/question-data.service';
 import { SendAnswerService } from './services/send-answer.service';
+import { ServerService } from './services/server.service';
 
-import { NgShadowModule } from 'nativescript-ng-shadow';
 
 @NgModule({
   imports: [
@@ -27,10 +27,10 @@ import { NgShadowModule } from 'nativescript-ng-shadow';
     NativeScriptFormsModule,
     NativeScriptHttpModule,
     NativeScriptRouterModule,
-    NativeScriptRouterModule.forRoot(routes),
-    NgShadowModule
+    NativeScriptRouterModule.forRoot(routes)
   ],
   providers: [
+    ServerService,
     UserDataService,
     CourseDataService,
     AuthenticationService,

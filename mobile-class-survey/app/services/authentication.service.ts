@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+
 import { HttpClient } from '@angular/common/http';
 
-import { Config } from '../config'
+import { ServerService } from './server.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+
   private error_status: any;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient, private server: ServerService) { }
 
   login(user: any): Observable<any> {
-    this.error_status= 200;
-    return this.http.post<any>(Config.getURL()+"/authentication",
-    user) .pipe(
-      catchError(this.handleError('login', user))
-    );
+    return this.http.post<any>(this.server.getURL()+'/authentication', user)
+      .pipe(
+        catchError(this.handleError('login', user))
+      );
   }
 
   getErrorStatus(): any {
     return this.error_status;
+  }
+
+  resetErrorStatus(): any{
+    this.error_status = undefined;
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

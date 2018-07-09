@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { HttpClient } from '@angular/common/http';
 
-import { Config } from '../config'
+import { ServerService } from './server.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,10 @@ export class TemplateDataService {
 
   private error_status: any;
 
-
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient, private server: ServerService) { }
 
   retrieveData(id:any): Observable<any>{
-    const req_path = Config.getURL()+'/template?matriculation='+id;
+    const req_path = this.server.getURL()+'/template?matriculation='+id;
     return this.http.get<any>(req_path)
     .pipe(
       catchError(this.handleError('retrieveData', id))
@@ -49,16 +48,6 @@ export class TemplateDataService {
     };
   }
 
-/*
-  getTemaplateFromCode(code: any){
-    for(let temp of this.templates){
-      if(temp.code == code){
-        return temp;
-      }
-    }
-  }
-*/
-
   selectTemplate(code:any):void{
     if(code!=undefined){
       for(let temp of this.templates){
@@ -67,10 +56,7 @@ export class TemplateDataService {
         }
       }
     }
-    else{
-      this.selected = undefined;
-    }
-
+    else{ this.selected = undefined; }
   }
 
   getSelected(){
@@ -82,7 +68,7 @@ export class TemplateDataService {
   }
 
   retrieveQuestionsOfTemplate(type: any, id: any): Observable<any>{
-    const req_path = Config.getURL() + '/question?type='+type+'&id='+id;
+    const req_path = this.server.getURL()+'/question?type='+type+'&id='+id;
     return this.http.get<any>(req_path)
     .pipe(
       catchError(this.handleError('retrieveQuestionsOfTemplate', [type, id]))
@@ -90,7 +76,7 @@ export class TemplateDataService {
   }
 
   removeTemplate(prof:any, temp_id:any): Observable<any>{
-    return this.http.delete<any>(Config.getURL()+'/template?professor='+prof+'&id='+temp_id)
+    return this.http.delete<any>(this.server.getURL()+'/template?professor='+prof+'&id='+temp_id)
     .pipe(
       catchError(this.handleError('removeTemplate', [prof, temp_id]))
     );

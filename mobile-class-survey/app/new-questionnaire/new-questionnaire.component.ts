@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-
 import { DatePicker } from "ui/date-picker";
 import { Switch } from "ui/switch";
+
+import { isEnabled, enableLocationRequest, getCurrentLocation } from "nativescript-geolocation";
 
 import { UserDataService } from '../services/user-data.service';
 import { TemplateDataService } from '../services/template-data.service';
@@ -39,6 +39,8 @@ export class NewQuestionnaireComponent implements OnInit {
   private title: any = "";
 
   private gps_flag: boolean = false;
+  private lat: any;
+  private lon: any;
 
   private public_flag: boolean = false;
 
@@ -52,9 +54,6 @@ export class NewQuestionnaireComponent implements OnInit {
   private m_choice: any;
   private multiple_answers: any[] = [];
 
-
-  options: FormGroup;
-
   constructor(
     private userDataService: UserDataService,
     private templateDataService: TemplateDataService,
@@ -63,22 +62,41 @@ export class NewQuestionnaireComponent implements OnInit {
     private router: Router){}
 
   ngOnInit() {
-    this.options = new FormGroup({
-      w_max: new FormControl(0, [Validators.min(0), Validators.max(1000)]),
-      lin_max: new FormControl( 7, Validators.max(100)),
-      lin_min: new FormControl(1, Validators.min(0))
-    });
     this.course = this.courseDataService.getData();
     this.user = this.userDataService.getData();
 
     this.template = this.templateDataService.getSelected();
     this.retrieveQuestions();
 
+    this.setInitialPos();
   }
 
-  get w_max(){return this.options.get('w_max');}
-  get lin_max(){return this.options.get('lin_max');}
-  get lin_min(){return this.options.get('lin_min');}
+  onPickerLoaded(args) {
+        let datePicker = <DatePicker>args.object;
+
+        var today = new Date();
+
+        datePicker.minDate = new Date(2010, 0, 1);
+        datePicker.maxDate = new Date(2045, 11, 15);
+
+        datePicker.date = new Date();
+
+
+        this.activation.hh = today.getHours();
+        this.deadline.hh = today.getHours()+1;
+        this.activation.mm = today.getMinutes();
+        this.deadline.mm = today.getMinutes();
+    }
+
+  setInitialPos(){
+    var position = getCurrentLocation({}).then(
+      (position) => {
+        this.lat = position.latitude;
+        this.lon = position.longitude;
+      }
+    ).catch((e) => console.warn(`ERROR(${e.code}): ${e.message}`));
+
+  }
 
   openQuestion(type) {
     this.new_question.type = type;
@@ -139,7 +157,6 @@ export class NewQuestionnaireComponent implements OnInit {
     this.new_question = {"type":"", "question":""}
     this.multiple_answers = [];
     this.m_choice = undefined;
-    this.options.setValue({w_max:0, lin_min:0, lin_max:7});
 
     //---- NOTE
     this.max_words = undefined;
@@ -157,15 +174,15 @@ export class NewQuestionnaireComponent implements OnInit {
   saveQuestionnaire(){
       var activation;
       var deadline;
+
       try {
-        activation = this.activation.date.getDate()+"/"+this.activation.date.getMonth()+1+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
-        deadline = this.deadline.date.getDate()+"/"+this.deadline.date.getMonth()+1+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
+        activation = this.activation.date.getDate()+"/"+(this.activation.date.getMonth()+1)+"/"+this.activation.date.getFullYear()+" - "+this.activation.hh+":"+this.activation.mm;
+        deadline = this.deadline.date.getDate()+"/"+(this.deadline.date.getMonth()+1)+"/"+this.deadline.date.getFullYear()+" - "+this.deadline.hh+":"+this.deadline.mm;
       } catch(error) {
         alert("define activation and deadline")
         return
       }
 
-      console.log(activation)
 
       var questionnaire = {
         "id": "QUES"+this.getNewId(),
@@ -180,8 +197,8 @@ export class NewQuestionnaireComponent implements OnInit {
       }
 
       if (this.gps_flag){
-        var _pos = this.questionnaireDataService.getPositionSelected();
-        questionnaire["gps"] = _pos[1]+","+_pos[0];
+        //var _pos = this.questionnaireDataService.getPositionSelected();
+        questionnaire["gps"] = this.lat+","+this.lon;
       }
       else{
         questionnaire["gps"] = "false";
@@ -209,6 +226,7 @@ export class NewQuestionnaireComponent implements OnInit {
         questionnaire.questions.push(_question);
       }
 
+      this.questionnaireDataService.resetErrorStatus();
       this.questionnaireDataService.postQuestionnaire(questionnaire).subscribe((response) => this.checkPostResponse(response));
 
   }
@@ -222,6 +240,40 @@ export class NewQuestionnaireComponent implements OnInit {
       alert('posting failed; error status: '+ this.questionnaireDataService.getErrorStatus());
     }
 
+  }
+
+  createTemplate(){
+    var template = {
+      "id": "TEMP"+this.getNewId(),
+      "creator": this.user.name,
+      "public": this.public_flag,
+      "questions": []
+    }
+
+    for(let q of this.questions){
+
+      var _question = {"question": q.question};
+
+      if( q.type == "lin"){
+        _question["questionType"] = "lin";
+
+        _question["min"] = q.min;
+        _question["max"] = q.max;
+      }
+      if(q.type == "multiple"){
+        _question["questionType"] = "multiple";
+        _question["choices"] = q.choices;
+      }
+      if(q.type == "essay"){
+        _question["questionType"] = "essay";
+        _question["max_len"] = q.max_len;
+      }
+
+      template.questions.push(_question);
+    }
+
+    this.questionnaireDataService.resetErrorStatus();
+    this.questionnaireDataService.postTemplate(template).subscribe((response) => this.checkPostResponse(response));
   }
 
 }

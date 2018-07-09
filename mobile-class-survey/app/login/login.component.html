@@ -1,9 +1,9 @@
-<StackLayout class="form">
+<StackLayout class="form-login">
   <StackLayout class="input-field">
-    <TextField hint="Matriculation number" keyboardType="email" [(ngModel)]="mat" autocorrect="false" autocapitalizationType="none"></TextField>
+    <TextField hint="Matriculation number" keyboardType="email" [(ngModel)]="this.mat" autocorrect="false" autocapitalizationType="none"></TextField>
   </StackLayout>
   <StackLayout class="input-field">
-    <TextField hint="Password" secure="true" [(ngModel)]="pass"></TextField>
+    <TextField hint="Password" secure="true" [(ngModel)]="this.pass"></TextField>
   </StackLayout>
 
   <Button class="btn btn-primary btn-rounded-sm" text="Sign in" (tap)="login()"></Button>
@@ -11,9 +11,10 @@
   <StackLayout class="hr-dark m-10"></StackLayout>
 
   <StackLayout class="input-field">
-    <TextField hint="Server IP" keyboardType="url" [(ngModel)]="this.config.address"></TextField>
+    <TextField hint="Server IP" keyboardType="url" [(ngModel)]="this.ip"></TextField>
   </StackLayout>
   <StackLayout class="input-field">
-    <TextField hint="Server Port" keyboardType="number" [(ngModel)]="this.config.port"></TextField>
+    <TextField hint="Server Port" keyboardType="number" [(ngModel)]="this.port"></TextField>
   </StackLayout>
+
 </StackLayout>
