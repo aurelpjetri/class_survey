@@ -59,5 +59,16 @@ export class ProfessorComponent implements OnInit {
     this.router.navigateByUrl('/course');
   }
 
+  //methods used for testing
+  getActive(){
+    return this.active_courses
+  }
 
+  getExpired(){
+    return this.expired_courses
+  }
+
+  retrieveUser(){
+    return this.user
+  }
 }

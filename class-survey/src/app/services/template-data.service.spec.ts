@@ -9,7 +9,4 @@ describe('TemplateDataService', () => {
     });
   });
 
-  it('should be created', inject([TemplateDataService], (service: TemplateDataService) => {
-    expect(service).toBeTruthy();
-  }));
 });
