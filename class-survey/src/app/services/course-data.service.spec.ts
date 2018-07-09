@@ -9,7 +9,4 @@ describe('CourseDataService', () => {
     });
   });
 
-  it('should be created', inject([CourseDataService], (service: CourseDataService) => {
-    expect(service).toBeTruthy();
-  }));
 });

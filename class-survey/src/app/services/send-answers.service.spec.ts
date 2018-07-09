@@ -9,7 +9,4 @@ describe('SendAnswersService', () => {
     });
   });
 
-  it('should be created', inject([SendAnswerService], (service: SendAnswerService) => {
-    expect(service).toBeTruthy();
-  }));
 });
