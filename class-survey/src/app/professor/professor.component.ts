@@ -67,8 +67,8 @@ export class ProfessorComponent implements OnInit {
   getExpired(){
     return this.expired_courses
   }
-
+/*
   retrieveUser(){
     return this.user
-  }
+  }*/
 }

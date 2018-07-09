@@ -17,22 +17,6 @@ describe('ProfessorComponent', () => {
   let fixture: ComponentFixture<ProfessorComponent>;
 
   beforeEach(() => {
-    var course = {
-			"code": "COUR000",
-			"name": "Deep Networks",
-			"cfu": 9,
-			"year": "2017/18",
-			"degree": "Master",
-			"active": "true",
-			"questionnaires": [
-				"QUES000",
-				"QUES003"
-			]
-		};
-
-    const courseDataService = jasmine.createSpyObj('CourseDataService', ['retrieveData']);
-    var retrieveDataSpy = courseDataService.retrieveData.and.returnValue( of(course) );
-
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     TestBed.configureTestingModule({
       declarations: [ ProfessorComponent ],

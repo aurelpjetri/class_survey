@@ -74,4 +74,8 @@ export class QuestionnaireDataService {
     );
   }
 
+  resetErrorStatus(){
+    this.error_status = undefined;
+  }
+
 }

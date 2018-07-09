@@ -39,9 +39,8 @@ describe('StudentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should print "no questionnaires to be completed" ', () => {
-    console.log(fixture.nativeElement.innerHTML)
-    expect(fixture.nativeElement.innerHTML).toContain('no questionnaires');
+  it('should print "No questionnaires to be completed" ', () => {
+    expect(fixture.nativeElement.innerHTML).toContain('No questionnaires');
   });
 
 });

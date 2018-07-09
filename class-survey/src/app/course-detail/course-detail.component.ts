@@ -35,7 +35,7 @@ export class CourseDetailComponent implements OnInit {
   }
 
   checkResponse(response: any) :any{
-    if(this.courseDataService.getErrorStatus()==undefined){
+    if(this.questionnaireDataService.getErrorStatus()==undefined){
       if(this.checkExpirement(response)){
         this.expired_q.push(response);
       }
@@ -46,7 +46,7 @@ export class CourseDetailComponent implements OnInit {
     else{
       alert('unable to read course details');
       this.active_q.push('404');
-      this.courseDataService.resetErrorStatus();
+      this.questionnaireDataService.resetErrorStatus();
     }
   }
 
@@ -70,4 +70,12 @@ export class CourseDetailComponent implements OnInit {
     this.router.navigateByUrl('/questionnaire/statistic')
   }
 
+  //methods for testing
+  getActive(){
+    return this.active_q
+  }
+
+  getExpired(){
+    return this.expired_q
+  }
 }
