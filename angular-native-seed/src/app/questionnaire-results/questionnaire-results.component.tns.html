@@ -1,0 +1,86 @@
+<StackLayout class="form">
+
+  <Label class="h2" textWrap="true">
+    <FormattedString>
+      <Span [text]="questionnaire.title"></Span>
+    </FormattedString>
+  </Label>
+
+  <StackLayout class="hr-light m-10"></StackLayout>
+
+  <TabView selectedIndex="0" >
+
+    <StackLayout *tabItem="{title: 'Questions'}">
+
+      <ScrollView>
+        <StackLayout>
+          <StackLayout class="card" *ngFor="let question of questions" (tap)="this.compile(questionnaire)">
+
+            <GridLayout rows="auto, auto, auto" columns="auto">
+
+              <Label [text]="question.question" class="h2" row="0" col="0" textWrap="true"></Label>
+
+              <Label [text]=" 'Linear question - Range: ' + question.min + ' to ' + question.max" class="h4" row="1" col="0" textWrap="true" *ngIf="question.range != undefined"></Label>
+
+              <Label [text]=" 'Essay question - Max ' + question.max_len + ' words.' " class="h4" row="1" col="0" textWrap="true" *ngIf="question.max_len != undefined"></Label>
+
+              <StackLayout *ngIf="question.choices != undefined" row="2" col="0">
+                <Label text=" 'Multiple question' " class="h4"  textWrap="true" ></Label>
+
+                <Label *ngFor="let option of question.choices" [text]=" '- '+ option" class="h4" textWrap="true"></Label>
+
+              </StackLayout>
+
+
+            </GridLayout>
+
+          </StackLayout>
+        </StackLayout>
+      </ScrollView>
+
+    </StackLayout>
+    <StackLayout *tabItem="{title: 'Statistics'}">
+
+      <ScrollView>
+        <StackLayout *ngIf="questionnaire.active == false">
+
+          <StackLayout class="card" *ngFor="let question of questions; let i = index">
+
+            <Label [text]="question.question" class="h2"></Label>
+
+            <StackLayout *ngIf="question.range != undefined" >
+              <StackLayout *ngFor="let statistic of statistics" >
+                <StackLayout *ngIf="statistic.numberOfTheQuestion == i" >
+                  <Label *ngFor="let s of statistic.statistics" [text]="s.statistic +' - '+ s.value" class="h4" ></Label>
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+
+            <StackLayout *ngIf="question.max_len != undefined" >
+              <StackLayout *ngFor="let statistic of statistics" >
+                <StackLayout *ngIf="statistic.numberOfTheQuestion == i" >
+                  <Label *ngFor="let answer of statistic.collected" [text]="answer" class="h4"></Label>
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+
+            <StackLayout *ngIf="question.choices != undefined" >
+              <StackLayout *ngFor="let statistic of statistics" >
+                <StackLayout *ngIf="statistic.numberOfTheQuestion == i" >
+                  <Label *ngFor="let s of statistic.statistics" [text]="s.statistic +' - '+ s.value" class="h4" ></Label>
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+
+
+          </StackLayout>
+
+        </StackLayout>
+      </ScrollView>
+
+    </StackLayout>
+
+
+  </TabView>
+
+</StackLayout>

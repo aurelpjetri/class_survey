@@ -13,7 +13,7 @@
 
       <StackLayout class="card" *ngFor="let course of active_courses" (tap)="selectedCourse(course)">
         <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
-          <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3"></Label>
+          <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3" ></Label>
           <Label [text]="course.name" class="h2" row="0" col="1"></Label>
           <Label [text]="course.code + ' - ' + course.cfu + ' CFU - AY ' + course.year" class="h4" row="1" col="1"></Label>
           <Label [text]="course.degree" class="h4" row="2" col="1"></Label>

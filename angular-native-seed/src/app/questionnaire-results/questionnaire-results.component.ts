@@ -24,7 +24,6 @@ export class QuestionnaireResultsComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestionnaire();
-    console.log(this.questionnaire)
     this.getQuestions();
     this.questionsSort();
     this.getStatistics();
