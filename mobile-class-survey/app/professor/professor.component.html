@@ -1,0 +1,37 @@
+<StackLayout class="form">
+  <Label class="h2">
+    <FormattedString>
+      <Span text="Courses" style="font-weight: bold"></Span>
+      <Span [text]="' of ' + user.name"></Span>
+    </FormattedString>
+  </Label>
+  <StackLayout class="hr-light m-10"></StackLayout>
+
+  <ScrollView>
+    <StackLayout>
+      <Label text="Active course" class="section-header"></Label>
+
+      <StackLayout class="card" *ngFor="let course of active_courses" (tap)="selectedCourse(course)">
+        <GridLayout rows="auto, auto, auto" columns="auto, auto, auto">
+          <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3"></Label>
+          <Label [text]="course.name" class="h2" row="0" col="1"></Label>
+          <Label [text]="course.code + ' - ' + course.cfu + ' CFU - AY ' + course.year" class="h4" row="1" col="1"></Label>
+          <Label [text]="course.degree" class="h4" row="2" col="1"></Label>
+        </GridLayout>
+      </StackLayout>
+
+      <StackLayout class="hr-light m-10"></StackLayout>
+      <Label text="Expired course" class="section-header"></Label>
+
+      <StackLayout class="card" *ngFor="let course of expired_courses" (tap)="selectedCourse(course)">
+        <GridLayout rows="auto, auto, auto" columns="auto, *, auto">
+          <Label class="icon" [text]="uni_icon" row="0" col="0" rowSpan="3"></Label>
+          <Label [text]="course.name" class="h2" row="0" col="1"></Label>
+          <Label [text]="course.code + ' - ' + course.cfu + ' CFU - AY ' + course.year" class="h4" row="1" col="1"></Label>
+          <Label [text]="course.degree" class="h4" row="2" col="1"></Label>
+        </GridLayout>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+
+</StackLayout>

@@ -19,7 +19,4 @@ describe('CompileQuestionnaireComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });

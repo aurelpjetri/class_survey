@@ -106,7 +106,7 @@
 			"degree": "Master",
 			"active": "true",
 			"questionnaires": [
-				"QUES000",
+				"QUES001",
 				"QUES003"
 			]
 		},
@@ -370,7 +370,7 @@
 				}
 			]
 		},
-{
+		{
 			"questionnaireId": "QUES003",
 			"numberOfTheQuestion": 1,
 			"collected": [

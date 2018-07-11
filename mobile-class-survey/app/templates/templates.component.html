@@ -1,0 +1,37 @@
+<StackLayout class="form">
+  <Label class="h3" [text]="user.name + ' - ' + course.name + ' ' + course.year" (tab)="changeView()"></Label>
+  <Label class="h2">
+    <FormattedString>
+      <Span text="Issue" style="font-weight: bold"></Span>
+      <Span text=" a survey"></Span>
+    </FormattedString>
+  </Label>
+  <StackLayout class="hr-light m-10"></StackLayout>
+
+  <ScrollView>
+    <StackLayout>
+      <Label text="Write a new survey" class="section-header"></Label>
+
+      <StackLayout class="card" (tap)="changeView()">
+        <GridLayout rows="auto, auto" columns="auto, auto">
+          <Label class="icon" [text]="plus_icon" row="0" col="0" rowSpan="2"></Label>
+          <Label text="New Survey" class="h2" row="0" col="1"></Label>
+          <Label text="questions" class="h4" row="1" col="1"></Label>
+        </GridLayout>
+      </StackLayout>
+
+      <StackLayout class="hr-light m-10"></StackLayout>
+      <Label text="Start from an existing template" class="section-header"></Label>
+
+      <StackLayout class="card" *ngFor="let temp of templates" (tap)="changeView(temp)">
+        <GridLayout rows="auto, auto" columns="auto, auto, *, auto">
+          <Label class="icon" [text]="temp_icon" row="0" col="0" rowSpan="2"></Label>
+          <Label [text]="temp.title" class="h2" row="0" col="1" colSpan="3"></Label>
+          <Label [text]="temp.creator + ' - ' + temp.questions.length + ' questions'" class="h4" row="1" col="1" colSpan="3"></Label>
+          <Label class="icon" [text]="trash_icon" *ngIf="temp.creator == user.matriculation" row="0" col="3" rowSpan="2" (tap)="removeTemplate(temp)"></Label>
+        </GridLayout>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+
+</StackLayout>

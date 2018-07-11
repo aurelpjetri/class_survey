@@ -1,0 +1,35 @@
+@import '~nativescript-theme-core/css/blue.css';
+
+ActionBar{
+  background-color: #4169E1;
+  color: white;
+  title: Survey App;
+}
+.form-login{
+  margin: 20% 10% 0 10%;
+}
+.form{
+  margin: 0 5% 0 5%;
+}
+.icon{
+
+  font-family: "./fonts/fa-solid-900";
+  vertical-align: center;
+  font-size: 30;
+  margin: 5;
+}
+.card{
+  background-color: #F0F0F0;
+  color: black;
+
+  border-width: 2;
+  border-radius: 2;
+  margin-top: 5;
+  margin-bottom: 5;
+  padding: 5;
+}
+.section-header{
+  margin-top: 5;
+  margin-bottom: 10;
+  margin-left: 5;
+}

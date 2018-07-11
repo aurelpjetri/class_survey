@@ -1,0 +1,28 @@
+<div class="prof_cont">
+  <h2 class="mat-headline"><span>Courses</span> of {{user.name}} </h2>
+</div>
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-title">Active Courses</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let course of active_courses" (click)="selectedCourse(course)">
+      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{course.name}}</mat-card-title>
+      <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AY {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle>
+      <!--<mat-card-content>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-content>-->
+  </mat-card>
+</div>
+
+<mat-divider></mat-divider>
+<div class="prof_cont">
+    <h3 class="mat-title">Expired Courses</h3>
+</div>
+
+<div class="active_scrollable">
+  <mat-card *ngFor="let course of expired_courses" (click)="selectedCourse(course)">
+      <mat-card-title> <mat-icon mat-list-icon>school</mat-icon> {{course.name}}</mat-card-title>
+      <mat-card-subtitle>{{course.code}} - {{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-subtitle>
+      <!--<mat-card-content>{{course.cfu}} CFU - AA {{course.year}} - {{course.degree}}'s Degree</mat-card-content>-->
+  </mat-card>
+</div>
